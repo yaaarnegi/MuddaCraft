@@ -29,12 +29,19 @@ open index.html
 
 ```
 mudda-store/
-├── index.html       # Storefront semantic markup, hero, catalog, and modals
-├── styles.css       # Complete artisanal design system (terracotta, cane gold, responsive)
+├── .agents/skills/  # 5 Installed AI Agent Skills (GSAP, Three.js, Design DNA, Motion, Genjutsu)
+│   ├── gsap-skills/SKILL.md
+│   ├── threejs-skills/SKILL.md
+│   ├── design-dna/SKILL.md
+│   ├── motion-design/SKILL.md
+│   └── genjutsu/SKILL.md
+├── index.html       # Storefront with 3D studio modal & frosted Liquid Glass UI
+├── styles.css       # Artisanal design system + Apple Liquid Glass frosted panels
 ├── app.js           # Catalog state, category filters, cart drawer, checkout logic
+├── animations.js    # Lenis smooth scroll, GSAP ScrollTrigger, ambient fiber canvas
+├── three-viewer.js  # Interactive Three.js WebGL 3D Mudda Stool inspection studio
 ├── server.js        # Zero-dependency local Node.js static & mock API server
 ├── package.json     # Project scripts and metadata
-├── .gitignore       # Version control hygiene for Git, Codex, and Antigravity
 └── README.md        # Documentation and multi-agent instructions
 ```
 
