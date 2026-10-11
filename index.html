@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MuddaCraft Studio | Handcrafted Artisanal Mudda Stools & Chairs</title>
+  <meta name="description" content="Shop authentic, eco-friendly handcrafted Mudda stools and chairs made from sustainable Sarkanda reeds, bamboo, and organic jute. Support rural Indian artisans.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    🌿 Direct From Rural Weavers • Free Carbon-Neutral Shipping on Orders Over $75 • 100% Biodegradable Reeds
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="/" class="brand-logo">
+        <span class="brand-icon">🌾</span>
+        <span>Mudda<span class="brand-tag">Craft</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#shop" class="nav-link">Shop Collection</a></li>
+          <li><a href="#story" class="nav-link">Artisanal Story</a></li>
+          <li><a href="#materials" class="nav-link">Materials</a></li>
+          <li><a href="#faq" class="nav-link">Care & FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-button" onclick="toggleCart(true)" aria-label="Open shopping cart">
+          <span>🧺 Basket</span>
+          <span class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <span>✨</span> Handwoven Heritage Furniture
+          </div>
+          <h1 class="hero-title">
+            Timeless Indian Craft, <span>Woven</span> for Modern Living.
+          </h1>
+          <p class="hero-description">
+            Experience the soulful comfort of authentic handcrafted Mudda stools. Harvested from wild riverbank Sarkanda reeds, framed with bamboo, and intricately tied with organic fibers by multi-generational artisan families.
+          </p>
+          <div class="hero-actions">
+            <a href="#shop" class="btn-primary">
+              <span>Explore Collection</span>
+              <span>→</span>
+            </a>
+            <a href="#story" class="btn-secondary">
+              <span>The Sarkanda Story</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Artisan Handcrafted Mudda Stool in modern living room">
+            <div class="hero-floating-badge">
+              <span class="badge-icon">🌱</span>
+              <div>
+                <div class="badge-title">Zero Plastic • 100% Natural</div>
+                <div class="badge-sub">Hand-tied with sun-dried wild reeds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Value Propositions Bar -->
+    <section class="features-bar">
+      <div class="container features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-box">🌾</div>
+          <div>
+            <div class="feature-title">Wild Sarkanda Reeds</div>
+            <div class="feature-desc">Naturally water-resistant & lightweight</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">🤲</div>
+          <div>
+            <div class="feature-title">Fair-Trade Artisans</div>
+            <div class="feature-desc">100% direct proceeds to rural weavers</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">💪</div>
+          <div>
+            <div class="feature-title">Built to Last</div>
+            <div class="feature-desc">Supports up to 330 lbs with dual rims</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-box">📦</div>
+          <div>
+            <div class="feature-title">Eco-Packaging</div>
+            <div class="feature-desc">Zero single-use plastic, 100% recyclable</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop Catalog Section -->
+    <section class="container" id="shop" style="padding-top: 40px;">
+      <div class="section-header">
+        <div class="section-subtitle">Curated Catalog</div>
+        <h2 class="section-title">Handcrafted Mudda Stools & Chairs</h2>
+      </div>
+
+      <!-- Controls: Tabs, Search, Sorting -->
+      <div class="catalog-controls">
+        <div class="category-tabs">
+          <button class="tab-btn active" data-category="all">All Designs</button>
+          <button class="tab-btn" data-category="classic">Classic Sarkanda</button>
+          <button class="tab-btn" data-category="chairs">High-Back Chairs</button>
+          <button class="tab-btn" data-category="jute">Jute Mandala</button>
+          <button class="tab-btn" data-category="colorful">Festive Woven</button>
+          <button class="tab-btn" data-category="outdoor">Outdoor / Patio</button>
+          <button class="tab-btn" data-category="mini">Mini & Kids</button>
+        </div>
+
+        <div class="filter-inputs">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Search reeds, colors, styles...">
+          </div>
+          <select id="sort-select" class="sort-select" aria-label="Sort products">
+            <option value="popular">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Top Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Artisanal Story & Craftsmanship Section -->
+    <section class="craft-story" id="story">
+      <div class="container story-grid">
+        <div>
+          <div class="section-subtitle">Heritage & Technique</div>
+          <h2 class="section-title">The Anatomy of an Authentic Mudda</h2>
+          <p style="color: var(--text-muted); margin-top: 14px; font-size: 1.05rem;">
+            For centuries, master weavers along the Yamuna and Ganges river basins have transformed seasonal wild reeds (*Saccharum bengalense*) into architectural seating that is featherlight yet incredibly sturdy.
+          </p>
+
+          <div class="story-steps">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <div class="step-content">
+                <h4>Reaping & Sun-Curing</h4>
+                <p>Wild sarkanda stems are harvested in late autumn and cured under the sun for 20 days until golden and resilient.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <div class="step-content">
+                <h4>Bamboo Ring Framing</h4>
+                <p>Fire-bent green bamboo bands form the dual structural rings at top and base to distribute load evenly.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <div class="step-content">
+                <h4>Mandala Cord Weaving</h4>
+                <p>Master artisans weave concentric cord geometric patterns that create springy, ergonomic cushion without foam.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&w=1000&q=80" alt="Artisan weaving organic jute mudda stool" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="container" id="faq" style="padding: 60px 24px; max-width: 800px;">
+      <div class="section-header">
+        <div class="section-subtitle">Common Questions</div>
+        <h2 class="section-title">Care & Product Information</h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
+          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
+            <span>How much weight can a Mudda stool support?</span>
+            <span>▾</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
+            Because of the vertical cylindrical orientation of the dense reed bundles, standard Mudda stools easily support between 120 kg to 150 kg (265 to 330 lbs). They are engineered naturally by the interlocking bamboo rims.
+          </p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
+          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
+            <span>Can I keep my mudda outdoors on a patio or balcony?</span>
+            <span>▾</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
+            Yes! Muddas love covered verandas, balconies, and patios. For open outdoor areas, choose our <em>Veranda Weatherproof Stool</em> treated with natural linseed oil, and bring it inside during heavy rain.
+          </p>
+        </details>
+
+        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
+          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
+            <span>How do I clean and maintain my mudda?</span>
+            <span>▾</span>
+          </summary>
+          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
+            Simply wipe with a dry or lightly damp cloth. You can also vacuum using a soft brush attachment. Keep in a dry, ventilated area.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Slide-Over Shopping Cart Drawer -->
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart(false)">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-header">
+        <h3>Your Shopping Basket</h3>
+        <button class="close-drawer-btn" onclick="toggleCart(false)">&times;</button>
+      </div>
+
+      <div class="free-shipping-tracker">
+        <div id="free-shipping-text">Add items for free shipping</div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="free-shipping-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="cart-row">
+          <span>Carbon-Neutral Delivery</span>
+          <span style="color: var(--secondary); font-weight: 600;">Calculated at checkout</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-overlay" id="checkout-modal" onclick="closeCheckout()">
+    <div class="checkout-modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeCheckout()">&times;</button>
+      
+      <div id="checkout-form-container">
+        <h2 style="font-family: var(--font-serif); font-size: 1.6rem;">Complete Your Order</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+          Supporting authentic craftsmanship. Total: <strong id="checkout-modal-subtotal" style="color: var(--primary);">$0.00</strong>
+        </p>
+
+        <form onsubmit="submitOrder(event)">
+          <div class="checkout-steps">
+            <div class="form-group full-width">
+              <label for="cust-name">Full Name</label>
+              <input type="text" id="cust-name" placeholder="Priya Sharma" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="cust-email">Email Address</label>
+              <input type="email" id="cust-email" placeholder="priya@example.com" required>
+            </div>
+            <div class="form-group full-width">
+              <label for="cust-address">Delivery Address</label>
+              <input type="text" id="cust-address" placeholder="124 Lotus Lane, Apt 4B" required>
+            </div>
+            <div class="form-group">
+              <label for="cust-city">City</label>
+              <input type="text" id="cust-city" placeholder="San Francisco" required>
+            </div>
+            <div class="form-group">
+              <label for="cust-zip">Postal / Zip Code</label>
+              <input type="text" id="cust-zip" placeholder="94103" required>
+            </div>
+          </div>
+
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin: 16px 0 8px;">
+            Payment Method (Sandbox Mode)
+          </label>
+          <div class="payment-options">
+            <div class="payment-card selected">
+              <span>💳</span>
+              <span>Credit Card / Stripe</span>
+            </div>
+            <div class="payment-card">
+              <span>⚡</span>
+              <span>Apple Pay / UPI</span>
+            </div>
+          </div>
+
+          <button type="submit" id="order-submit-btn" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            Place Order Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal-overlay" id="quick-view-modal" onclick="closeQuickView()">
+    <div class="checkout-modal" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeQuickView()">&times;</button>
+      <div id="quick-view-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>MuddaCraft Studio</h3>
+        <p>Revitalizing traditional Indian reed furniture for eco-conscious homes worldwide. Handcrafted with reverence for natural materials.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Collection</h4>
+        <ul>
+          <li><a href="#shop">Classic Muddas</a></li>
+          <li><a href="#shop">High-Back Chairs</a></li>
+          <li><a href="#shop">Jute Mandalas</a></li>
+          <li><a href="#shop">Kids Mini Stools</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sustainability</h4>
+        <ul>
+          <li><a href="#story">Wild Reed Harvesting</a></li>
+          <li><a href="#story">Artisan Co-Op Fair Pay</a></li>
+          <li><a href="#materials">Plastic-Free Pledge</a></li>
+          <li><a href="#faq">Product Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Join the Collective</h4>
+        <p style="font-size: 0.85rem; color: #a39c90; margin-bottom: 12px;">Get 10% off your first handcrafted mudda and stories from our rural weaving circles.</p>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Enter your email...">
+          <button class="btn-primary" style="width: 100%; justify-content: center; padding: 10px;">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 MuddaCraft Studio. Handcrafted with pride. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

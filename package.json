@@ -1,0 +1,14 @@
+{
+  "name": "mudda-store",
+  "version": "1.0.0",
+  "description": "MuddaCraft - Handcrafted Artisanal Mudda Stools & Chairs E-Commerce Store",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": ["mudda", "artisanal", "ecommerce", "furniture", "handmade", "sarkanda"],
+  "author": "MuddaCraft Studio",
+  "license": "MIT"
+}
