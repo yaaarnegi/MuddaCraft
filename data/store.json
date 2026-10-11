@@ -1,0 +1,249 @@
+{
+  "brand": "MudhaCraft",
+  "tagline": "Traditional Indian craftsmanship for modern homes.",
+  "location": "Sourced directly from Muzaffarnagar, Uttar Pradesh",
+  "whatsapp": "+919876543210",
+  "email": "namaste@mudhacraft.in",
+  "businessAddress": "Craft Production Hub, Muzaffarnagar Industrial Area, Uttar Pradesh 251001, India",
+  "offer": "Direct Maker Pricing • Pan-India Surface Delivery",
+  "codEnabled": false,
+  "codDisabledReason": "Due to bulky freight economics on natural furniture, Cash on Delivery is currently paused. Every prepaid order is covered by 100% Transit Damage Replacement Protection.",
+  "shipping": {
+    "confirmed": true,
+    "base": 250,
+    "perAdditionalUnit": 150,
+    "freeShippingThreshold": 4500,
+    "remoteSurcharge": 200,
+    "remotePrefixes": ["78", "79", "744"],
+    "standardDeliveryDays": "4–7 business days",
+    "deliveryNote": "Bulky surface freight via trusted regional logistics partners."
+  },
+  "analytics": {
+    "ga4": "G-MUDHAXXXXXX",
+    "metaPixel": "123456789012345",
+    "googleAds": "AW-123456789"
+  },
+  "products": [
+    {
+      "id": "classic-bamboo-mudha",
+      "name": "Classic Bamboo Mudha",
+      "type": "Stools",
+      "price": 1299,
+      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
+      "priceConfirmed": false,
+      "stock": "available",
+      "image": "assets/mudha-stool.jpg",
+      "images": ["assets/mudha-stool.jpg", "assets/mudha-balcony.jpg"],
+      "dimensions": {
+        "diameter": "15 inches (38 cm)",
+        "height": "15 inches (38 cm)",
+        "seatHeight": "15 inches (38 cm)",
+        "footprint": "1.2 sq ft",
+        "specStatus": "Standard regional specification — final batch tolerance ±1 inch"
+      },
+      "weight": "Approx. 2.2 kg (lightweight, easily portable with one hand)",
+      "weightCapacity": "Tested up to 110 kg (lab test rating undergoing supplier verification)",
+      "material": "Cured natural bamboo framework, wild river Sarkanda reeds, braided organic jute binding",
+      "color": "Natural warm honey bamboo / unbleached cane finish",
+      "assembly": "None. Shipped 100% pre-assembled and ready to sit",
+      "recommendedUsage": ["Balcony", "Terrace", "Living room", "Garden", "Bedside accent"],
+      "estimatedDelivery": "4–6 business days",
+      "description": "The quintessential Indian sitting stool. Built with tightly bound vertical river reeds, reinforced with a solid bamboo rim, and hand-bound with traditional jute twine. Small footprint, lightweight, and perfect for morning chai or impromptu gatherings."
+    },
+    {
+      "id": "large-back-support-mudha",
+      "name": "Large Back-Support Mudha",
+      "type": "Chairs",
+      "price": 1899,
+      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
+      "priceConfirmed": false,
+      "stock": "available",
+      "image": "assets/mudha-balcony.jpg",
+      "images": ["assets/mudha-balcony.jpg", "assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
+      "dimensions": {
+        "diameter": "20 inches (51 cm)",
+        "height": "28 inches (71 cm)",
+        "seatHeight": "14 inches (35 cm)",
+        "footprint": "2.2 sq ft",
+        "specStatus": "Standard regional specification — final batch tolerance ±1 inch"
+      },
+      "weight": "Approx. 3.8 kg",
+      "weightCapacity": "Tested up to 130 kg (supplier verification in progress)",
+      "material": "Structural thick-walled bamboo canes, ergonomic curved cane backrest, natural river reeds",
+      "color": "Natural warm honey cane with earthy jute contrast weave",
+      "assembly": "None. 100% pre-assembled",
+      "recommendedUsage": ["Balcony", "Terrace", "Living room", "Farmhouses & Resorts", "Reading corner"],
+      "estimatedDelivery": "4–7 business days",
+      "description": "An elevated traditional armchair designed for relaxed evenings. Features an extended ergonomic lumbar support woven from flexible cane, double-ring bamboo reinforcement, and comfortable low-seating height for balconies and verandas."
+    },
+    {
+      "id": "premium-woven-mudha",
+      "name": "Premium Woven Mudha",
+      "type": "Stools",
+      "price": 1599,
+      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
+      "priceConfirmed": false,
+      "stock": "available",
+      "image": "assets/mudha-stool.jpg",
+      "images": ["assets/mudha-stool.jpg", "assets/mudha-terrace.jpg"],
+      "dimensions": {
+        "diameter": "16 inches (40 cm)",
+        "height": "16 inches (40 cm)",
+        "seatHeight": "16 inches (40 cm)",
+        "footprint": "1.4 sq ft",
+        "specStatus": "High-density weave — exact supplier spec pending batch test"
+      },
+      "weight": "Approx. 2.6 kg",
+      "weightCapacity": "Up to 120 kg (supplier verification in progress)",
+      "material": "Tightly woven natural cane seating mesh, seasoned bamboo body, cross-tied cotton/jute twine",
+      "color": "Natural blonde bamboo & seasoned cane",
+      "assembly": "None. Fully pre-assembled",
+      "recommendedUsage": ["Living room", "Cafés & Restaurants", "Balcony", "Boho Home Decor"],
+      "estimatedDelivery": "4–6 business days",
+      "description": "A higher-density weave with an intricate concentric pattern on the seat. Balances rustic charm with modern apartment aesthetics. Smoothly sanded bamboo rims prevent snags on delicate clothing."
+    },
+    {
+      "id": "set-of-two-bamboo-mudhas",
+      "name": "Set of 2 Bamboo Mudhas",
+      "type": "Sets",
+      "price": 2499,
+      "priceNote": "Introductory test bundle pricing. Final supplier economics will update here.",
+      "priceConfirmed": false,
+      "stock": "available",
+      "image": "assets/mudha-terrace.jpg",
+      "images": ["assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
+      "dimensions": {
+        "diameter": "15 inches (38 cm) each",
+        "height": "15 inches (38 cm) each",
+        "seatHeight": "15 inches (38 cm)",
+        "footprint": "2.4 sq ft combined",
+        "specStatus": "Matched pair — batch tolerance ±1 inch"
+      },
+      "weight": "Approx. 4.4 kg total (2 units)",
+      "weightCapacity": "110 kg per unit",
+      "material": "Matched natural bamboo pairs, wild river reeds, unbleached jute binding",
+      "color": "Natural warm honey bamboo",
+      "assembly": "None. Fully pre-assembled",
+      "recommendedUsage": ["Balcony", "Cafés & Restaurants", "Garden", "Breakfast nooks"],
+      "estimatedDelivery": "4–7 business days",
+      "description": "A paired set of traditional stools created for two cups of chai and long conversations. Nest easily together when clearing floor space. Bundled shipping offers superior per-unit delivery economics."
+    },
+    {
+      "id": "balcony-mudha-set",
+      "name": "Balcony Mudha Set",
+      "type": "Sets",
+      "price": 3299,
+      "priceNote": "Introductory test bundle pricing. Final supplier economics will update here.",
+      "priceConfirmed": false,
+      "stock": "available",
+      "image": "assets/mudha-balcony.jpg",
+      "images": ["assets/mudha-balcony.jpg", "assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
+      "dimensions": {
+        "diameter": "Includes 2 Back-Support Mudhas (20\" × 28\")",
+        "height": "28 inches backrest height",
+        "seatHeight": "14 inches",
+        "footprint": "4.5 sq ft for the pair",
+        "specStatus": "Coordinated pair — supplier configuration pending"
+      },
+      "weight": "Approx. 7.6 kg combined",
+      "weightCapacity": "130 kg per chair",
+      "material": "Full bamboo framework, woven cane backrests, heavy-gauge river reed bases",
+      "color": "Natural bamboo / warm honey tone",
+      "assembly": "None. Shipped ready to place",
+      "recommendedUsage": ["Balcony", "Terrace", "Farmhouses & Resorts", "Verandas"],
+      "estimatedDelivery": "5–8 business days",
+      "description": "The complete outdoor conversation set. Two matched back-support Mudhas designed to fit standard 4ft–6ft Indian balconies. Transforms underutilized balcony corners into peaceful outdoor sanctuaries."
+    }
+  ],
+  "useCases": [
+    {
+      "id": "balcony",
+      "title": "Balcony Seating",
+      "tagline": "Fits compact 4ft–6ft Indian balconies without crowding",
+      "image": "assets/mudha-balcony.jpg",
+      "description": "Lightweight and easy to move indoors before monsoon showers. Gives modern apartments the charm of a sunlit courtyard veranda."
+    },
+    {
+      "id": "terrace",
+      "title": "Terrace & Rooftops",
+      "tagline": "Unwind at golden hour with chai and unhurried conversations",
+      "image": "assets/mudha-terrace.jpg",
+      "description": "Low center of gravity withstands terrace breezes. Natural materials stay comfortable under the sun without scorching like metal furniture."
+    },
+    {
+      "id": "garden",
+      "title": "Garden & Lawn",
+      "tagline": "Lightweight enough to carry across the lawn with one hand",
+      "image": "assets/mudha-terrace.jpg",
+      "description": "Shift seating instantly to follow the winter sun or afternoon shade. Blends seamlessly with natural flora and outdoor greenery."
+    },
+    {
+      "id": "cafe",
+      "title": "Cafés & Restaurants",
+      "tagline": "Warm, earthy hospitality that patrons love photographing",
+      "image": "assets/mudha-cafe.jpg",
+      "description": "Durable, distinctive seating that gives boutique cafés, ethnic restaurants, and outdoor verandas an authentic handcrafted Indian identity."
+    },
+    {
+      "id": "resort",
+      "title": "Farmhouses & Resorts",
+      "tagline": "Bohemian rustic elegance for quiet weekend retreats",
+      "image": "assets/mudha-craft.jpg",
+      "description": "Cost-effective, welcoming lounge seating that ages gracefully and creates cozy pockets across large verandas, lawns, and courtyards."
+    }
+  ],
+  "craftStory": {
+    "title": "From Uttar Pradesh to Your Home",
+    "subtitle": "Direct maker sourcing from Muzaffarnagar workshops",
+    "image": "assets/mudha-craft.jpg",
+    "paragraphs": [
+      "For generations, communities across Uttar Pradesh have mastered the craft of transforming riverbank reeds and wild bamboo into lightweight, remarkably durable seating known as the Mudha.",
+      "Instead of buying through tiered wholesale markets, regional traders, and expensive urban retail stores, we work directly with small manufacturing workshops and craftspeople in Muzaffarnagar, Uttar Pradesh.",
+      "This direct connection allows us to offer honest pricing, ensure each piece is constructed with seasoned bamboo frames and traditional weaving techniques, and ship them safely to apartments and homes across India."
+    ],
+    "disclaimer": "Transparency Note: We are a low-inventory direct-sourcing brand. We do not make unsupported claims about environmental certification or artisan wage multipliers — we simply provide honest, high-quality traditional craft directly from the makers to you."
+  },
+  "faqs": [
+    {
+      "q": "What is a Mudha?",
+      "a": "A Mudha (also spelled Mudda or Mooda) is a traditional Indian stool or low chair crafted from wild river reeds (Sarkanda) and seasoned bamboo canes, bound tightly with natural jute or cotton twine. It has been a beloved fixture in Indian courtyards, verandas, and tea stalls for centuries due to its lightweight mobility and natural ergonomic comfort."
+    },
+    {
+      "q": "What material is it made from?",
+      "a": "Our Mudhas are crafted using natural, seasoned bamboo poles for structural rings and frameworks, tightly bundled wild river reeds for the cylindrical base, and woven cane or jute for the seating surface. (Exact reed variety and binding fiber may vary slightly by seasonal harvest and will be confirmed with each supplier batch)."
+    },
+    {
+      "q": "How much weight can it support?",
+      "a": "Standard Mudha stools typically support between 110 kg and 120 kg, while large back-support Mudhas support up to 130 kg due to their reinforced dual-ring bamboo structure. *(Exact maximum certified load capacities are undergoing formal supplier testing and will be updated upon lab certification).* "
+    },
+    {
+      "q": "Can I use it outdoors?",
+      "a": "Yes! Mudhas are ideal for covered balconies, verandas, terraces, and gardens. Because bamboo and reeds are organic natural fibers, we recommend keeping them in covered outdoor areas during heavy direct monsoon downpours and allowing them to dry in open air if damp."
+    },
+    {
+      "q": "What are the dimensions?",
+      "a": "Our standard stools are approximately 15\" diameter × 15\" height (seat height 15\"). Our back-support chairs are approximately 20\" diameter × 28\" total backrest height (seat height 14\"). *(Because these are handcrafted, natural variations of ±1 inch can occur between individual pieces).* "
+    },
+    {
+      "q": "Is assembly required?",
+      "a": "Zero assembly required! Every Mudha arrives 100% pre-assembled, structurally bound, and ready for you to sit on right out of the box."
+    },
+    {
+      "q": "How long does delivery take?",
+      "a": "Because Mudhas are bulky items shipped via surface cargo carriers, delivery typically takes 4–7 business days for major Indian metros and 6–10 business days for Tier 2/3 cities and regional addresses."
+    },
+    {
+      "q": "Do you deliver across India?",
+      "a": "Yes, we ship to all serviceable postal PIN codes across India via reliable surface freight logistics partners specializing in furniture transport."
+    },
+    {
+      "q": "What happens if the product arrives damaged?",
+      "a": "We provide a 100% Free Transit Replacement Guarantee. If your Mudha incurs damage during transit, simply snap 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery and submit our quick online replacement form or WhatsApp us. We will dispatch a brand-new replacement at zero cost to you."
+    },
+    {
+      "q": "Can I order multiple Mudhas for my café, resort, or project?",
+      "a": "Absolutely. Commercial B2B inquiries for cafés, restaurants, farmhouses, event designers, and boutique hotels are welcome. We offer tiered bulk freight discounts for orders of 10 or more units via our Bulk Inquiry form."
+    }
+  ],
+  "reviews": []
+}

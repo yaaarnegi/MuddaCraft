@@ -3,44 +3,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MuddaCraft Studio | Handcrafted Artisanal Mudda Stools & Chairs</title>
-  <meta name="description" content="Shop authentic, eco-friendly handcrafted Mudda stools and chairs made from sustainable Sarkanda reeds, bamboo, and organic jute. Support rural Indian artisans.">
+  <title>MudhaCraft | Traditional Handcrafted Bamboo Mudhas & Chairs from Uttar Pradesh</title>
+  <meta name="description" content="Authentic handcrafted bamboo and cane Mudha chairs & stools sourced directly from Muzaffarnagar, UP. Lightweight, natural seating for balconies, terraces, cafes & modern Indian homes.">
+  <meta name="keywords" content="bamboo mudha, mudha chair, bamboo chair India, traditional mudha, bamboo stool, balcony chair, cane mudha, mudda chair, traditional Indian chair, bamboo furniture India">
+  <link rel="canonical" href="https://mudhacraft.in/">
+
+  <!-- Open Graph / Meta Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MudhaCraft | Traditional Handcrafted Bamboo Mudhas">
+  <meta property="og:description" content="Traditional comfort made for modern homes. Classic bamboo Mudhas crafted in Uttar Pradesh for balconies, terraces, and cafes.">
+  <meta property="og:image" content="assets/mudha-balcony.jpg">
+  <meta property="og:url" content="https://mudhacraft.in/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
   <link rel="stylesheet" href="styles.css">
-  <!-- GSAP & ScrollTrigger -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <!-- Lenis Smooth Scroll -->
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-  <!-- Three.js 3D WebGL Engine & OrbitControls -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <!-- Structured JSON-LD Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mudhacraft.in/#organization",
+        "name": "MudhaCraft Studio",
+        "url": "https://mudhacraft.in/",
+        "logo": "https://mudhacraft.in/assets/mudha-stool.jpg",
+        "description": "Direct maker sourcing of traditional Indian bamboo and cane Mudha furniture from Uttar Pradesh.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Muzaffarnagar",
+          "addressRegion": "Uttar Pradesh",
+          "postalCode": "251001",
+          "addressCountry": "IN"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mudhacraft.in/#website",
+        "url": "https://mudhacraft.in/",
+        "name": "MudhaCraft",
+        "publisher": { "@id": "https://mudhacraft.in/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    🌿 Direct From Rural Weavers • Free Carbon-Neutral Shipping on Orders Over $75 • 100% Biodegradable Reeds
+    🌿 Direct Maker Sourcing from Muzaffarnagar, UP • Pan-India Surface Freight • Zero Plastic Packaging
   </div>
 
   <!-- Main Navigation Header -->
   <header class="site-header">
     <div class="container nav-wrapper">
-      <a href="/" class="brand-logo">
+      <a href="/" class="brand-logo" aria-label="MudhaCraft Homepage">
         <span class="brand-icon">🌾</span>
-        <span>Mudda<span class="brand-tag">Craft</span></span>
+        <div>
+          <span>Mudha<span class="brand-tag">Craft</span></span>
+          <span class="brand-sub">Crafted in Uttar Pradesh</span>
+        </div>
       </a>
 
-      <nav>
+      <nav aria-label="Primary Navigation">
         <ul class="nav-links">
-          <li><a href="#shop" class="nav-link">Shop Collection</a></li>
-          <li><a href="#story" class="nav-link">Artisanal Story</a></li>
-          <li><a href="#materials" class="nav-link">Materials</a></li>
-          <li><a href="#faq" class="nav-link">Care & FAQ</a></li>
+          <li><a href="#collection" class="nav-link">Shop Mudhas</a></li>
+          <li><a href="#why-mudha" class="nav-link">Why Mudha?</a></li>
+          <li><a href="#craftsmanship" class="nav-link">Craft Origin</a></li>
+          <li><a href="#use-cases" class="nav-link">Shop by Use</a></li>
+          <li><a href="#bulk-orders" class="nav-link">Café & Bulk Orders</a></li>
+          <li><a href="#faqs" class="nav-link">Care & FAQ</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
-        <button class="cart-button" onclick="toggleCart(true)" aria-label="Open shopping cart">
+        <a href="javascript:void(0)" onclick="openWhatsAppChat()" class="btn-header-wa" aria-label="WhatsApp Us">
+          <span>💬</span>
+          <span>WhatsApp</span>
+        </a>
+        <button class="cart-button" onclick="openCartDrawer()" aria-label="View shopping basket">
           <span>🧺 Basket</span>
           <span class="cart-count">0</span>
         </button>
@@ -49,370 +101,833 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+    <!-- 1. Hero Section -->
+    <section class="hero" id="hero">
       <div class="container hero-grid">
         <div class="hero-content">
           <div class="hero-tag">
-            <span>✨</span> Handwoven Heritage Furniture
+            <span>🌾</span> Traditional Craft for Modern Living
           </div>
           <h1 class="hero-title">
-            Timeless Indian Craft, <span>Woven</span> for Modern Living.
+            Traditional Comfort. <span>Made for</span> Modern Homes.
           </h1>
-          <p class="hero-description">
-            Experience the soulful comfort of authentic handcrafted Mudda stools. Harvested from wild riverbank Sarkanda reeds, framed with bamboo, and intricately tied with organic fibers by multi-generational artisan families.
+          <p class="hero-subtitle">
+            Classic bamboo Mudhas crafted in Uttar Pradesh — lightweight, comfortable and made for balconies, terraces and everyday conversations.
           </p>
           <div class="hero-actions">
-            <a href="#shop" class="btn-primary">
-              <span>Explore Collection</span>
+            <a href="#collection" class="btn-primary">
+              <span>Shop Mudhas</span>
               <span>→</span>
             </a>
-            <button class="btn-secondary liquid-glass-subtle" onclick="open3DViewer('mudda-01')">
-              <span>✨ 3D Studio View</span>
-            </button>
+            <a href="#why-mudha" class="btn-secondary">
+              <span>Explore Collection</span>
+            </a>
+          </div>
+
+          <!-- Trust Indicators -->
+          <div class="trust-indicators">
+            <div class="trust-item">
+              <span class="trust-icon">🌿</span>
+              <span>Natural Bamboo</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🇮🇳</span>
+              <span>Made in India</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">🔨</span>
+              <span>Direct from Makers</span>
+            </div>
           </div>
         </div>
 
         <div class="hero-image-wrapper">
-          <div class="hero-card">
-            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80" alt="Artisan Handcrafted Mudda Stool in modern living room">
-            <div class="hero-floating-badge">
-              <span class="badge-icon">🌱</span>
-              <div>
-                <div class="badge-title">Zero Plastic • 100% Natural</div>
-                <div class="badge-sub">Hand-tied with sun-dried wild reeds</div>
+          <div class="hero-image-card">
+            <img src="assets/mudha-balcony.jpg" alt="Traditional Back-Support Bamboo Mudha on Indian apartment balcony with terracotta floor and chai" fetchpriority="high">
+            <div class="hero-floating-pill">
+              <div class="hero-pill-text">
+                <strong>The Classic Balcony Mudha</strong>
+                <span>Direct from Muzaffarnagar, Uttar Pradesh</span>
               </div>
+              <a href="#collection" class="btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem;">
+                View
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Value Propositions Bar -->
-    <section class="features-bar">
-      <div class="container features-grid">
-        <div class="feature-item">
-          <div class="feature-icon-box">🌾</div>
-          <div>
-            <div class="feature-title">Wild Sarkanda Reeds</div>
-            <div class="feature-desc">Naturally water-resistant & lightweight</div>
+    <!-- 2. Product Collection -->
+    <section class="section" id="collection">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">The Collection</span>
+          <h2 class="section-title">Handcrafted Bamboo Mudhas</h2>
+          <p class="section-description">
+            Thoughtfully built for compact balconies, sunny terraces, and relaxed indoor spaces. All models ship fully assembled across India.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="collection-filters">
+          <button class="filter-btn active" onclick="filterProducts('all', this)">All Models</button>
+          <button class="filter-btn" onclick="filterProducts('stools', this)">Classic Stools</button>
+          <button class="filter-btn" onclick="filterProducts('chairs', this)">Back-Support Chairs</button>
+          <button class="filter-btn" onclick="filterProducts('sets', this)">Sets & Pairs</button>
+        </div>
+
+        <!-- Product Cards Grid (Rendered dynamically from data/store.json) -->
+        <div class="products-grid" id="products-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+
+        <div style="text-align: center; margin-top: 32px; font-size: 0.8125rem; color: var(--text-muted);">
+          * Note: Displayed prices are introductory testing estimates. Final supplier economics and freight will update transparently.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Why Mudha? Section -->
+    <section class="section section-alt" id="why-mudha">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Enduring Design</span>
+          <h2 class="section-title">A Chair India Already Knows.</h2>
+          <p class="section-description">
+            For decades, the Mudha has remained India’s most honest chair. It requires no complex hardware, never feels cold or synthetic, and carries natural ergonomic flex.
+          </p>
+        </div>
+
+        <!-- 6 Feature Cards -->
+        <div class="why-grid">
+          <div class="why-card">
+            <span class="why-icon">🪶</span>
+            <h3 class="why-title">Lightweight Construction</h3>
+            <p class="why-desc">Weighing only 2 to 4 kilograms, you can effortlessly lift and move it with one hand to catch the morning sun or bring it indoors before a shower.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">🪑</span>
+            <h3 class="why-title">Natural Ergonomic Support</h3>
+            <p class="why-desc">Unlike rigid plastic chairs, seasoned bamboo and natural cane have subtle natural spring that yields comfortably to your posture during long conversations.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">🌱</span>
+            <h3 class="why-title">100% Natural Materials</h3>
+            <p class="why-desc">Constructed from wild riverbank Sarkanda reeds, mature bamboo cane framework, and natural jute twine. Free from toxic glues and plastics.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">🔄</span>
+            <h3 class="why-title">Easy Movement Around the Home</h3>
+            <p class="why-desc">Effortlessly shift your seating from the bedroom balcony to the living room or dining area whenever friends and family gather.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">📐</span>
+            <h3 class="why-title">Compact Balcony Footprint</h3>
+            <p class="why-desc">Taking up only 1.2 to 2.2 square feet, the Mudha leaves ample walking room even on narrow 4-foot apartment balconies.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">🌦️</span>
+            <h3 class="why-title">Indoor & Outdoor Versatility</h3>
+            <p class="why-desc">At home in covered verandas, rooftop terraces, café patios, and bohemian living rooms. Never overheats under the afternoon sun like metal furniture.</p>
           </div>
         </div>
-        <div class="feature-item">
-          <div class="feature-icon-box">🤲</div>
-          <div>
-            <div class="feature-title">Fair-Trade Artisans</div>
-            <div class="feature-desc">100% direct proceeds to rural weavers</div>
+
+        <!-- Interactive Use-Cases Tabs -->
+        <div class="use-cases-tabs">
+          <div class="use-nav" id="use-nav-tabs">
+            <!-- Rendered dynamically via app.js -->
           </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon-box">💪</div>
-          <div>
-            <div class="feature-title">Built to Last</div>
-            <div class="feature-desc">Supports up to 330 lbs with dual rims</div>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon-box">📦</div>
-          <div>
-            <div class="feature-title">Eco-Packaging</div>
-            <div class="feature-desc">Zero single-use plastic, 100% recyclable</div>
+          <div class="use-content-panel">
+            <div class="use-text-side">
+              <h3 class="use-panel-title" id="use-panel-title">Balcony Seating</h3>
+              <div class="use-panel-tagline" id="use-panel-tagline">Fits compact 4ft–6ft Indian balconies without crowding</div>
+              <p class="use-panel-desc" id="use-panel-desc">Lightweight and easy to move indoors before monsoon showers. Gives modern apartments the charm of a sunlit courtyard veranda.</p>
+              <a href="#collection" class="btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
+                Browse Suitable Mudhas
+              </a>
+            </div>
+            <div class="use-image-side">
+              <img id="use-panel-img" src="assets/mudha-balcony.jpg" alt="Balcony Seating">
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Shop Catalog Section -->
-    <section class="container" id="shop" style="padding-top: 40px;">
-      <div class="section-header">
-        <div class="section-subtitle">Curated Catalog</div>
-        <h2 class="section-title">Handcrafted Mudda Stools & Chairs</h2>
-      </div>
-
-      <!-- Controls: Tabs, Search, Sorting -->
-      <div class="catalog-controls">
-        <div class="category-tabs">
-          <button class="tab-btn active" data-category="all">All Designs</button>
-          <button class="tab-btn" data-category="classic">Classic Sarkanda</button>
-          <button class="tab-btn" data-category="chairs">High-Back Chairs</button>
-          <button class="tab-btn" data-category="jute">Jute Mandala</button>
-          <button class="tab-btn" data-category="colorful">Festive Woven</button>
-          <button class="tab-btn" data-category="outdoor">Outdoor / Patio</button>
-          <button class="tab-btn" data-category="mini">Mini & Kids</button>
+    <!-- 4. Craftsmanship / Origin Section -->
+    <section class="section" id="craftsmanship">
+      <div class="container craft-grid">
+        <div class="craft-image-frame">
+          <img src="assets/mudha-craft.jpg" alt="Bamboo and cane craft workshop in Muzaffarnagar, Uttar Pradesh" loading="lazy">
         </div>
-
-        <div class="filter-inputs">
-          <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="search-input" placeholder="Search reeds, colors, styles...">
-          </div>
-          <select id="sort-select" class="sort-select" aria-label="Sort products">
-            <option value="popular">Featured</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Top Rated</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Product Cards Grid -->
-      <div class="products-grid" id="products-grid">
-        <!-- Rendered dynamically by app.js -->
-      </div>
-    </section>
-
-    <!-- Artisanal Story & Craftsmanship Section -->
-    <section class="craft-story" id="story">
-      <div class="container story-grid">
-        <div>
-          <div class="section-subtitle">Heritage & Technique</div>
-          <h2 class="section-title">The Anatomy of an Authentic Mudda</h2>
-          <p style="color: var(--text-muted); margin-top: 14px; font-size: 1.05rem;">
-            For centuries, master weavers along the Yamuna and Ganges river basins have transformed seasonal wild reeds (*Saccharum bengalense*) into architectural seating that is featherlight yet incredibly sturdy.
+        <div class="craft-content">
+          <span class="craft-kicker">Origin & Maker Hub</span>
+          <h2 class="craft-title">From Uttar Pradesh to Your Home</h2>
+          <p class="craft-text">
+            For generations, skilled craftspeople across rural Uttar Pradesh have harvested riverbank reeds and seasoned wild bamboo, hand-lacing them into resilient furniture.
           </p>
-
-          <div class="story-steps">
-            <div class="step-card">
-              <span class="step-num">01</span>
-              <div class="step-content">
-                <h4>Reaping & Sun-Curing</h4>
-                <p>Wild sarkanda stems are harvested in late autumn and cured under the sun for 20 days until golden and resilient.</p>
-              </div>
-            </div>
-            <div class="step-card">
-              <span class="step-num">02</span>
-              <div class="step-content">
-                <h4>Bamboo Ring Framing</h4>
-                <p>Fire-bent green bamboo bands form the dual structural rings at top and base to distribute load evenly.</p>
-              </div>
-            </div>
-            <div class="step-card">
-              <span class="step-num">03</span>
-              <div class="step-content">
-                <h4>Mandala Cord Weaving</h4>
-                <p>Master artisans weave concentric cord geometric patterns that create springy, ergonomic cushion without foam.</p>
-              </div>
-            </div>
+          <p class="craft-text">
+            Instead of routing through layered wholesale middlemen, regional traders, and expensive urban retail stores, we connect directly with small manufacturing workshops in Muzaffarnagar, Uttar Pradesh.
+          </p>
+          <p class="craft-text">
+            This direct link enables honest, transparent pricing, ensures traditional structural binding techniques are preserved, and delivers authentic regional craftsmanship directly to your doorstep.
+          </p>
+          <div class="craft-transparency-box">
+            <strong>Honest Maker Promise:</strong> We operate on a direct-sourcing model. We do not make unsupported claims about environmental certifications or artisan wage multipliers — we simply provide genuine, time-tested Indian furniture directly from the makers to you.
           </div>
-        </div>
-
-        <div>
-          <img src="https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&w=1000&q=80" alt="Artisan weaving organic jute mudda stool" style="border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
         </div>
       </div>
     </section>
 
-    <!-- FAQ Accordion -->
-    <section class="container" id="faq" style="padding: 60px 24px; max-width: 800px;">
-      <div class="section-header">
-        <div class="section-subtitle">Common Questions</div>
-        <h2 class="section-title">Care & Product Information</h2>
+    <!-- 5. Shop by Use Categories -->
+    <section class="section section-alt" id="use-cases">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Curated Spaces</span>
+          <h2 class="section-title">Shop by Setting</h2>
+          <p class="section-description">
+            Explore how traditional bamboo seating adapts seamlessly to balconies, rooftop terraces, garden lawns, and commercial dining.
+          </p>
+        </div>
+
+        <div class="shop-use-grid">
+          <div class="shop-use-card" onclick="filterProducts('chairs', document.querySelector('.filter-btn')); window.location.href='#collection';">
+            <img src="assets/mudha-balcony.jpg" alt="Balcony Mudhas" loading="lazy">
+            <div class="shop-use-overlay">
+              <h3 class="shop-use-title">Balconies</h3>
+              <p class="shop-use-sub">Compact & light for apartment verandas</p>
+            </div>
+          </div>
+          <div class="shop-use-card" onclick="filterProducts('sets', document.querySelector('.filter-btn')); window.location.href='#collection';">
+            <img src="assets/mudha-terrace.jpg" alt="Terrace Mudhas" loading="lazy">
+            <div class="shop-use-overlay">
+              <h3 class="shop-use-title">Terraces & Roofs</h3>
+              <p class="shop-use-sub">Sunset tea seating with natural back support</p>
+            </div>
+          </div>
+          <div class="shop-use-card" onclick="filterProducts('stools', document.querySelector('.filter-btn')); window.location.href='#collection';">
+            <img src="assets/mudha-stool.jpg" alt="Garden Mudhas" loading="lazy">
+            <div class="shop-use-overlay">
+              <h3 class="shop-use-title">Gardens & Lawns</h3>
+              <p class="shop-use-sub">Follow the shade with single-handed mobility</p>
+            </div>
+          </div>
+          <div class="shop-use-card" onclick="window.location.href='#bulk-orders';">
+            <img src="assets/mudha-cafe.jpg" alt="Cafe & Restaurant Mudhas" loading="lazy">
+            <div class="shop-use-overlay">
+              <h3 class="shop-use-title">Cafés & Dining</h3>
+              <p class="shop-use-sub">Earthy rustic charm loved by patrons</p>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
-          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
-            <span>How much weight can a Mudda stool support?</span>
-            <span>▾</span>
-          </summary>
-          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
-            Because of the vertical cylindrical orientation of the dense reed bundles, standard Mudda stools easily support between 120 kg to 150 kg (265 to 330 lbs). They are engineered naturally by the interlocking bamboo rims.
+    <!-- 6. Bulk Orders (B2B) Section -->
+    <section class="bulk-section" id="bulk-orders">
+      <div class="container bulk-grid">
+        <div class="bulk-info">
+          <h2 class="bulk-info-title">Need Mudhas for Your Café, Resort or Event?</h2>
+          <p class="bulk-info-desc">
+            We supply authentic bamboo Mudhas in commercial quantities directly from our Uttar Pradesh workshop clusters. Ideal for businesses seeking distinctive, earthy Indian aesthetics at sensible wholesale pricing.
           </p>
-        </details>
+          <div class="bulk-targets-list">
+            <span class="bulk-target-tag">☕ Boutique Cafés</span>
+            <span class="bulk-target-tag">🍽️ Heritage Restaurants</span>
+            <span class="bulk-target-tag">🌴 Eco Resorts</span>
+            <span class="bulk-target-tag">🏡 Farmhouses</span>
+            <span class="bulk-target-tag">🎪 Event Planners</span>
+            <span class="bulk-target-tag">🛋️ Interior Designers</span>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <a href="javascript:void(0)" onclick="openWhatsAppChat('Hello MudhaCraft, I would like to inquire about B2B commercial bulk pricing for Mudhas.')" class="btn-primary" style="background: #25D366; border-color: #25D366;">
+              <span>💬 Instant B2B WhatsApp</span>
+            </a>
+          </div>
+        </div>
 
-        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
-          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
-            <span>Can I keep my mudda outdoors on a patio or balcony?</span>
-            <span>▾</span>
-          </summary>
-          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
-            Yes! Muddas love covered verandas, balconies, and patios. For open outdoor areas, choose our <em>Veranda Weatherproof Stool</em> treated with natural linseed oil, and bring it inside during heavy rain.
-          </p>
-        </details>
+        <div class="bulk-form-card">
+          <h3>Request Bulk Pricing</h3>
+          <p>Share your requirement. We reply within 4 business hours with freight estimates.</p>
+          
+          <form onsubmit="submitBulkInquiry(event)">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label" for="bulk-name">Your Name *</label>
+                <input type="text" id="bulk-name" name="name" class="form-input" required placeholder="Aarav Sharma">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bulk-biz">Business / Project Name</label>
+                <input type="text" id="bulk-biz" name="businessName" class="form-input" placeholder="Veranda Café">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bulk-phone">Phone / WhatsApp *</label>
+                <input type="tel" id="bulk-phone" name="phone" class="form-input" required placeholder="+91 98765 43210">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bulk-email">Email Address</label>
+                <input type="email" id="bulk-email" name="email" class="form-input" placeholder="aarav@example.com">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bulk-city">Delivery City *</label>
+                <input type="text" id="bulk-city" name="city" class="form-input" required placeholder="Bengaluru, Pune, Jaipur...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bulk-qty">Quantity Needed *</label>
+                <select id="bulk-qty" name="quantity" class="form-select" required>
+                  <option value="10-25">10 – 25 units</option>
+                  <option value="25-50">25 – 50 units</option>
+                  <option value="50-100">50 – 100 units</option>
+                  <option value="100+">100+ units (Container load)</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="bulk-prod">Product of Interest</label>
+                <select id="bulk-prod" name="product" class="form-select">
+                  <option value="All Models">Mix of Stools & Back-Support Chairs</option>
+                  <option value="Classic Stools">Classic Bamboo Mudha Stools</option>
+                  <option value="Large Back-Support">Large Back-Support Mudha Chairs</option>
+                  <option value="Custom Project">Custom Project Requirement</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label class="form-label" for="bulk-msg">Additional Notes / Delivery Deadline</label>
+                <textarea id="bulk-msg" name="message" class="form-textarea" placeholder="Provide any details on delivery access, customization, or timeline..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit-bulk">
+              Request Commercial Bulk Quote
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-        <details style="background: var(--bg-surface); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-color); cursor: pointer;">
-          <summary style="font-weight: 700; font-size: 1.05rem; list-style: none; display: flex; justify-content: space-between;">
-            <span>How do I clean and maintain my mudda?</span>
-            <span>▾</span>
-          </summary>
-          <p style="margin-top: 12px; color: var(--text-muted); font-size: 0.95rem;">
-            Simply wipe with a dry or lightly damp cloth. You can also vacuum using a soft brush attachment. Keep in a dry, ventilated area.
+    <!-- 7. Value Proposition: Why MudhaCraft vs Generic Marketplaces -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">The Difference</span>
+          <h2 class="section-title">Why Buy from MudhaCraft Instead of Generic Marketplaces?</h2>
+          <p class="section-description">
+            Buying bulky handcrafted natural furniture online can be unpredictable. Here is how we ensure peace of mind.
           </p>
-        </details>
+        </div>
+
+        <div class="comparison-card">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Criteria</th>
+                <th style="color: var(--bamboo-base);">🌾 MudhaCraft Studio</th>
+                <th style="color: var(--text-muted);">Generic Marketplace / Amazon</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sourcing & Maker Directness</strong></td>
+                <td><span class="check-green">✓</span> Direct from small workshops in Muzaffarnagar, UP</td>
+                <td><span class="cross-red">✗</span> Multi-tiered resellers & untraceable middle brokers</td>
+              </tr>
+              <tr>
+                <td><strong>Bulky Freight Handling</strong></td>
+                <td><span class="check-green">✓</span> Partnered surface furniture cargo with protective packing</td>
+                <td><span class="cross-red">✗</span> Crushed in high-speed package conveyor hubs</td>
+              </tr>
+              <tr>
+                <td><strong>Dimensional Fit Transparency</strong></td>
+                <td><span class="check-green">✓</span> Exact balcony measurements & "Will It Fit?" visual guides</td>
+                <td><span class="cross-red">✗</span> Often mislabeled or missing dimensional details</td>
+              </tr>
+              <tr>
+                <td><strong>Transit Damage Protection</strong></td>
+                <td><span class="check-green">✓</span> 100% Free Replacement via photo verification (No return shipping hassle)</td>
+                <td><span class="cross-red">✗</span> Painful repacking requirements & return freight disputes</td>
+              </tr>
+              <tr>
+                <td><strong>Customer Support</strong></td>
+                <td><span class="check-green">✓</span> Direct WhatsApp human assistance before and after purchase</td>
+                <td><span class="cross-red">✗</span> Automated bot loops and unhelpful ticket forms</td>
+              </tr>
+              <tr>
+                <td><strong>B2B Commercial Bulk Pricing</strong></td>
+                <td><span class="check-green">✓</span> Dedicated commercial quotes for cafés, resorts & hotels</td>
+                <td><span class="cross-red">✗</span> High retail pricing with no custom commercial logistics</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Frequently Asked Questions -->
+    <section class="section section-alt" id="faqs">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-kicker">Everything You Need to Know</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-description">
+            Transparent answers regarding materials, care, delivery, weight limits, and transit damage protection.
+          </p>
+        </div>
+
+        <div class="faq-wrapper" id="faq-accordion">
+          <!-- Populated dynamically via app.js -->
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Slide-Over Shopping Cart Drawer -->
-  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart(false)">
-    <div class="cart-drawer" onclick="event.stopPropagation()">
-      <div class="cart-header">
-        <h3>Your Shopping Basket</h3>
-        <button class="close-drawer-btn" onclick="toggleCart(false)">&times;</button>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <h3>🌾 MudhaCraft</h3>
+        <p>
+          Revitalizing traditional Indian bamboo and cane furniture for modern homes, balconies, and everyday conversations.
+        </p>
+        <p style="margin-top: 12px; font-size: 0.8125rem; color: var(--bamboo-light);">
+          Sourced directly from Muzaffarnagar, Uttar Pradesh.
+        </p>
       </div>
 
-      <div class="free-shipping-tracker">
-        <div id="free-shipping-text">Add items for free shipping</div>
-        <div class="progress-bar">
-          <div class="progress-fill" id="free-shipping-fill" style="width: 0%;"></div>
-        </div>
+      <div class="footer-col">
+        <h4>Collection</h4>
+        <ul class="footer-links">
+          <li><a href="#collection" onclick="filterProducts('all')">All Mudhas</a></li>
+          <li><a href="#collection" onclick="filterProducts('stools')">Classic Stools</a></li>
+          <li><a href="#collection" onclick="filterProducts('chairs')">Back-Support Chairs</a></li>
+          <li><a href="#collection" onclick="filterProducts('sets')">Balcony Sets</a></li>
+          <li><a href="#bulk-orders">Café & Bulk Orders</a></li>
+        </ul>
       </div>
 
-      <div class="cart-items-list" id="cart-items-list">
-        <!-- Rendered by app.js -->
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openPolicyModal('shipping')">Shipping Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openPolicyModal('returns')">Damage & Replacement Guarantee</a></li>
+          <li><a href="javascript:void(0)" onclick="openTransitDamageModal()">Report Transit Damage</a></li>
+          <li><a href="javascript:void(0)" onclick="openPolicyModal('contact')">Contact & Workshop Hub</a></li>
+          <li><a href="#faqs">Frequently Asked Questions</a></li>
+        </ul>
       </div>
 
-      <div class="cart-footer">
-        <div class="cart-row">
-          <span>Subtotal</span>
-          <span id="cart-subtotal">$0.00</span>
+      <div class="footer-col">
+        <h4>Trust & Legal</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openPolicyModal('privacy')">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openPolicyModal('terms')">Terms of Service</a></li>
+          <li><a href="javascript:void(0)" onclick="openWhatsAppChat()">Direct WhatsApp Desk</a></li>
+        </ul>
+        <div style="margin-top: 18px; font-size: 0.8125rem; color: rgba(250, 246, 239, 0.7);">
+          🔒 SSL Encrypted Checkout • Supported by PCI-DSS Indian Gateways
         </div>
-        <div class="cart-row">
-          <span>Carbon-Neutral Delivery</span>
-          <span style="color: var(--secondary); font-weight: 600;">Calculated at checkout</span>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <div>
+        &copy; 2026 MudhaCraft Studio. Handcrafted in Uttar Pradesh, India. All rights reserved.
+      </div>
+      <div>
+        <button class="admin-trigger-btn" onclick="openAdminModal()">Store Settings (Admin)</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODALS & DRAWERS
+       ======================================================================== -->
+
+  <!-- 1. Product Detail Modal -->
+  <div class="modal-backdrop" id="product-modal-backdrop" onclick="closeProductModal()">
+    <div class="modal-dialog" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeProductModal()" aria-label="Close modal">&times;</button>
+      
+      <div class="product-modal-grid">
+        <!-- Gallery -->
+        <div>
+          <div class="gallery-main-view">
+            <img id="modal-main-img" src="assets/mudha-stool.jpg" alt="Mudha Product Preview">
+          </div>
+          <div class="gallery-thumbnails" id="modal-thumbnails">
+            <!-- Thumbs populated via app.js -->
+          </div>
         </div>
-        <div class="cart-total-row">
-          <span>Total</span>
-          <span id="cart-total">$0.00</span>
+
+        <!-- Details -->
+        <div>
+          <span class="product-type-meta">Handcrafted in Uttar Pradesh</span>
+          <h2 class="modal-product-title" id="modal-product-title">Classic Bamboo Mudha</h2>
+          <div class="modal-price-box">
+            <span class="modal-price" id="modal-product-price">₹1,299</span>
+            <span class="product-price-note">Introductory testing price</span>
+          </div>
+
+          <p id="modal-product-desc" style="font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.55;">
+            The quintessential Indian sitting stool. Built with wild river reeds and solid seasoned bamboo rim.
+          </p>
+
+          <!-- Specifications Table -->
+          <div style="background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px; font-size: 0.8125rem; margin-bottom: 16px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+              <div><strong>Dimensions:</strong> <span id="spec-dimensions">15" Dia × 15" H</span></div>
+              <div><strong>Weight:</strong> <span id="spec-weight">~2.2 kg</span></div>
+              <div><strong>Load Capacity:</strong> <span id="spec-capacity">110 kg</span></div>
+              <div><strong>Material:</strong> <span id="spec-material">Natural bamboo & reeds</span></div>
+              <div><strong>Assembly:</strong> <span id="spec-assembly">None (Pre-assembled)</span></div>
+              <div><strong>Best For:</strong> <span id="spec-usage">Balcony, Terrace, Garden</span></div>
+            </div>
+          </div>
+
+          <!-- "Will It Fit?" Visual Dimensional Guide -->
+          <div class="fit-guide-box">
+            <div class="fit-guide-header">
+              <span>📏</span> <strong>"Will It Fit?" Dimensional Scale Guide</strong>
+            </div>
+            <div class="fit-scale-diagram" id="fit-diagram-bars">
+              <!-- Rendered via app.js -->
+            </div>
+            <p class="fit-footprint-note" id="fit-footprint">
+              Footprint: 1.2 sq ft — leaves generous walking space on narrow 4-foot balconies.
+            </p>
+          </div>
+
+          <!-- PIN Code Shipping Estimator -->
+          <div class="pincode-box">
+            <div style="font-size: 0.8125rem; font-weight: 700; color: var(--text-primary);">
+              🚚 Check Bulky Freight & Delivery Days
+            </div>
+            <div class="pincode-row">
+              <input type="text" id="pincode-input" class="pincode-input" placeholder="Enter 6-digit Indian PIN (e.g. 110001)" maxlength="6">
+              <button class="btn-check-pin" onclick="checkPinCodeDelivery()">Check</button>
+            </div>
+            <div class="pincode-result" id="pincode-result"></div>
+          </div>
+
+          <!-- Quantity & Cart Actions -->
+          <div class="modal-buy-actions">
+            <div class="qty-control">
+              <button class="qty-btn" onclick="updateModalQty(-1)" aria-label="Decrease quantity">-</button>
+              <span class="qty-display" id="modal-qty-display">1</span>
+              <button class="qty-btn" onclick="updateModalQty(1)" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="btn-add-modal" onclick="addCurrentModalToCart()">
+              Add to Basket
+            </button>
+            <button class="btn-buy-modal" onclick="buyCurrentModalNow()">
+              Buy Now
+            </button>
+          </div>
         </div>
-        <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>
       </div>
     </div>
   </div>
 
-  <!-- Checkout Modal -->
-  <div class="modal-overlay" id="checkout-modal" onclick="closeCheckout()">
-    <div class="checkout-modal" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeCheckout()">&times;</button>
+  <!-- 2. Slide-Over Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>🧺 Your Basket</h3>
+        <button class="modal-close-btn" onclick="closeCartDrawer()" aria-label="Close cart">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+
+      <div class="cart-empty-state" id="cart-empty-state" style="display: none;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🌾</span>
+        <h4>Your basket is currently empty</h4>
+        <p style="font-size: 0.875rem; margin-top: 6px;">Add a classic Mudha to begin testing comfort for your balcony or terrace.</p>
+        <button class="btn-primary" style="margin-top: 20px;" onclick="closeCartDrawer(); window.location.href='#collection';">
+          Explore Mudhas
+        </button>
+      </div>
+
+      <div class="cart-drawer-footer" id="cart-summary-box">
+        <div class="cart-summary-line">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Bulky Surface Freight:</span>
+          <span id="cart-shipping">₹250</span>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--olive-muted); margin-bottom: 8px;">
+          ✓ Fully transparent shipping. No surprise fees at checkout.
+        </div>
+        <div class="cart-total-line">
+          <span>Total:</span>
+          <span id="cart-total">₹0</span>
+        </div>
+
+        <button class="btn-proceed-checkout" onclick="openCheckoutModal()">
+          Proceed to Indian Checkout →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal-backdrop" onclick="closeCheckoutModal()">
+    <div class="modal-dialog checkout-dialog" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeCheckoutModal()" aria-label="Close checkout">&times;</button>
       
-      <div id="checkout-form-container">
-        <h2 style="font-family: var(--font-serif); font-size: 1.6rem;">Complete Your Order</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
-          Supporting authentic craftsmanship. Total: <strong id="checkout-modal-subtotal" style="color: var(--primary);">$0.00</strong>
+      <div class="checkout-steps-nav">
+        <div class="checkout-step-indicator active" id="step-indicator-1">1. Delivery Address</div>
+        <div class="checkout-step-indicator" id="step-indicator-2">2. Payment Method</div>
+      </div>
+
+      <!-- Step 1: Address Details -->
+      <div class="checkout-step-body" id="checkout-step-1">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 16px;">Delivery Details (India)</h3>
+        
+        <form onsubmit="proceedToPaymentStep(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="checkout-name">Full Name *</label>
+              <input type="text" id="checkout-name" class="form-input" required placeholder="Aarav Sharma">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-phone">Mobile Number (for WhatsApp delivery updates) *</label>
+              <input type="tel" id="checkout-phone" class="form-input" required placeholder="9876543210" maxlength="10">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-email">Email Address</label>
+              <input type="email" id="checkout-email" class="form-input" placeholder="aarav@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-pincode">6-Digit PIN Code *</label>
+              <input type="text" id="checkout-pincode" class="form-input" required placeholder="110001" maxlength="6">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-city">City *</label>
+              <input type="text" id="checkout-city" class="form-input" required placeholder="Delhi, Mumbai, Bengaluru...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-state">State *</label>
+              <input type="text" id="checkout-state" class="form-input" required placeholder="Delhi, Karnataka, Maharashtra...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-address">Flat / House No. / Building / Street *</label>
+              <input type="text" id="checkout-address" class="form-input" required placeholder="Flat 402, Shanti Vihar, 8th Main...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-landmark">Landmark (Optional)</label>
+              <input type="text" id="checkout-landmark" class="form-input" placeholder="Near Community Park">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+            <div style="font-size: 0.8125rem; color: var(--text-muted);">
+              Total: <strong id="checkout-total-display" style="color: var(--text-primary); font-size: 1.1rem;">₹0</strong>
+            </div>
+            <button type="submit" class="btn-primary">
+              Continue to Payment →
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment Methods (Tailored for India) -->
+      <div class="checkout-step-body" id="checkout-step-2" style="display: none;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 12px;">Select Payment Method</h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 16px;">
+          Choose your preferred Indian payment option. All transactions are securely encrypted.
         </p>
 
-        <form onsubmit="submitOrder(event)">
-          <div class="checkout-steps">
-            <div class="form-group full-width">
-              <label for="cust-name">Full Name</label>
-              <input type="text" id="cust-name" placeholder="Priya Sharma" required>
+        <div class="payment-options-grid">
+          <label class="payment-method-card selected">
+            <input type="radio" name="paymentMethod" value="UPI" class="payment-radio" checked>
+            <div>
+              <strong>Instant UPI (Google Pay, PhonePe, Paytm, QR)</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Instant zero-fee transfer via any UPI app</div>
             </div>
-            <div class="form-group full-width">
-              <label for="cust-email">Email Address</label>
-              <input type="email" id="cust-email" placeholder="priya@example.com" required>
-            </div>
-            <div class="form-group full-width">
-              <label for="cust-address">Delivery Address</label>
-              <input type="text" id="cust-address" placeholder="124 Lotus Lane, Apt 4B" required>
-            </div>
-            <div class="form-group">
-              <label for="cust-city">City</label>
-              <input type="text" id="cust-city" placeholder="San Francisco" required>
-            </div>
-            <div class="form-group">
-              <label for="cust-zip">Postal / Zip Code</label>
-              <input type="text" id="cust-zip" placeholder="94103" required>
-            </div>
-          </div>
-
-          <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin: 16px 0 8px;">
-            Payment Method (Sandbox Mode)
           </label>
-          <div class="payment-options">
-            <div class="payment-card selected">
-              <span>💳</span>
-              <span>Credit Card / Stripe</span>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="Cards" class="payment-radio">
+            <div>
+              <strong>Credit / Debit Cards (Visa, MasterCard, RuPay)</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Supports all major Indian banks</div>
             </div>
-            <div class="payment-card">
-              <span>⚡</span>
-              <span>Apple Pay / UPI</span>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="NetBanking" class="payment-radio">
+            <div>
+              <strong>Net Banking</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">SBI, HDFC, ICICI, Axis & 50+ banks</div>
             </div>
+          </label>
+
+          <label class="payment-method-card" style="opacity: 0.75; cursor: not-allowed;">
+            <input type="radio" name="paymentMethod" value="COD" class="payment-radio" disabled>
+            <div>
+              <strong>Cash on Delivery (COD) — Currently Paused</strong>
+              <div style="font-size: 0.75rem; color: #857262;">Bulky return freight protection</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="cod-disabled-notice">
+          ℹ️ <strong>Why is COD paused?</strong> Traditional bamboo Mudhas are bulky structural items incurring high two-way road freight. Pausing COD prevents transit returns, keeping consumer prices at ₹1,299 instead of inflated marketplace rates. Every prepaid order includes our <strong>100% Transit Damage Replacement Guarantee</strong>.
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+          <button type="button" class="btn-secondary" onclick="backToAddressStep()">
+            ← Back to Address
+          </button>
+          <button type="button" class="btn-primary" onclick="placeOrder()">
+            Place Order & Pay
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Order Confirmation Screen -->
+      <div class="checkout-step-body" id="checkout-confirmation" style="display: none; text-align: center; padding: 48px 24px;">
+        <span style="font-size: 3.5rem;">🎉</span>
+        <h3 style="font-family: var(--font-serif); font-size: 2rem; margin: 12px 0 6px;">Thank You for Supporting Authentic Craft!</h3>
+        <p style="font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 20px;">
+          Your order has been received. Our workshop in Muzaffarnagar is preparing your shipment.
+        </p>
+
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 24px; min-width: 280px;">
+          <div><strong>Order ID:</strong> <span id="confirmed-order-id">MUDHA-000000</span></div>
+          <div><strong>Total Paid:</strong> <span id="confirmed-order-total">₹0</span></div>
+          <div><strong>WhatsApp Tracking:</strong> <span id="confirmed-order-phone">Registered</span></div>
+          <div><strong>Estimated Dispatch:</strong> 1–2 business days via Surface Cargo</div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <a href="#" id="btn-order-wa" target="_blank" class="btn-primary" style="background: #25D366;">
+            <span>💬 Track Order on WhatsApp</span>
+          </a>
+          <button class="btn-secondary" onclick="closeCheckoutModal()">
+            Return to Storefront
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Transit Damage Replacement Claim Modal -->
+  <div class="modal-backdrop" id="damage-modal-backdrop" onclick="closeTransitDamageModal()">
+    <div class="modal-dialog" style="max-width: 580px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeTransitDamageModal()" aria-label="Close modal">&times;</button>
+      <div style="padding: 32px;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.65rem; margin-bottom: 8px;">100% Free Transit Replacement Guarantee</h3>
+        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 20px;">
+          Did your Mudha incur transit damage? Submit 2–3 photos below. You will NOT need to return the damaged unit — we dispatch a brand-new replacement at zero cost.
+        </p>
+
+        <form onsubmit="submitDamageClaim(event)">
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="dmg-order">Order ID *</label>
+            <input type="text" id="dmg-order" name="orderId" class="form-input" required placeholder="e.g. MUDHA-123456">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="dmg-phone">Phone / WhatsApp *</label>
+            <input type="tel" id="dmg-phone" name="phone" class="form-input" required placeholder="9876543210">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="dmg-desc">Describe the Transit Damage *</label>
+            <textarea id="dmg-desc" name="description" class="form-textarea" required placeholder="Explain where the bamboo frame or cane weave cracked..."></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label" for="dmg-photos">Upload Damage Photos (Box & Product) *</label>
+            <input type="file" id="dmg-photos" name="photos" class="form-input" multiple accept="image/*" required>
+            <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Upload 2–3 clear photos showing the damaged bamboo and courier shipping label.</span>
           </div>
 
-          <button type="submit" id="order-submit-btn" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
-            Place Order Now
+          <button type="submit" class="btn-primary" style="width: 100%;">
+            Submit Replacement Claim
           </button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- Quick View Modal -->
-  <div class="modal-overlay" id="quick-view-modal" onclick="closeQuickView()">
-    <div class="checkout-modal" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="closeQuickView()">&times;</button>
-      <div id="quick-view-content"></div>
+  <!-- 5. Policies Modal (Shipping, Returns, Privacy, Terms, Contact) -->
+  <div class="modal-backdrop" id="policy-modal-backdrop" onclick="closePolicyModal()">
+    <div class="modal-dialog" style="max-width: 640px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePolicyModal()" aria-label="Close modal">&times;</button>
+      <div style="padding: 32px;">
+        <h3 id="policy-modal-title" style="font-family: var(--font-serif); font-size: 1.75rem; margin-bottom: 16px;">Policy</h3>
+        <div id="policy-modal-body" style="font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.65;">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- 3D WebGL Studio Modal -->
-  <div class="modal-overlay" id="three-modal" onclick="close3DViewer()">
-    <div class="checkout-modal liquid-glass" style="max-width: 820px; padding: 24px;" onclick="event.stopPropagation()">
-      <button class="modal-close-btn" onclick="close3DViewer()">&times;</button>
-      <div style="text-align: center; margin-bottom: 12px;">
-        <span class="product-material">WebGL Interactive Studio</span>
-        <h2 style="font-family: var(--font-serif); font-size: 1.5rem;">The Sarkanda Classic Mudda in 3D</h2>
-        <p style="font-size: 0.85rem; color: var(--text-muted);">Click & drag to rotate • Scroll to zoom • Built with Three.js</p>
-      </div>
-      <div id="three-canvas-container" style="width: 100%; height: 420px; border-radius: var(--radius-md); overflow: hidden; background: radial-gradient(circle at center, #faf6ee 0%, #e8ddc7 100%); position: relative;">
-        <!-- Three.js Canvas mounts dynamically -->
-      </div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-        <div style="font-size: 0.88rem; color: var(--text-muted);">
-          🌾 Handcrafted with natural <strong>Sarkanda Reeds & Bamboo Rim</strong>
+  <!-- 6. Admin / Owner Control Panel -->
+  <div class="modal-backdrop" id="admin-modal-backdrop" onclick="closeAdminModal()">
+    <div class="modal-dialog" style="max-width: 640px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeAdminModal()" aria-label="Close modal">&times;</button>
+      <div style="padding: 32px;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 8px;">Store Owner Configuration</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 20px;">
+          Live-edit test pricing, stock status, freight rates, and COD settings. Persists to storage and synchronizes with server.
+        </p>
+
+        <div id="admin-products-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 16px;">
+          <!-- Populated dynamically via app.js -->
         </div>
-        <button class="btn-primary" onclick="addToCart('mudda-01'); close3DViewer();">
-          Add To Basket • $48
+
+        <div style="background: var(--bg-primary); padding: 14px; border-radius: 8px; margin-bottom: 20px;">
+          <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 10px;">Freight & COD Settings</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <div>
+              <label style="font-size: 0.75rem;">Base Freight (₹)</label>
+              <input type="number" id="admin-shipping-base" class="form-input">
+            </div>
+            <div>
+              <label style="font-size: 0.75rem;">Add. Unit Freight (₹)</label>
+              <input type="number" id="admin-shipping-add" class="form-input">
+            </div>
+          </div>
+          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.8125rem;">
+            <input type="checkbox" id="admin-cod-toggle">
+            <span>Enable Cash on Delivery (COD)</span>
+          </label>
+        </div>
+
+        <button type="button" class="btn-primary" style="width: 100%;" onclick="saveAdminChanges()">
+          Save Store Updates
         </button>
       </div>
     </div>
   </div>
 
+  <!-- Sticky Mobile Action Bar -->
+  <div class="sticky-mobile-bar" id="sticky-mobile-bar">
+    <div class="sticky-mobile-bar-inner">
+      <div class="sticky-price-info">
+        <span class="sticky-price" id="sticky-price">₹1,299</span>
+        <span class="sticky-product-name" id="sticky-product-name">Classic Bamboo Mudha</span>
+      </div>
+      <div class="sticky-action-buttons">
+        <button class="btn-sticky-add" onclick="addCurrentModalToCart()">+ Add</button>
+        <button class="btn-sticky-buy" onclick="buyCurrentModalNow()">Buy Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="javascript:void(0)" onclick="openWhatsAppChat()" class="floating-wa-btn" aria-label="Chat on WhatsApp">
+    <span class="wa-icon">💬</span>
+    <span>Questions? Chat with us</span>
+  </a>
+
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toast-container"></div>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <h3>MuddaCraft Studio</h3>
-        <p>Revitalizing traditional Indian reed furniture for eco-conscious homes worldwide. Handcrafted with reverence for natural materials.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Collection</h4>
-        <ul>
-          <li><a href="#shop">Classic Muddas</a></li>
-          <li><a href="#shop">High-Back Chairs</a></li>
-          <li><a href="#shop">Jute Mandalas</a></li>
-          <li><a href="#shop">Kids Mini Stools</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Sustainability</h4>
-        <ul>
-          <li><a href="#story">Wild Reed Harvesting</a></li>
-          <li><a href="#story">Artisan Co-Op Fair Pay</a></li>
-          <li><a href="#materials">Plastic-Free Pledge</a></li>
-          <li><a href="#faq">Product Care</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Join the Collective</h4>
-        <p style="font-size: 0.85rem; color: #a39c90; margin-bottom: 12px;">Get 10% off your first handcrafted mudda and stories from our rural weaving circles.</p>
-        <div class="newsletter-box">
-          <input type="email" placeholder="Enter your email...">
-          <button class="btn-primary" style="width: 100%; justify-content: center; padding: 10px;">Subscribe</button>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      &copy; 2026 MuddaCraft Studio. Handcrafted with pride. All rights reserved.
-    </div>
-  </footer>
-
-  <script src="three-viewer.js"></script>
-  <script src="animations.js"></script>
+  <!-- Application Logic & Animations -->
   <script src="app.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>

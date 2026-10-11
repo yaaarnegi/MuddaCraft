@@ -1,0 +1,25 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {mkdtemp,copyFile,readdir,readFile} from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import {once} from 'node:events';
+test('server validates and persists enquiries, protects owner data, and never fakes payment',async t=>{
+ const temp=await mkdtemp(path.join(os.tmpdir(),'mudda-test-'));const storeFile=path.join(temp,'store.json');await copyFile(new URL('../data/store.json',import.meta.url),storeFile);const child=spawn(process.execPath,['server.js'],{cwd:new URL('..',import.meta.url),env:{...process.env,PORT:'3097',HOST:'127.0.0.1',DATA_DIR:path.join(temp,'enquiries'),STORE_FILE:storeFile,ADMIN_TOKEN:'test-owner-token'},stdio:['ignore','pipe','pipe']});t.after(()=>child.kill());await Promise.race([once(child.stdout,'data'),once(child,'exit').then(()=>{throw new Error('Test server exited before startup');})]);const base='http://127.0.0.1:3097';const request=(url,data,extra={})=>fetch(base+url,{method:'POST',headers:{'Content-Type':'application/json',...extra},body:JSON.stringify(data)});
+ for(const url of ['/','/bulk','/contact','/checkout','/admin','/policies/returns','/products/classic-bamboo-mudha','/assets/mudha-balcony.jpg'])assert.equal((await fetch(base+url)).status,200,url);
+ assert.match(await(await fetch(base+'/products/classic-bamboo-mudha')).text(),/<title>Classic Bamboo Mudha/);
+ for(const url of ['/.data/','/data/store.json','/server.js','/.git/config'])assert.equal((await fetch(base+url)).status,404,url);
+ assert.equal((await fetch(base+'/api/admin/enquiries')).status,401);
+ assert.equal((await request('/api/checkout',{})).status,503);
+ const data={name:'Test enquiry',business:'Test Café',email:'test@example.com',phone:'9876543210',city:'Delhi',quantity:12,product:'classic-bamboo-mudha',message:'Automated test only',consent:true};
+ assert.equal((await request('/api/enquiries/bulk',{...data,quantity:-2})).status,400);
+ assert.equal((await request('/api/enquiries/bulk',data,{Origin:'https://untrusted.example'})).status,403);
+ const saved=await request('/api/enquiries/bulk',data);assert.equal(saved.status,201);const record=await saved.json();assert.match(record.reference,/^MC-/);assert.equal(record.notificationConfigured,false);
+ const fake={...data,orderReference:'TEST',photos:[{name:'x.jpg',type:'image/jpeg',data:Buffer.from('not an image').toString('base64')}]};assert.equal((await request('/api/enquiries/damage',fake)).status,400);
+ const png='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aBZkAAAAASUVORK5CYII=';
+ assert.equal((await request('/api/enquiries/damage',{...fake,photos:[{name:'test.png',type:'image/png',data:png}]})).status,201);
+ const list=await(await fetch(base+'/api/admin/enquiries',{headers:{Authorization:'Bearer test-owner-token'}})).json();assert.equal(list.enquiries.length,2);assert.equal((await readdir(path.join(temp,'enquiries'))).length,2);
+ const config=JSON.parse(await readFile(storeFile,'utf8'));config.products[0].price=1499;let response=await fetch(base+'/api/admin/store',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer test-owner-token'},body:JSON.stringify(config)});assert.equal(response.status,200);assert.equal((await(await fetch(base+'/api/store')).json()).products[0].price,1499);
+ config.products[0].image='javascript:alert(1)';response=await fetch(base+'/api/admin/store',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer test-owner-token'},body:JSON.stringify(config)});assert.equal(response.status,400);
+});

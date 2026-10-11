@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {calculate,normalizeCart,validPin} from '../commerce.js';
+const s=JSON.parse(await readFile(new URL('../data/store.json',import.meta.url)));
+test('PIN validation rejects incomplete, leading-zero and mixed inputs',()=>{for(const p of ['','012345','11000','110001x','abcdef'])assert.equal(validPin(p),false);assert.equal(validPin('110001'),true);});
+test('bag ignores tampered prices and rejects invalid quantities and products',()=>{const cart=normalizeCart([{id:s.products[0].id,quantity:2,price:1},{id:'missing',quantity:1},{id:s.products[1].id,quantity:-4}],s.products);assert.deepEqual(cart,[{id:s.products[0].id,quantity:2}]);assert.equal(calculate(cart,s.products,s.shipping,'110001').subtotal,2598);});
+test('shipping is not silently zero before a PIN is supplied',()=>{const t=calculate([{id:s.products[0].id,quantity:1}],s.products,s.shipping);assert.equal(t.shipping,null);assert.equal(t.total,null);});
+test('set freight counts seats, and remote surcharges appear in total',()=>{const items=[{id:'set-of-two-bamboo-mudhas',quantity:2}];const t=calculate(items,s.products,s.shipping,'781001');assert.equal(t.units,4);assert.equal(t.shipping,900);assert.equal(t.total,5898);assert.equal(t.illustrative,true);});
+test('bag coalesces duplicates, caps quantity and drops out-of-stock items',()=>{const id=s.products[0].id;assert.deepEqual(normalizeCart([{id,quantity:70},{id,quantity:80}],s.products),[{id,quantity:99}]);assert.deepEqual(normalizeCart([{id,quantity:1}],s.products.map(p=>({...p,stock:'out'}))),[]);});
