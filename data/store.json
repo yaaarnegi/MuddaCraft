@@ -1,9 +1,10 @@
 {
-  "brand": "MudhaCraft",
+  "brand": "MuddaCraft",
   "tagline": "Traditional Indian craftsmanship for modern homes.",
-  "location": "Sourced directly from Muzaffarnagar, Uttar Pradesh",
+  "location": "Sourced directly from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+  "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
   "whatsapp": "+919876543210",
-  "email": "namaste@mudhacraft.in",
+  "email": "namaste@muddacraft.in",
   "businessAddress": "Craft Production Hub, Muzaffarnagar Industrial Area, Uttar Pradesh 251001, India",
   "offer": "Direct Maker Pricing • Pan-India Surface Delivery",
   "codEnabled": false,
@@ -14,7 +15,11 @@
     "perAdditionalUnit": 150,
     "freeShippingThreshold": 4500,
     "remoteSurcharge": 200,
-    "remotePrefixes": ["78", "79", "744"],
+    "remotePrefixes": [
+      "78",
+      "79",
+      "744"
+    ],
     "standardDeliveryDays": "4–7 business days",
     "deliveryNote": "Bulky surface freight via trusted regional logistics partners."
   },
@@ -23,136 +28,400 @@
     "metaPixel": "123456789012345",
     "googleAds": "AW-123456789"
   },
+  "categories": [
+    "All Products",
+    "Classic Mudhas",
+    "Cane Chairs",
+    "Balcony Sets",
+    "Sofa Sets",
+    "Tables & Décor",
+    "Daybeds"
+  ],
   "products": [
     {
-      "id": "classic-bamboo-mudha",
-      "name": "Classic Bamboo Mudha",
-      "type": "Stools",
-      "price": 1299,
-      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
-      "priceConfirmed": false,
+      "id": "prod-01-drum-stool-set",
+      "folderNumber": 1,
+      "name": "Four-Seater Cylindrical Cane Drum Stool Set with Round Table",
+      "category": "Balcony Furniture Sets",
+      "filterCategory": "Balcony Sets",
+      "price": 5500,
+      "priceDisplay": "₹5,500",
+      "priceConfirmed": true,
+      "cushionCost": null,
+      "cushionNote": "Circular padded cushions included in set",
       "stock": "available",
-      "image": "assets/mudha-stool.jpg",
-      "images": ["assets/mudha-stool.jpg", "assets/mudha-balcony.jpg"],
-      "dimensions": {
-        "diameter": "15 inches (38 cm)",
-        "height": "15 inches (38 cm)",
-        "seatHeight": "15 inches (38 cm)",
-        "footprint": "1.2 sq ft",
-        "specStatus": "Standard regional specification — final batch tolerance ±1 inch"
-      },
-      "weight": "Approx. 2.2 kg (lightweight, easily portable with one hand)",
-      "weightCapacity": "Tested up to 110 kg (lab test rating undergoing supplier verification)",
-      "material": "Cured natural bamboo framework, wild river Sarkanda reeds, braided organic jute binding",
-      "color": "Natural warm honey bamboo / unbleached cane finish",
-      "assembly": "None. Shipped 100% pre-assembled and ready to sit",
-      "recommendedUsage": ["Balcony", "Terrace", "Living room", "Garden", "Bedside accent"],
-      "estimatedDelivery": "4–6 business days",
-      "description": "The quintessential Indian sitting stool. Built with tightly bound vertical river reeds, reinforced with a solid bamboo rim, and hand-bound with traditional jute twine. Small footprint, lightweight, and perfect for morning chai or impromptu gatherings."
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-01-drum-stool-set-primary.webp",
+      "images": [
+        "assets/products/prod-01-drum-stool-set-primary.webp",
+        "assets/products/prod-01-drum-stool-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Artisanal four-piece cylindrical cane drum stool set with matching circular tea table. Handcrafted with dense concentric river-reed weaving, bound with sturdy bamboo rims and topped with fitted circular cushions for relaxed indoor or verandah lounging.",
+      "specifications": "4 Stools: 16\" Dia x 18\" H; 1 Table: 24\" Dia x 22\" H • Natural cane & river reed",
+      "featured": true,
+      "order": 1
     },
     {
-      "id": "large-back-support-mudha",
-      "name": "Large Back-Support Mudha",
-      "type": "Chairs",
-      "price": 1899,
-      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
-      "priceConfirmed": false,
+      "id": "prod-02-full-cane-living-suite",
+      "folderNumber": 2,
+      "name": "Full Woven Cane Living Room Suite (3-Seater, 2 Chairs, Oval Table)",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 16000,
+      "priceDisplay": "₹16,000",
+      "priceConfirmed": true,
+      "cushionCost": null,
+      "cushionNote": "Full red velvet seating cushions included",
       "stock": "available",
-      "image": "assets/mudha-balcony.jpg",
-      "images": ["assets/mudha-balcony.jpg", "assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
-      "dimensions": {
-        "diameter": "20 inches (51 cm)",
-        "height": "28 inches (71 cm)",
-        "seatHeight": "14 inches (35 cm)",
-        "footprint": "2.2 sq ft",
-        "specStatus": "Standard regional specification — final batch tolerance ±1 inch"
-      },
-      "weight": "Approx. 3.8 kg",
-      "weightCapacity": "Tested up to 130 kg (supplier verification in progress)",
-      "material": "Structural thick-walled bamboo canes, ergonomic curved cane backrest, natural river reeds",
-      "color": "Natural warm honey cane with earthy jute contrast weave",
-      "assembly": "None. 100% pre-assembled",
-      "recommendedUsage": ["Balcony", "Terrace", "Living room", "Farmhouses & Resorts", "Reading corner"],
-      "estimatedDelivery": "4–7 business days",
-      "description": "An elevated traditional armchair designed for relaxed evenings. Features an extended ergonomic lumbar support woven from flexible cane, double-ring bamboo reinforcement, and comfortable low-seating height for balconies and verandas."
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-02-full-cane-living-suite-primary.webp",
+      "images": [
+        "assets/products/prod-02-full-cane-living-suite-primary.webp",
+        "assets/products/prod-02-full-cane-living-suite-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Complete traditional cane living room suite comprising a three-seater cane sofa, two matching high-back armchairs, and an oval coffee table. Finished in rich natural blonde lacquer with plush red velvet seating cushions.",
+      "specifications": "3-Seater: 68\" W x 30\" D x 34\" H; Chairs: 28\" W x 28\" D x 34\" H; Oval Table: 36\" L x 22\" W x 20\" H",
+      "featured": true,
+      "order": 2
     },
     {
-      "id": "premium-woven-mudha",
-      "name": "Premium Woven Mudha",
-      "type": "Stools",
-      "price": 1599,
-      "priceNote": "Introductory test pricing. Final supplier economics will update here.",
-      "priceConfirmed": false,
+      "id": "prod-03-handcrafted-cane-rocking-chair",
+      "folderNumber": 3,
+      "name": "Traditional Handcrafted Cane Rocking Chair",
+      "category": "Cane Chairs",
+      "filterCategory": "Cane Chairs",
+      "price": 3100,
+      "priceDisplay": "₹3,100",
+      "priceConfirmed": true,
+      "cushionCost": 2200,
+      "cushionNote": "Fitted ergonomic cushion available for ₹2,200 extra",
       "stock": "available",
-      "image": "assets/mudha-stool.jpg",
-      "images": ["assets/mudha-stool.jpg", "assets/mudha-terrace.jpg"],
-      "dimensions": {
-        "diameter": "16 inches (40 cm)",
-        "height": "16 inches (40 cm)",
-        "seatHeight": "16 inches (40 cm)",
-        "footprint": "1.4 sq ft",
-        "specStatus": "High-density weave — exact supplier spec pending batch test"
-      },
-      "weight": "Approx. 2.6 kg",
-      "weightCapacity": "Up to 120 kg (supplier verification in progress)",
-      "material": "Tightly woven natural cane seating mesh, seasoned bamboo body, cross-tied cotton/jute twine",
-      "color": "Natural blonde bamboo & seasoned cane",
-      "assembly": "None. Fully pre-assembled",
-      "recommendedUsage": ["Living room", "Cafés & Restaurants", "Balcony", "Boho Home Decor"],
-      "estimatedDelivery": "4–6 business days",
-      "description": "A higher-density weave with an intricate concentric pattern on the seat. Balances rustic charm with modern apartment aesthetics. Smoothly sanded bamboo rims prevent snags on delicate clothing."
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-03-handcrafted-cane-rocking-chair-primary.webp",
+      "images": [
+        "assets/products/prod-03-handcrafted-cane-rocking-chair-primary.webp",
+        "assets/products/prod-03-handcrafted-cane-rocking-chair-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Masterfully bent natural bamboo rocking chair with ergonomic curved lumbar support and fine open-mesh cane backrest. Smooth pendulum rocking arc built on seasoned cane skids.",
+      "specifications": "26\" W x 38\" D x 40\" H • Seat Height: 17\" • Natural Seasoned Bamboo & Split Cane",
+      "featured": true,
+      "order": 3
     },
     {
-      "id": "set-of-two-bamboo-mudhas",
-      "name": "Set of 2 Bamboo Mudhas",
-      "type": "Sets",
-      "price": 2499,
-      "priceNote": "Introductory test bundle pricing. Final supplier economics will update here.",
-      "priceConfirmed": false,
+      "id": "prod-04-peacock-arched-cane-sofa-set",
+      "folderNumber": 4,
+      "name": "Peacock-Arched Luxury Cane Sofa Set",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 12500,
+      "priceDisplay": "₹12,500",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Full suite cushions available for ₹2,300 extra",
       "stock": "available",
-      "image": "assets/mudha-terrace.jpg",
-      "images": ["assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
-      "dimensions": {
-        "diameter": "15 inches (38 cm) each",
-        "height": "15 inches (38 cm) each",
-        "seatHeight": "15 inches (38 cm)",
-        "footprint": "2.4 sq ft combined",
-        "specStatus": "Matched pair — batch tolerance ±1 inch"
-      },
-      "weight": "Approx. 4.4 kg total (2 units)",
-      "weightCapacity": "110 kg per unit",
-      "material": "Matched natural bamboo pairs, wild river reeds, unbleached jute binding",
-      "color": "Natural warm honey bamboo",
-      "assembly": "None. Fully pre-assembled",
-      "recommendedUsage": ["Balcony", "Cafés & Restaurants", "Garden", "Breakfast nooks"],
-      "estimatedDelivery": "4–7 business days",
-      "description": "A paired set of traditional stools created for two cups of chai and long conversations. Nest easily together when clearing floor space. Bundled shipping offers superior per-unit delivery economics."
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-04-peacock-arched-cane-sofa-set-primary.webp",
+      "images": [
+        "assets/products/prod-04-peacock-arched-cane-sofa-set-primary.webp",
+        "assets/products/prod-04-peacock-arched-cane-sofa-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Majestic living room suite featuring signature high-arch peacock backrests, flared arm contours, and intricate sunburst cane weaves. Includes 3-seater sofa, two single armchairs, and central glass-ready cane table.",
+      "specifications": "3-Seater: 66\" W x 32\" D x 38\" H; Single Chairs: 30\" W x 30\" D x 38\" H; Table: 32\" L x 20\" W x 19\" H",
+      "featured": true,
+      "order": 4
     },
     {
-      "id": "balcony-mudha-set",
-      "name": "Balcony Mudha Set",
-      "type": "Sets",
-      "price": 3299,
-      "priceNote": "Introductory test bundle pricing. Final supplier economics will update here.",
-      "priceConfirmed": false,
+      "id": "prod-05-three-tier-cane-plant-stand",
+      "folderNumber": 5,
+      "name": "Three-Tier Cane Plant Stand / Planter Totem",
+      "category": "Home Décor",
+      "filterCategory": "Tables & Décor",
+      "price": 1500,
+      "priceDisplay": "₹1,500",
+      "priceConfirmed": true,
+      "cushionCost": null,
+      "cushionNote": "Not applicable",
       "stock": "available",
-      "image": "assets/mudha-balcony.jpg",
-      "images": ["assets/mudha-balcony.jpg", "assets/mudha-terrace.jpg", "assets/mudha-stool.jpg"],
-      "dimensions": {
-        "diameter": "Includes 2 Back-Support Mudhas (20\" × 28\")",
-        "height": "28 inches backrest height",
-        "seatHeight": "14 inches",
-        "footprint": "4.5 sq ft for the pair",
-        "specStatus": "Coordinated pair — supplier configuration pending"
-      },
-      "weight": "Approx. 7.6 kg combined",
-      "weightCapacity": "130 kg per chair",
-      "material": "Full bamboo framework, woven cane backrests, heavy-gauge river reed bases",
-      "color": "Natural bamboo / warm honey tone",
-      "assembly": "None. Shipped ready to place",
-      "recommendedUsage": ["Balcony", "Terrace", "Farmhouses & Resorts", "Verandas"],
-      "estimatedDelivery": "5–8 business days",
-      "description": "The complete outdoor conversation set. Two matched back-support Mudhas designed to fit standard 4ft–6ft Indian balconies. Transforms underutilized balcony corners into peaceful outdoor sanctuaries."
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-05-three-tier-cane-plant-stand-primary.webp",
+      "images": [
+        "assets/products/prod-05-three-tier-cane-plant-stand-primary.webp",
+        "assets/products/prod-05-three-tier-cane-plant-stand-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Lightweight three-tier stepped cane display stand designed for balcony planters, terrace greenery, or indoor bohemian accents. Reinforced triangular bracing ensures stability for ceramic pots.",
+      "specifications": "14\" W x 14\" D x 36\" H • 3 Circular Shelves (10\", 12\", 14\" Dia) • Natural Bamboo",
+      "featured": false,
+      "order": 5
+    },
+    {
+      "id": "prod-06-classic-blonde-cane-suite",
+      "folderNumber": 6,
+      "name": "Classic Cane Living Suite (Natural Blonde Finish)",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 10000,
+      "priceDisplay": "₹10,000",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Suite cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-06-classic-blonde-cane-suite-primary.webp",
+      "images": [
+        "assets/products/prod-06-classic-blonde-cane-suite-primary.webp",
+        "assets/products/prod-06-classic-blonde-cane-suite-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Minimalist natural cane sofa set designed for airy modern living rooms and verandahs. Features clean horizontal cane ribbing, sturdy double-reed framing, and matching circular coffee table.",
+      "specifications": "3-Seater: 64\" W x 28\" D x 32\" H; 2 Armchairs: 26\" W x 26\" D x 32\" H; Coffee Table: 24\" Dia x 20\" H",
+      "featured": false,
+      "order": 6
+    },
+    {
+      "id": "prod-07-traditional-cane-diwan-daybed",
+      "folderNumber": 7,
+      "name": "Traditional Cane Diwan Daybed (Red Velvet Cushion)",
+      "category": "Daybeds",
+      "filterCategory": "Daybeds",
+      "price": 5800,
+      "priceDisplay": "₹5,800",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Full diwan mattress cushion available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-07-traditional-cane-diwan-daybed-primary.webp",
+      "images": [
+        "assets/products/prod-07-traditional-cane-diwan-daybed-primary.webp",
+        "assets/products/prod-07-traditional-cane-diwan-daybed-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Heritage Indian cane diwan daybed with sculpted scrolled armrests and continuous woven cane deck. Perfect as a relaxing afternoon siesta lounge for sunrooms and living halls.",
+      "specifications": "72\" L x 30\" W x 28\" H • Seat Height: 16\" • High-tensile river reed & solid cane core",
+      "featured": true,
+      "order": 7
+    },
+    {
+      "id": "prod-09-royal-blue-cane-sofa-set",
+      "folderNumber": 9,
+      "name": "Premium Cane Sofa Set (Royal Blue Cushions)",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 10500,
+      "priceDisplay": "₹10,500",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Velvet suite cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-09-royal-blue-cane-sofa-set-primary.webp",
+      "images": [
+        "assets/products/prod-09-royal-blue-cane-sofa-set-primary.webp",
+        "assets/products/prod-09-royal-blue-cane-sofa-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Striking handcrafted cane sofa ensemble paired with plush royal blue velvet upholstery. Features tight chevron cane skirt weaving and curved barrel armrests for luxurious comfort.",
+      "specifications": "3-Seater: 65\" W x 30\" D x 33\" H; 2 Lounge Chairs: 28\" W x 28\" D x 33\" H; Table: 30\" L x 18\" W x 19\" H",
+      "featured": false,
+      "order": 8
+    },
+    {
+      "id": "prod-10-sage-green-cane-sofa-set",
+      "folderNumber": 10,
+      "name": "Classic Cane Sofa Set (Sage Green Cushions)",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 10200,
+      "priceDisplay": "₹10,200",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Suite cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-10-sage-green-cane-sofa-set-primary.webp",
+      "images": [
+        "assets/products/prod-10-sage-green-cane-sofa-set-primary.webp",
+        "assets/products/prod-10-sage-green-cane-sofa-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Earthy botanical aesthetic featuring natural seasoned cane frames complemented by soothing sage green cushions. Includes 3-seater sofa, two matching armchairs, and woven tea table.",
+      "specifications": "3-Seater: 64\" W x 29\" D x 32\" H; 2 Chairs: 27\" W x 27\" D x 32\" H; Table: 28\" L x 18\" W x 19\" H",
+      "featured": false,
+      "order": 9
+    },
+    {
+      "id": "prod-11-cane-dining-garden-set",
+      "folderNumber": 11,
+      "name": "Four-Seater Cane Dining / Garden Set",
+      "category": "Balcony Furniture Sets",
+      "filterCategory": "Balcony Sets",
+      "price": 22000,
+      "priceDisplay": "₹22,000",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Set of 4 chair cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-11-cane-dining-garden-set-primary.webp",
+      "images": [
+        "assets/products/prod-11-cane-dining-garden-set-primary.webp",
+        "assets/products/prod-11-cane-dining-garden-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Four-seater outdoor and garden dining set with high-back lattice cane dining chairs and a matching circular bamboo dining table. Weather-resilient natural polish built for covered patios and garden gazebos.",
+      "specifications": "4 Chairs: 20\" W x 20\" D x 36\" H; Dining Table: 36\" Dia x 30\" H • Seasoned Assam Bamboo",
+      "featured": false,
+      "order": 10
+    },
+    {
+      "id": "prod-12-two-seater-balcony-set",
+      "folderNumber": 12,
+      "name": "Two-Seater Cane Balcony Set with Coffee Table",
+      "category": "Balcony Furniture Sets",
+      "filterCategory": "Balcony Sets",
+      "price": 6000,
+      "priceDisplay": "₹6,000",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Pair of cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-12-two-seater-balcony-set-primary.webp",
+      "images": [
+        "assets/products/prod-12-two-seater-balcony-set-primary.webp",
+        "assets/products/prod-12-two-seater-balcony-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Curated outdoor morning chai set featuring two high fan-back cane chairs and a round woven cane coffee table, sized specifically for compact apartment balconies.",
+      "specifications": "2 Chairs: 24\" W x 24\" D x 34\" H; Round Table: 22\" Dia x 21\" H • Treated Cane & River Reed",
+      "featured": true,
+      "order": 11
+    },
+    {
+      "id": "prod-13-traditional-lattice-armchair",
+      "folderNumber": 13,
+      "name": "Traditional Cane Armchair (Diamond Lattice Back)",
+      "category": "Cane Chairs",
+      "filterCategory": "Cane Chairs",
+      "price": 2500,
+      "priceDisplay": "₹2,500",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Plush cushion available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-13-traditional-lattice-armchair-primary.webp",
+      "images": [
+        "assets/products/prod-13-traditional-lattice-armchair-primary.webp",
+        "assets/products/prod-13-traditional-lattice-armchair-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Ergonomic handcrafted accent armchair featuring diamond lattice back-weaving, contoured armrests, and seasoned natural cane framework. Built to support relaxing reading hours.",
+      "specifications": "25\" W x 26\" D x 33\" H • Seat Height: 17\" • Natural Seasoned Bamboo & Cane",
+      "featured": false,
+      "order": 12
+    },
+    {
+      "id": "prod-14-four-seater-mudha-set-maroon",
+      "folderNumber": 14,
+      "name": "Four-Seater Mudha Set with Centre Table (Maroon Rim)",
+      "category": "Mudha Seating Sets",
+      "filterCategory": "Balcony Sets",
+      "price": 5000,
+      "priceDisplay": "₹5,000",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-14-four-seater-mudha-set-maroon-primary.webp",
+      "images": [
+        "assets/products/prod-14-four-seater-mudha-set-maroon-primary.webp",
+        "assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Quintessential Indian Mudha seating collection with four round reed stools and a matching circular centre table, trimmed in rich maroon thread binding and dual-tone jute weave.",
+      "specifications": "4 Mudhas: 15\" Dia x 16\" H; Centre Table: 22\" Dia x 20\" H • Sarkanda Reed & Cotton Twine",
+      "featured": false,
+      "order": 13
+    },
+    {
+      "id": "prod-15-traditional-mudha-red-gold",
+      "folderNumber": 15,
+      "name": "Traditional Handwoven Mudha — Red & Gold",
+      "category": "Classic Mudhas",
+      "filterCategory": "Classic Mudhas",
+      "price": 550,
+      "priceDisplay": "₹550",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Top cushion available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-15-traditional-mudha-red-gold-primary.webp",
+      "images": [
+        "assets/products/prod-15-traditional-mudha-red-gold-primary.webp",
+        "assets/products/prod-15-traditional-mudha-red-gold-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Handcrafted traditional Indian Mudha stool featuring a vibrant concentric diamond weave in crimson red and gold yarn on a resilient natural river reed and seasoned bamboo frame.",
+      "specifications": "15\" Dia x 15\" H • Weight: ~2.8 kg • Sarkanda river reed & reinforced cotton yarn",
+      "featured": true,
+      "order": 14
+    },
+    {
+      "id": "prod-16-crimson-velvet-cane-sofa-set",
+      "folderNumber": 16,
+      "name": "Classic Cane Sofa Set (Crimson Red Velvet Cushions)",
+      "category": "Cane Sofa Sets",
+      "filterCategory": "Sofa Sets",
+      "price": 10500,
+      "priceDisplay": "₹10,500",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Suite cushions available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-16-crimson-velvet-cane-sofa-set-primary.webp",
+      "images": [
+        "assets/products/prod-16-crimson-velvet-cane-sofa-set-primary.webp",
+        "assets/products/prod-16-crimson-velvet-cane-sofa-set-lifestyle.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Richly finished 5-piece living suite featuring deep crimson red velvet cushions set against light honey-glazed bamboo cane frames. Includes 3-seater sofa, two armchairs, and centre table.",
+      "specifications": "3-Seater: 66\" W x 30\" D x 34\" H; 2 Single Armchairs: 28\" W x 28\" D x 34\" H; Table: 32\" L x 20\" W x 19\" H",
+      "featured": false,
+      "order": 15
+    },
+    {
+      "id": "prod-17-high-back-fan-cane-chair",
+      "folderNumber": 17,
+      "name": "High-Back Fan Cane Accent Chair (Checkered Rim)",
+      "category": "Cane Chairs",
+      "filterCategory": "Cane Chairs",
+      "price": 2500,
+      "priceDisplay": "₹2,500",
+      "priceConfirmed": true,
+      "cushionCost": 2300,
+      "cushionNote": "Fitted seat cushion available for ₹2,300 extra",
+      "stock": "available",
+      "availability": "Ready to Dispatch • Handcrafted in Muzaffarnagar",
+      "image": "assets/products/prod-17-high-back-fan-cane-chair-primary.webp",
+      "images": [
+        "assets/products/prod-17-high-back-fan-cane-chair-primary.webp",
+        "assets/products/prod-17-high-back-fan-cane-chair-lifestyle.webp",
+        "assets/products/prod-17-high-back-fan-cane-chair-detail-2.webp"
+      ],
+      "supplier": "A to Z Mudda House, Muzaffarnagar, Uttar Pradesh",
+      "description": "Dramatic statement fan-back cane accent chair with decorative black-and-white checkered rim detailing, wide supportive lumbar wings, and circular basket base.",
+      "specifications": "28\" W x 28\" D x 41\" H • Seat Height: 16.5\" • Natural Cane, Bamboo & Cotton Twine",
+      "featured": false,
+      "order": 16
     }
   ],
   "useCases": [
@@ -160,45 +429,45 @@
       "id": "balcony",
       "title": "Balcony Seating",
       "tagline": "Fits compact 4ft–6ft Indian balconies without crowding",
-      "image": "assets/mudha-balcony.jpg",
+      "image": "assets/products/prod-12-two-seater-balcony-set-lifestyle.webp",
       "description": "Lightweight and easy to move indoors before monsoon showers. Gives modern apartments the charm of a sunlit courtyard veranda."
     },
     {
       "id": "terrace",
       "title": "Terrace & Rooftops",
       "tagline": "Unwind at golden hour with chai and unhurried conversations",
-      "image": "assets/mudha-terrace.jpg",
+      "image": "assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp",
       "description": "Low center of gravity withstands terrace breezes. Natural materials stay comfortable under the sun without scorching like metal furniture."
     },
     {
       "id": "garden",
       "title": "Garden & Lawn",
       "tagline": "Lightweight enough to carry across the lawn with one hand",
-      "image": "assets/mudha-terrace.jpg",
+      "image": "assets/products/prod-15-traditional-mudha-red-gold-lifestyle.webp",
       "description": "Shift seating instantly to follow the winter sun or afternoon shade. Blends seamlessly with natural flora and outdoor greenery."
     },
     {
       "id": "cafe",
       "title": "Cafés & Restaurants",
       "tagline": "Warm, earthy hospitality that patrons love photographing",
-      "image": "assets/mudha-cafe.jpg",
+      "image": "assets/products/prod-01-drum-stool-set-primary.webp",
       "description": "Durable, distinctive seating that gives boutique cafés, ethnic restaurants, and outdoor verandas an authentic handcrafted Indian identity."
     },
     {
       "id": "resort",
       "title": "Farmhouses & Resorts",
       "tagline": "Bohemian rustic elegance for quiet weekend retreats",
-      "image": "assets/mudha-craft.jpg",
+      "image": "assets/products/prod-02-full-cane-living-suite-primary.webp",
       "description": "Cost-effective, welcoming lounge seating that ages gracefully and creates cozy pockets across large verandas, lawns, and courtyards."
     }
   ],
   "craftStory": {
     "title": "From Uttar Pradesh to Your Home",
-    "subtitle": "Direct maker sourcing from Muzaffarnagar workshops",
-    "image": "assets/mudha-craft.jpg",
+    "subtitle": "Direct maker sourcing from A to Z Mudda House, Muzaffarnagar",
+    "image": "assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp",
     "paragraphs": [
       "For generations, communities across Uttar Pradesh have mastered the craft of transforming riverbank reeds and wild bamboo into lightweight, remarkably durable seating known as the Mudha.",
-      "Instead of buying through tiered wholesale markets, regional traders, and expensive urban retail stores, we work directly with small manufacturing workshops and craftspeople in Muzaffarnagar, Uttar Pradesh.",
+      "Instead of buying through tiered wholesale markets, regional traders, and expensive urban retail stores, we work directly with A to Z Mudda House in Muzaffarnagar, Uttar Pradesh.",
       "This direct connection allows us to offer honest pricing, ensure each piece is constructed with seasoned bamboo frames and traditional weaving techniques, and ship them safely to apartments and homes across India."
     ],
     "disclaimer": "Transparency Note: We are a low-inventory direct-sourcing brand. We do not make unsupported claims about environmental certification or artisan wage multipliers — we simply provide honest, high-quality traditional craft directly from the makers to you."
@@ -210,27 +479,27 @@
     },
     {
       "q": "What material is it made from?",
-      "a": "Our Mudhas are crafted using natural, seasoned bamboo poles for structural rings and frameworks, tightly bundled wild river reeds for the cylindrical base, and woven cane or jute for the seating surface. (Exact reed variety and binding fiber may vary slightly by seasonal harvest and will be confirmed with each supplier batch)."
+      "a": "Our Mudhas and cane sets are crafted using natural, seasoned bamboo poles for structural rings and frameworks, tightly bundled wild river reeds for the cylindrical base, and woven cane or jute for the seating surface. (Exact reed variety and binding fiber may vary slightly by seasonal harvest and will be confirmed with each supplier batch)."
     },
     {
       "q": "How much weight can it support?",
-      "a": "Standard Mudha stools typically support between 110 kg and 120 kg, while large back-support Mudhas support up to 130 kg due to their reinforced dual-ring bamboo structure. *(Exact maximum certified load capacities are undergoing formal supplier testing and will be updated upon lab certification).* "
+      "a": "Standard Mudha stools typically support between 110 kg and 120 kg, while large back-support Mudhas support up to 130 kg due to their reinforced dual-ring bamboo structure. (Exact maximum certified load capacities are undergoing formal supplier testing with A to Z Mudda House)."
     },
     {
       "q": "Can I use it outdoors?",
-      "a": "Yes! Mudhas are ideal for covered balconies, verandas, terraces, and gardens. Because bamboo and reeds are organic natural fibers, we recommend keeping them in covered outdoor areas during heavy direct monsoon downpours and allowing them to dry in open air if damp."
+      "a": "Yes! Mudhas and cane furniture are ideal for covered balconies, verandas, terraces, and gardens. Because bamboo and reeds are organic natural fibers, we recommend keeping them in covered outdoor areas during heavy direct monsoon downpours and allowing them to dry in open air if damp."
     },
     {
       "q": "What are the dimensions?",
-      "a": "Our standard stools are approximately 15\" diameter × 15\" height (seat height 15\"). Our back-support chairs are approximately 20\" diameter × 28\" total backrest height (seat height 14\"). *(Because these are handcrafted, natural variations of ±1 inch can occur between individual pieces).* "
+      "a": "Dimensions vary by product type. Specifications are currently being catalogued directly with A to Z Mudda House. Exact measurements will be displayed under each product's specification card."
     },
     {
       "q": "Is assembly required?",
-      "a": "Zero assembly required! Every Mudha arrives 100% pre-assembled, structurally bound, and ready for you to sit on right out of the box."
+      "a": "Zero assembly required! Every Mudha and cane chair arrives 100% pre-assembled, structurally bound, and ready for you to sit on right out of the box."
     },
     {
       "q": "How long does delivery take?",
-      "a": "Because Mudhas are bulky items shipped via surface cargo carriers, delivery typically takes 4–7 business days for major Indian metros and 6–10 business days for Tier 2/3 cities and regional addresses."
+      "a": "Because Mudhas and cane sets are bulky items shipped via surface cargo carriers, delivery typically takes 4–7 business days for major Indian metros and 6–10 business days for Tier 2/3 cities and regional addresses."
     },
     {
       "q": "Do you deliver across India?",
@@ -238,12 +507,14 @@
     },
     {
       "q": "What happens if the product arrives damaged?",
-      "a": "We provide a 100% Free Transit Replacement Guarantee. If your Mudha incurs damage during transit, simply snap 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery and submit our quick online replacement form or WhatsApp us. We will dispatch a brand-new replacement at zero cost to you."
+      "a": "We provide a 100% Free Transit Replacement Guarantee. If your order incurs damage during transit, simply snap 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery and submit our quick online replacement form or WhatsApp us. We will dispatch a brand-new replacement at zero cost to you."
     },
     {
       "q": "Can I order multiple Mudhas for my café, resort, or project?",
       "a": "Absolutely. Commercial B2B inquiries for cafés, restaurants, farmhouses, event designers, and boutique hotels are welcome. We offer tiered bulk freight discounts for orders of 10 or more units via our Bulk Inquiry form."
     }
   ],
-  "reviews": []
+  "reviews": [],
+  "lastUpdated": "2026-10-18T20:45:00Z",
+  "productCount": 16
 }

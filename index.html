@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MudhaCraft | Traditional Handcrafted Bamboo Mudhas & Chairs from Uttar Pradesh</title>
-  <meta name="description" content="Authentic handcrafted bamboo and cane Mudha chairs & stools sourced directly from Muzaffarnagar, UP. Lightweight, natural seating for balconies, terraces, cafes & modern Indian homes.">
-  <meta name="keywords" content="bamboo mudha, mudha chair, bamboo chair India, traditional mudha, bamboo stool, balcony chair, cane mudha, mudda chair, traditional Indian chair, bamboo furniture India">
-  <link rel="canonical" href="https://mudhacraft.in/">
+  <title>MuddaCraft | Traditional Handcrafted Bamboo Muddas & Chairs from Uttar Pradesh</title>
+  <meta name="description" content="Authentic handcrafted bamboo and cane Mudda chairs & stools sourced directly from Muzaffarnagar, UP. Lightweight, natural seating for balconies, terraces, cafes & modern Indian homes.">
+  <meta name="keywords" content="bamboo mudda, mudda chair, bamboo chair India, traditional mudda, bamboo stool, balcony chair, cane mudda, traditional Indian chair, bamboo furniture India">
+  <link rel="canonical" href="https://muddacraft.in/">
 
   <!-- Open Graph / Meta Social -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MudhaCraft | Traditional Handcrafted Bamboo Mudhas">
-  <meta property="og:description" content="Traditional comfort made for modern homes. Classic bamboo Mudhas crafted in Uttar Pradesh for balconies, terraces, and cafes.">
-  <meta property="og:image" content="assets/mudha-balcony.jpg">
-  <meta property="og:url" content="https://mudhacraft.in/">
+  <meta property="og:title" content="MuddaCraft | Traditional Handcrafted Bamboo Muddas">
+  <meta property="og:description" content="Traditional comfort made for modern homes. Classic bamboo Muddas crafted in Uttar Pradesh for balconies, terraces, and cafes.">
+  <meta property="og:image" content="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp">
+  <meta property="og:url" content="https://muddacraft.in/">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,11 +34,11 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://mudhacraft.in/#organization",
-        "name": "MudhaCraft Studio",
-        "url": "https://mudhacraft.in/",
-        "logo": "https://mudhacraft.in/assets/mudha-stool.jpg",
-        "description": "Direct maker sourcing of traditional Indian bamboo and cane Mudha furniture from Uttar Pradesh.",
+        "@id": "https://muddacraft.in/#organization",
+        "name": "MuddaCraft Studio",
+        "url": "https://muddacraft.in/",
+        "logo": "https://muddacraft.in/assets/products/prod-15-traditional-mudha-red-gold-primary.webp",
+        "description": "Direct maker sourcing of traditional Indian bamboo and cane Mudda furniture from Uttar Pradesh.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Muzaffarnagar",
@@ -49,10 +49,10 @@
       },
       {
         "@type": "WebSite",
-        "@id": "https://mudhacraft.in/#website",
-        "url": "https://mudhacraft.in/",
-        "name": "MudhaCraft",
-        "publisher": { "@id": "https://mudhacraft.in/#organization" }
+        "@id": "https://muddacraft.in/#website",
+        "url": "https://muddacraft.in/",
+        "name": "MuddaCraft",
+        "publisher": { "@id": "https://muddacraft.in/#organization" }
       }
     ]
   }
@@ -68,10 +68,10 @@
   <!-- Main Navigation Header -->
   <header class="site-header">
     <div class="container nav-wrapper">
-      <a href="/" class="brand-logo" aria-label="MudhaCraft Homepage">
+      <a href="/" class="brand-logo" aria-label="MuddaCraft Homepage">
         <span class="brand-icon">🌾</span>
         <div>
-          <span>Mudha<span class="brand-tag">Craft</span></span>
+          <span>Mudda<span class="brand-tag">Craft</span></span>
           <span class="brand-sub">Crafted in Uttar Pradesh</span>
         </div>
       </a>
@@ -143,15 +143,15 @@
 
         <div class="hero-image-wrapper">
           <div class="hero-image-card">
-            <img src="assets/mudha-balcony.jpg" alt="Traditional Back-Support Bamboo Mudha on Indian apartment balcony with terracotta floor and chai" fetchpriority="high">
+            <img src="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp" alt="Four-Seater Handcrafted Bamboo Mudda Set with matching tea table in sunlit courtyard" fetchpriority="high">
             <div class="hero-floating-pill">
               <div class="hero-pill-text">
-                <strong>The Classic Balcony Mudha</strong>
-                <span>Direct from Muzaffarnagar, Uttar Pradesh</span>
+                <strong>Four-Seater Mudda Set with Table</strong>
+                <span>Direct from Muzaffarnagar, Uttar Pradesh • ₹5,000</span>
               </div>
-              <a href="#collection" class="btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem;">
+              <button onclick="openProductModal('prod-14-four-seater-mudha-set-maroon')" class="btn-secondary" style="padding: 6px 14px; font-size: 0.8125rem; cursor: pointer; border: none;">
                 View
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -171,10 +171,13 @@
 
         <!-- Filter Controls -->
         <div class="collection-filters">
-          <button class="filter-btn active" onclick="filterProducts('all', this)">All Models</button>
-          <button class="filter-btn" onclick="filterProducts('stools', this)">Classic Stools</button>
-          <button class="filter-btn" onclick="filterProducts('chairs', this)">Back-Support Chairs</button>
-          <button class="filter-btn" onclick="filterProducts('sets', this)">Sets & Pairs</button>
+          <button class="filter-btn active" onclick="filterProducts('All Products', this)">All Products</button>
+          <button class="filter-btn" onclick="filterProducts('Classic Mudhas', this)">Classic Mudhas</button>
+          <button class="filter-btn" onclick="filterProducts('Cane Chairs', this)">Cane Chairs</button>
+          <button class="filter-btn" onclick="filterProducts('Balcony Sets', this)">Balcony Sets</button>
+          <button class="filter-btn" onclick="filterProducts('Sofa Sets', this)">Sofa Sets</button>
+          <button class="filter-btn" onclick="filterProducts('Tables & Décor', this)">Tables & Décor</button>
+          <button class="filter-btn" onclick="filterProducts('Daybeds', this)">Daybeds</button>
         </div>
 
         <!-- Product Cards Grid (Rendered dynamically from data/store.json) -->
@@ -248,7 +251,7 @@
               </a>
             </div>
             <div class="use-image-side">
-              <img id="use-panel-img" src="assets/mudha-balcony.jpg" alt="Balcony Seating">
+              <img id="use-panel-img" src="assets/products/prod-12-two-seater-balcony-set-lifestyle.webp" alt="Balcony Seating">
             </div>
           </div>
         </div>
@@ -259,7 +262,7 @@
     <section class="section" id="craftsmanship">
       <div class="container craft-grid">
         <div class="craft-image-frame">
-          <img src="assets/mudha-craft.jpg" alt="Bamboo and cane craft workshop in Muzaffarnagar, Uttar Pradesh" loading="lazy">
+          <img src="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp" alt="Authentic Mudda craft directly from Muzaffarnagar, Uttar Pradesh" loading="lazy">
         </div>
         <div class="craft-content">
           <span class="craft-kicker">Origin & Maker Hub</span>
@@ -293,28 +296,28 @@
 
         <div class="shop-use-grid">
           <div class="shop-use-card" onclick="filterProducts('chairs', document.querySelector('.filter-btn')); window.location.href='#collection';">
-            <img src="assets/mudha-balcony.jpg" alt="Balcony Mudhas" loading="lazy">
+            <img src="assets/products/prod-12-two-seater-balcony-set-lifestyle.webp" alt="Balcony Muddas" loading="lazy">
             <div class="shop-use-overlay">
               <h3 class="shop-use-title">Balconies</h3>
               <p class="shop-use-sub">Compact & light for apartment verandas</p>
             </div>
           </div>
           <div class="shop-use-card" onclick="filterProducts('sets', document.querySelector('.filter-btn')); window.location.href='#collection';">
-            <img src="assets/mudha-terrace.jpg" alt="Terrace Mudhas" loading="lazy">
+            <img src="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp" alt="Terrace Muddas" loading="lazy">
             <div class="shop-use-overlay">
               <h3 class="shop-use-title">Terraces & Roofs</h3>
               <p class="shop-use-sub">Sunset tea seating with natural back support</p>
             </div>
           </div>
           <div class="shop-use-card" onclick="filterProducts('stools', document.querySelector('.filter-btn')); window.location.href='#collection';">
-            <img src="assets/mudha-stool.jpg" alt="Garden Mudhas" loading="lazy">
+            <img src="assets/products/prod-15-traditional-mudha-red-gold-lifestyle.webp" alt="Garden Muddas" loading="lazy">
             <div class="shop-use-overlay">
               <h3 class="shop-use-title">Gardens & Lawns</h3>
               <p class="shop-use-sub">Follow the shade with single-handed mobility</p>
             </div>
           </div>
           <div class="shop-use-card" onclick="window.location.href='#bulk-orders';">
-            <img src="assets/mudha-cafe.jpg" alt="Cafe & Restaurant Mudhas" loading="lazy">
+            <img src="assets/products/prod-01-drum-stool-set-primary.webp" alt="Cafe & Restaurant Muddas" loading="lazy">
             <div class="shop-use-overlay">
               <h3 class="shop-use-title">Cafés & Dining</h3>
               <p class="shop-use-sub">Earthy rustic charm loved by patrons</p>
@@ -341,7 +344,7 @@
             <span class="bulk-target-tag">🛋️ Interior Designers</span>
           </div>
           <div style="display: flex; gap: 14px; align-items: center;">
-            <a href="javascript:void(0)" onclick="openWhatsAppChat('Hello MudhaCraft, I would like to inquire about B2B commercial bulk pricing for Mudhas.')" class="btn-primary" style="background: #25D366; border-color: #25D366;">
+            <a href="javascript:void(0)" onclick="openWhatsAppChat('Hello MuddaCraft, I would like to inquire about B2B commercial bulk pricing for Mudhas.')" class="btn-primary" style="background: #25D366; border-color: #25D366;">
               <span>💬 Instant B2B WhatsApp</span>
             </a>
           </div>
@@ -404,12 +407,12 @@
       </div>
     </section>
 
-    <!-- 7. Value Proposition: Why MudhaCraft vs Generic Marketplaces -->
+    <!-- 7. Value Proposition: Why MuddaCraft vs Generic Marketplaces -->
     <section class="section">
       <div class="container">
         <div class="section-header">
           <span class="section-kicker">The Difference</span>
-          <h2 class="section-title">Why Buy from MudhaCraft Instead of Generic Marketplaces?</h2>
+          <h2 class="section-title">Why Buy from MuddaCraft Instead of Generic Marketplaces?</h2>
           <p class="section-description">
             Buying bulky handcrafted natural furniture online can be unpredictable. Here is how we ensure peace of mind.
           </p>
@@ -420,7 +423,7 @@
             <thead>
               <tr>
                 <th>Criteria</th>
-                <th style="color: var(--bamboo-base);">🌾 MudhaCraft Studio</th>
+                <th style="color: var(--bamboo-base);">🌾 MuddaCraft Studio</th>
                 <th style="color: var(--text-muted);">Generic Marketplace / Amazon</th>
               </tr>
             </thead>
@@ -483,7 +486,7 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <h3>🌾 MudhaCraft</h3>
+        <h3>🌾 MuddaCraft</h3>
         <p>
           Revitalizing traditional Indian bamboo and cane furniture for modern homes, balconies, and everyday conversations.
         </p>
@@ -529,7 +532,7 @@
 
     <div class="container footer-bottom">
       <div>
-        &copy; 2026 MudhaCraft Studio. Handcrafted in Uttar Pradesh, India. All rights reserved.
+        &copy; 2026 MuddaCraft Studio. Handcrafted in Uttar Pradesh, India. All rights reserved.
       </div>
       <div>
         <button class="admin-trigger-btn" onclick="openAdminModal()">Store Settings (Admin)</button>
@@ -550,7 +553,7 @@
         <!-- Gallery -->
         <div>
           <div class="gallery-main-view">
-            <img id="modal-main-img" src="assets/mudha-stool.jpg" alt="Mudha Product Preview">
+            <img id="modal-main-img" src="assets/products/prod-15-traditional-mudha-red-gold-primary.webp" alt="Mudda Product Preview">
           </div>
           <div class="gallery-thumbnails" id="modal-thumbnails">
             <!-- Thumbs populated via app.js -->
@@ -864,41 +867,207 @@
     </div>
   </div>
 
-  <!-- 6. Admin / Owner Control Panel -->
+  <!-- 6. Admin / Product Management System (CMS) -->
   <div class="modal-backdrop" id="admin-modal-backdrop" onclick="closeAdminModal()">
-    <div class="modal-dialog" style="max-width: 640px;" onclick="event.stopPropagation()">
+    <div class="modal-dialog" style="max-width: 680px;" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeAdminModal()" aria-label="Close modal">&times;</button>
       <div style="padding: 32px;">
-        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 8px;">Store Owner Configuration</h3>
-        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 20px;">
-          Live-edit test pricing, stock status, freight rates, and COD settings. Persists to storage and synchronizes with server.
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--text-primary); margin: 0;">Product Management & Store CMS</h3>
+        </div>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">
+          Manage products from supplier <strong>A to Z Mudda House, Muzaffarnagar</strong>. Add new photos, update pricing, reorder display sequence, or configure freight rates.
         </p>
 
-        <div id="admin-products-list" style="max-height: 300px; overflow-y: auto; margin-bottom: 16px;">
-          <!-- Populated dynamically via app.js -->
+        <!-- Admin Tab Navigation -->
+        <div class="admin-tabs">
+          <button type="button" class="admin-tab-btn active" id="admin-tab-products" onclick="switchAdminTab('products')">
+            📦 Product Catalogue
+          </button>
+          <button type="button" class="admin-tab-btn" id="admin-tab-add" onclick="switchAdminTab('add')">
+            ➕ Add New Product
+          </button>
+          <button type="button" class="admin-tab-btn" id="admin-tab-shipping" onclick="switchAdminTab('shipping')">
+            🚚 Freight & Rates
+          </button>
         </div>
 
-        <div style="background: var(--bg-primary); padding: 14px; border-radius: 8px; margin-bottom: 20px;">
-          <h4 style="font-size: 0.875rem; font-weight: 700; margin-bottom: 10px;">Freight & COD Settings</h4>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-            <div>
-              <label style="font-size: 0.75rem;">Base Freight (₹)</label>
-              <input type="number" id="admin-shipping-base" class="form-input">
+        <!-- Tab 1: Product Catalogue List -->
+        <div id="admin-section-products">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span style="font-size: 0.8125rem; color: var(--text-muted);">Use ⬆️ / ⬇️ to reorder products. Click <strong>Edit</strong> to update photo/price.</span>
+            <button type="button" class="btn-primary" style="padding: 6px 14px; font-size: 0.8125rem;" onclick="switchAdminTab('add')">+ Add Product</button>
+          </div>
+          <div id="admin-products-list" style="max-height: 380px; overflow-y: auto; margin-bottom: 16px; padding-right: 4px;">
+            <!-- Populated dynamically via app.js -->
+          </div>
+        </div>
+
+        <!-- Tab 2: Add New Product Form -->
+        <div id="admin-section-add" style="display: none;">
+          <form onsubmit="submitAddNewProduct(event)">
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="new-prod-name">Product Name *</label>
+              <input type="text" id="new-prod-name" name="name" class="form-input" required placeholder="e.g. Traditional Handwoven Mudha — Red & Gold">
             </div>
-            <div>
-              <label style="font-size: 0.75rem;">Add. Unit Freight (₹)</label>
-              <input type="number" id="admin-shipping-add" class="form-input">
+
+            <div class="admin-grid-2">
+              <div class="admin-field-group">
+                <label class="admin-field-label" for="new-prod-category">Category *</label>
+                <select id="new-prod-category" name="category" class="form-select" required>
+                  <option value="Classic Mudhas">Classic Mudhas</option>
+                  <option value="Cane Chairs">Cane Chairs</option>
+                  <option value="Balcony Sets">Balcony Sets</option>
+                  <option value="Sofa Sets">Sofa Sets</option>
+                  <option value="Tables & Décor">Tables & Décor</option>
+                  <option value="Daybeds">Daybeds</option>
+                </select>
+              </div>
+              <div class="admin-field-group">
+                <label class="admin-field-label" for="new-prod-price">Price (₹ INR)</label>
+                <input type="number" id="new-prod-price" name="price" class="form-input" placeholder="Leave blank for 'Price on Request'">
+                <span class="admin-hint">Empty = "Price on Request" + WhatsApp enquiry</span>
+              </div>
+            </div>
+
+            <div class="admin-grid-2">
+              <div class="admin-field-group">
+                <label class="admin-field-label" for="new-prod-stock">Stock Availability</label>
+                <select id="new-prod-stock" name="stock" class="form-select">
+                  <option value="available">Available / Made to Order</option>
+                  <option value="out_of_stock">Temporarily Unavailable</option>
+                </select>
+              </div>
+              <div class="admin-field-group">
+                <label class="admin-field-label" for="new-prod-photo">Product Photograph</label>
+                <input type="file" id="new-prod-photo" class="form-input" accept="image/*">
+                <span class="admin-hint">Uploads directly to assets/products/</span>
+              </div>
+            </div>
+
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="new-prod-desc">Product Description</label>
+              <textarea id="new-prod-desc" name="description" class="form-textarea" placeholder="Handcrafted description highlighting bamboo, river reed, and finish..."></textarea>
+            </div>
+
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="new-prod-specs">Specifications</label>
+              <textarea id="new-prod-specs" name="specifications" class="form-textarea" placeholder="Leave blank for 'Specifications Coming Soon'"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+              <button type="submit" class="btn-primary" style="flex: 1;">
+                Add Product to Catalogue
+              </button>
+              <button type="button" class="admin-btn-cancel" onclick="switchAdminTab('products')">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tab 3: Freight & COD Settings -->
+        <div id="admin-section-shipping" style="display: none;">
+          <div style="background: var(--bg-primary); padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h4 style="font-size: 0.9375rem; font-weight: 700; margin-bottom: 14px;">Surface Freight Parameters (Bulky Furniture)</h4>
+            <div class="admin-grid-2" style="margin-bottom: 14px;">
+              <div>
+                <label class="admin-field-label" for="admin-shipping-base">Base Freight (₹ INR)</label>
+                <input type="number" id="admin-shipping-base" class="form-input" value="250">
+                <span class="admin-hint">Standard primary carton rate</span>
+              </div>
+              <div>
+                <label class="admin-field-label" for="admin-shipping-add">Additional Unit Freight (₹ INR)</label>
+                <input type="number" id="admin-shipping-add" class="form-input" value="150">
+                <span class="admin-hint">Incremental volume charge</span>
+              </div>
+            </div>
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 0.875rem; cursor: pointer;">
+              <input type="checkbox" id="admin-cod-toggle">
+              <span>Enable Cash on Delivery (COD)</span>
+            </label>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 6px;">
+              Recommended OFF for bulky furniture dropshipping to avoid return transit losses.
+            </p>
+          </div>
+
+          <button type="button" class="btn-primary" style="width: 100%;" onclick="saveAdminShipping()">
+            Save Shipping Settings
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Edit Product Modal -->
+  <div class="modal-backdrop" id="edit-product-modal" onclick="closeEditProductModal()">
+    <div class="modal-dialog" style="max-width: 600px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeEditProductModal()" aria-label="Close modal">&times;</button>
+      <div style="padding: 32px;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 6px;">Edit Product</h3>
+        <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 20px;">
+          Update details or replace photograph for this supplier item.
+        </p>
+
+        <form onsubmit="submitEditProduct(event)">
+          <input type="hidden" id="edit-prod-id">
+
+          <div class="admin-field-group">
+            <label class="admin-field-label" for="edit-prod-name">Product Name *</label>
+            <input type="text" id="edit-prod-name" class="form-input" required>
+          </div>
+
+          <div class="admin-grid-2">
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="edit-prod-category">Category *</label>
+              <select id="edit-prod-category" class="form-select" required>
+                <option value="Classic Mudhas">Classic Mudhas</option>
+                <option value="Cane Chairs">Cane Chairs</option>
+                <option value="Balcony Sets">Balcony Sets</option>
+                <option value="Sofa Sets">Sofa Sets</option>
+                <option value="Tables & Décor">Tables & Décor</option>
+                <option value="Daybeds">Daybeds</option>
+              </select>
+            </div>
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="edit-prod-price">Price (₹ INR)</label>
+              <input type="number" id="edit-prod-price" class="form-input" placeholder="Empty for Price on Request">
             </div>
           </div>
-          <label style="display: flex; align-items: center; gap: 8px; font-size: 0.8125rem;">
-            <input type="checkbox" id="admin-cod-toggle">
-            <span>Enable Cash on Delivery (COD)</span>
-          </label>
-        </div>
 
-        <button type="button" class="btn-primary" style="width: 100%;" onclick="saveAdminChanges()">
-          Save Store Updates
-        </button>
+          <div class="admin-grid-2">
+            <div class="admin-field-group">
+              <label class="admin-field-label" for="edit-prod-stock">Availability Status</label>
+              <select id="edit-prod-stock" class="form-select">
+                <option value="available">Available / Made to Order</option>
+                <option value="out_of_stock">Out of Stock</option>
+              </select>
+            </div>
+            <div class="admin-field-group">
+              <label class="admin-field-label">Current Photo</label>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <img id="edit-prod-current-img" src="" alt="Product Photo" style="width: 50px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border-light);">
+                <input type="file" id="edit-prod-photo" class="form-input" accept="image/*" style="font-size: 0.75rem;">
+              </div>
+            </div>
+          </div>
+
+          <div class="admin-field-group">
+            <label class="admin-field-label" for="edit-prod-desc">Description</label>
+            <textarea id="edit-prod-desc" class="form-textarea"></textarea>
+          </div>
+
+          <div class="admin-field-group">
+            <label class="admin-field-label" for="edit-prod-specs">Specifications</label>
+            <textarea id="edit-prod-specs" class="form-textarea" placeholder="Dimensions, materials, weight capacity..."></textarea>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button type="submit" class="btn-primary" style="flex: 1;">Save Changes</button>
+            <button type="button" class="admin-btn-cancel" onclick="closeEditProductModal()">Cancel</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

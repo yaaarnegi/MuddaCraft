@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Product Details | MuddaCraft</title>
+  <meta name="description" id="page-meta-desc" content="Handcrafted traditional Indian bamboo and cane furniture from A to Z Mudda House, Muzaffarnagar, UP.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="product">
+  <meta property="og:title" id="og-title" content="MuddaCraft Product">
+  <meta property="og:description" id="og-desc" content="Handcrafted traditional Indian bamboo furniture.">
+  <meta property="og:image" id="og-image" content="assets/products/placeholder-cane.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .breadcrumb-nav {
+      padding: 18px 0;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .breadcrumb-nav a {
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+    }
+    .breadcrumb-nav a:hover {
+      color: var(--bamboo-base);
+    }
+    .product-page-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 52px;
+      padding: 24px 0 64px;
+    }
+    .product-gallery-sticky {
+      position: sticky;
+      top: 96px;
+    }
+    .main-photo-frame {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 16px;
+    }
+    .main-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .main-photo-frame:hover img {
+      transform: scale(1.03);
+    }
+    .thumbs-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .thumb-item {
+      width: 88px;
+      height: 88px;
+      border-radius: var(--radius-sm);
+      border: 2px solid transparent;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+    }
+    .thumb-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .thumb-item.active {
+      border-color: var(--bamboo-base);
+    }
+    .thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .thumb-tag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(30, 20, 10, 0.78);
+      color: #FFF;
+      font-size: 0.625rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 3px 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .product-meta-header {
+      margin-bottom: 20px;
+    }
+    .supplier-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(160, 114, 56, 0.08);
+      border: 1px solid rgba(160, 114, 56, 0.2);
+      color: var(--bamboo-dark);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .product-detail-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .price-inquiry-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .price-tag-large {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--bamboo-base);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .price-tag-sub {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+    .availability-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #856404;
+      background: #FFF3CD;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      margin-top: 10px;
+    }
+    .btn-wa-inquiry-large {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #FFF;
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 14px;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+    .btn-wa-inquiry-large:hover {
+      background: #1EBE5D;
+      transform: translateY(-1px);
+    }
+    .btn-request-price {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--bamboo-base);
+      color: #FFF;
+      padding: 14px 24px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 10px;
+      transition: all var(--transition-fast);
+    }
+    .btn-request-price:hover {
+      background: var(--bamboo-hover);
+    }
+    .spec-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .spec-table-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      padding: 12px 18px;
+      font-size: 0.875rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .spec-table-row:last-child {
+      border-bottom: none;
+    }
+    .spec-label {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+    .spec-value {
+      color: var(--text-primary);
+    }
+    .related-products-section {
+      padding: 48px 0 80px;
+      border-top: 1px solid var(--border-light);
+      background: var(--bg-secondary);
+    }
+    @media (max-width: 900px) {
+      .product-page-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .main-photo-frame {
+        height: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    🌿 Direct Maker Sourcing from A to Z Mudda House, Muzaffarnagar, UP • Pan-India Surface Freight
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="/" class="brand-logo" aria-label="MuddaCraft Homepage">
+        <span class="brand-icon">🌾</span>
+        <div>
+          <span>Mudda<span class="brand-tag">Craft</span></span>
+          <span class="brand-sub">Crafted in Uttar Pradesh</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="/#collection" class="nav-link">Shop Mudhas</a></li>
+          <li><a href="/#why-mudha" class="nav-link">Why Mudha?</a></li>
+          <li><a href="/#craftsmanship" class="nav-link">Craft Origin</a></li>
+          <li><a href="/#bulk-orders" class="nav-link">Café & Bulk Orders</a></li>
+          <li><a href="/#faqs" class="nav-link">Care & FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" class="btn-header-wa">
+          <span>💬</span>
+          <span>WhatsApp</span>
+        </a>
+        <button class="cart-button" onclick="openCartDrawer()" aria-label="View basket">
+          <span>🧺 Basket</span>
+          <span class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/#collection">Collection</a>
+      <span>/</span>
+      <span id="breadcrumb-category">Category</span>
+      <span>/</span>
+      <span id="breadcrumb-title" style="color: var(--text-primary); font-weight: 600;">Product</span>
+    </nav>
+
+    <!-- Product Layout -->
+    <div class="product-page-grid">
+      <!-- Left: Photo Gallery -->
+      <div class="product-gallery-sticky">
+        <div class="main-photo-frame">
+          <img id="main-product-img" src="assets/products/placeholder-cane.svg" alt="Product Photograph" loading="lazy">
+        </div>
+        <div class="thumbs-row" id="thumbs-row">
+          <!-- Thumbnails -->
+        </div>
+      </div>
+
+      <!-- Right: Product Information -->
+      <div class="product-info-column">
+        <div class="product-meta-header">
+          <div class="supplier-pill">
+            <span>📍</span>
+            <span id="product-supplier">A to Z Mudda House, Muzaffarnagar</span>
+          </div>
+          <h1 class="product-detail-title" id="product-title">Loading Product...</h1>
+          <div style="font-size: 0.875rem; color: var(--bamboo-base); font-weight: 600;" id="product-category">
+            Category
+          </div>
+        </div>
+
+        <!-- Pricing & Enquiries Box -->
+        <div class="price-inquiry-box">
+          <span class="price-tag-large" id="product-price">₹0</span>
+          <span class="price-tag-sub" id="product-price-sub">Direct Maker Pricing • Pan-India Surface Delivery</span>
+          <br>
+          <span class="availability-tag" id="product-availability">
+            ⏱️ Availability: Ready to Dispatch • Handcrafted in Muzaffarnagar
+          </span>
+
+          <!-- Cushion Add-on Toggle Card -->
+          <div id="cushion-addon-card" class="cushion-addon-card" style="display: none;">
+            <div class="cushion-addon-info">
+              <div class="cushion-addon-header">
+                <span class="cushion-addon-icon">🛋️</span>
+                <span class="cushion-addon-title">Include Matching Cushions</span>
+              </div>
+              <div class="cushion-addon-desc" id="cushion-addon-desc">
+                Custom fitted seating cushions
+              </div>
+            </div>
+            <label class="switch-toggle" title="Toggle cushions">
+              <input type="checkbox" id="cushion-toggle-input" onchange="onCushionToggleChange(this.checked)">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Cushion Included Notice (for sets that already include cushions) -->
+          <div id="cushion-included-notice" class="cushion-included-notice" style="display: none;">
+            <span>✓ Seating Cushions Included with this set</span>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
+            <button type="button" id="btn-add-to-cart-detail" class="btn-primary" style="flex: 1; min-width: 170px; padding: 14px 22px; font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);" onclick="addToBasketFromDetail()">
+              🛒 Add to Basket
+            </button>
+            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 1; min-width: 170px; margin-top: 0; padding: 14px 22px; text-decoration: none;">
+              <span>💬 Enquire on WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div style="margin-bottom: 24px;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 8px;">About This Piece</h3>
+          <p id="product-description" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Loading details...
+          </p>
+        </div>
+
+        <!-- Specifications -->
+        <div style="margin-bottom: 28px;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 12px;">Craft Specifications</h3>
+          <div class="spec-table-card">
+            <div class="spec-table-row">
+              <span class="spec-label">Material</span>
+              <span class="spec-value" id="spec-material">Natural seasoned bamboo & cane</span>
+            </div>
+            <div class="spec-table-row">
+              <span class="spec-label">Dimensions</span>
+              <span class="spec-value" id="spec-dimensions">Specifications Coming Soon</span>
+            </div>
+            <div class="spec-table-row">
+              <span class="spec-label">Assembly</span>
+              <span class="spec-value">Zero. Shipped 100% pre-assembled</span>
+            </div>
+            <div class="spec-table-row">
+              <span class="spec-label">Origin</span>
+              <span class="spec-value">Muzaffarnagar, Uttar Pradesh</span>
+            </div>
+            <div class="spec-table-row">
+              <span class="spec-label">Transit Guarantee</span>
+              <span class="spec-value">100% Free Transit Damage Replacement</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bulky PIN Freight Estimator -->
+        <div class="pincode-box" style="margin-bottom: 24px;">
+          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--text-primary);">
+            🚚 Check Surface Delivery Timeline
+          </div>
+          <div class="pincode-row">
+            <input type="text" id="pincode-input" class="pincode-input" placeholder="Enter 6-digit PIN code" maxlength="6">
+            <button class="btn-check-pin" onclick="checkPinCodeDelivery()">Check</button>
+          </div>
+          <div class="pincode-result" id="pincode-result"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Related Products Section -->
+  <section class="related-products-section">
+    <div class="container">
+      <div style="margin-bottom: 28px;">
+        <span class="section-kicker">More from A to Z Mudda House</span>
+        <h2 style="font-family: var(--font-serif); font-size: 1.85rem; font-weight: 600;">Related Pieces</h2>
+      </div>
+      <div class="products-grid" id="related-products-grid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Price Request Modal -->
+  <div class="modal-backdrop" id="price-request-modal" onclick="closePriceRequestModal()">
+    <div class="modal-dialog" style="max-width: 520px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closePriceRequestModal()">&times;</button>
+      <div style="padding: 32px;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.65rem; margin-bottom: 6px;">Request Price Quotation</h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 20px;">
+          We will confirm current maker pricing and surface freight to your city within 4 business hours.
+        </p>
+
+        <form onsubmit="submitPriceRequest(event)">
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="req-name">Your Name *</label>
+            <input type="text" id="req-name" class="form-input" required placeholder="Aarav Sharma">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="req-phone">Phone / WhatsApp Number *</label>
+            <input type="tel" id="req-phone" class="form-input" required placeholder="9876543210" maxlength="10">
+          </div>
+          <div class="form-group" style="margin-bottom: 12px;">
+            <label class="form-label" for="req-city">Delivery City / PIN Code *</label>
+            <input type="text" id="req-city" class="form-input" required placeholder="Bengaluru / 560001">
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label class="form-label" for="req-notes">Requirement / Units Needed</label>
+            <textarea id="req-notes" class="form-textarea" placeholder="How many pieces, delivery timeframe, etc."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%;">
+            Submit Price Request
+          </button>
+        </form>
+      </div>
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>🧺 Your Basket</h3>
+        <button class="modal-close-btn" onclick="closeCartDrawer()" aria-label="Close cart">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+
+      <div class="cart-empty-state" id="cart-empty-state" style="display: none;">
+        <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🌾</span>
+        <h4>Your basket is currently empty</h4>
+        <p style="font-size: 0.875rem; margin-top: 6px;">Add a classic Mudha to begin testing comfort for your balcony or terrace.</p>
+        <button class="btn-primary" style="margin-top: 20px;" onclick="closeCartDrawer(); window.location.href='/#collection';">
+          Explore Mudhas
+        </button>
+      </div>
+
+      <div class="cart-drawer-footer" id="cart-summary-box">
+        <div class="cart-summary-line">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <div class="cart-summary-line">
+          <span>Bulky Surface Freight:</span>
+          <span id="cart-shipping">₹250</span>
+        </div>
+        <div style="font-size: 0.75rem; color: var(--olive-muted); margin-bottom: 8px;">
+          ✓ Fully transparent shipping. No surprise fees at checkout.
+        </div>
+        <div class="cart-total-line">
+          <span>Total:</span>
+          <span id="cart-total">₹0</span>
+        </div>
+
+        <button class="btn-proceed-checkout" onclick="openCheckoutModal()">
+          Proceed to Indian Checkout →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal-backdrop" onclick="closeCheckoutModal()">
+    <div class="modal-dialog checkout-dialog" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeCheckoutModal()" aria-label="Close checkout">&times;</button>
+      
+      <div class="checkout-steps-nav">
+        <div class="checkout-step-indicator active" id="step-indicator-1">1. Delivery Address</div>
+        <div class="checkout-step-indicator" id="step-indicator-2">2. Payment Method</div>
+      </div>
+
+      <!-- Step 1: Address Details -->
+      <div class="checkout-step-body" id="checkout-step-1">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 16px;">Delivery Details (India)</h3>
+        
+        <form onsubmit="proceedToPaymentStep(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="checkout-name">Full Name *</label>
+              <input type="text" id="checkout-name" class="form-input" required placeholder="Aarav Sharma">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-phone">Mobile Number (for WhatsApp delivery updates) *</label>
+              <input type="tel" id="checkout-phone" class="form-input" required placeholder="9876543210" maxlength="10">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-email">Email Address</label>
+              <input type="email" id="checkout-email" class="form-input" placeholder="aarav@example.com">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-pincode">6-Digit PIN Code *</label>
+              <input type="text" id="checkout-pincode" class="form-input" required placeholder="110001" maxlength="6">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="checkout-city">City *</label>
+              <input type="text" id="checkout-city" class="form-input" required placeholder="Delhi, Mumbai, Bengaluru...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-state">State *</label>
+              <input type="text" id="checkout-state" class="form-input" required placeholder="Delhi, Karnataka, Maharashtra...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-address">Flat / House No. / Building / Street *</label>
+              <input type="text" id="checkout-address" class="form-input" required placeholder="Flat 402, Shanti Vihar, 8th Main...">
+            </div>
+            <div class="form-group full">
+              <label class="form-label" for="checkout-landmark">Landmark (Optional)</label>
+              <input type="text" id="checkout-landmark" class="form-input" placeholder="Near Community Park">
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+            <div style="font-size: 0.8125rem; color: var(--text-muted);">
+              Total: <strong id="checkout-total-display" style="color: var(--text-primary); font-size: 1.1rem;">₹0</strong>
+            </div>
+            <button type="submit" class="btn-primary">
+              Continue to Payment →
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment Methods -->
+      <div class="checkout-step-body" id="checkout-step-2" style="display: none;">
+        <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 12px;">Select Payment Method</h3>
+        <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 16px;">
+          Choose your preferred Indian payment option. All transactions are securely encrypted.
+        </p>
+
+        <div class="payment-options-grid">
+          <label class="payment-method-card selected">
+            <input type="radio" name="paymentMethod" value="UPI" class="payment-radio" checked>
+            <div>
+              <strong>Instant UPI (Google Pay, PhonePe, Paytm, QR)</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Instant zero-fee transfer via any UPI app</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="Cards" class="payment-radio">
+            <div>
+              <strong>Credit / Debit Cards (Visa, MasterCard, RuPay)</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Supports all major Indian banks</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="NetBanking" class="payment-radio">
+            <div>
+              <strong>Net Banking</strong>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">SBI, HDFC, ICICI, Axis & 50+ banks</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card" style="opacity: 0.75; cursor: not-allowed;">
+            <input type="radio" name="paymentMethod" value="COD" class="payment-radio" disabled>
+            <div>
+              <strong>Cash on Delivery (COD) — Currently Paused</strong>
+              <div style="font-size: 0.75rem; color: #857262;">Bulky return freight protection</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="cod-disabled-notice">
+          ℹ️ <strong>Why is COD paused?</strong> Traditional bamboo Mudhas are bulky structural items incurring high two-way road freight. Pausing COD prevents transit returns, keeping consumer prices fair. Every prepaid order includes our <strong>100% Transit Damage Replacement Guarantee</strong>.
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+          <button type="button" class="btn-secondary" onclick="backToAddressStep()">
+            ← Back to Address
+          </button>
+          <button type="button" class="btn-primary" onclick="placeOrder()">
+            Place Order & Pay
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Order Confirmation Screen -->
+      <div class="checkout-step-body" id="checkout-confirmation" style="display: none; text-align: center; padding: 48px 24px;">
+        <span style="font-size: 3.5rem;">🎉</span>
+        <h3 style="font-family: var(--font-serif); font-size: 2rem; margin: 12px 0 6px;">Thank You for Supporting Authentic Craft!</h3>
+        <p style="font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 20px;">
+          Your order has been received. Our workshop in Muzaffarnagar is preparing your shipment.
+        </p>
+
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 24px; min-width: 280px;">
+          <div><strong>Order ID:</strong> <span id="confirmed-order-id">MUDHA-000000</span></div>
+          <div><strong>Total Paid:</strong> <span id="confirmed-order-total">₹0</span></div>
+          <div><strong>WhatsApp Tracking:</strong> <span id="confirmed-order-phone">Registered</span></div>
+          <div><strong>Estimated Dispatch:</strong> 1–2 business days via Surface Cargo</div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <a href="#" id="btn-order-wa" target="_blank" class="btn-primary" style="background: #25D366;">
+            <span>💬 Track Order on WhatsApp</span>
+          </a>
+          <button class="btn-secondary" onclick="closeCheckoutModal()">
+            Return to Storefront
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-bottom" style="border-top: none;">
+      <div>
+        &copy; 2026 MuddaCraft Studio. Sourced directly from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.
+      </div>
+      <div>
+        <a href="/" style="color: var(--bamboo-light); text-decoration: underline;">Return to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Page Logic -->
+  <script src="app.js"></script>
+  <script>
+    let currentProduct = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadStoreData();
+      const params = new URLSearchParams(window.location.search);
+      const productId = params.get('id') || (storeState.products[0] && storeState.products[0].id);
+
+      currentProduct = (storeState.products || []).find(p => p.id === productId);
+      if (!currentProduct && storeState.products.length > 0) {
+        currentProduct = storeState.products[0];
+      }
+
+      if (currentProduct) {
+        renderProductPage(currentProduct);
+        renderRelatedProducts(currentProduct);
+      }
+    });
+
+    let isCushionSelected = false;
+
+    function renderProductPage(prod) {
+      document.title = `${prod.name} | MuddaCraft`;
+      document.getElementById('breadcrumb-category').textContent = prod.category;
+      document.getElementById('breadcrumb-title').textContent = prod.name;
+      document.getElementById('product-title').textContent = prod.name;
+      document.getElementById('product-category').textContent = prod.category;
+      document.getElementById('product-supplier').textContent = prod.supplier || 'A to Z Mudda House, Muzaffarnagar';
+
+      // Cushion Add-on preselection & visibility
+      const urlParams = new URLSearchParams(window.location.search);
+      isCushionSelected = urlParams.get('cushion') === '1' && !!prod.cushionCost;
+
+      const cushionCard = document.getElementById('cushion-addon-card');
+      const cushionNotice = document.getElementById('cushion-included-notice');
+      const toggleInput = document.getElementById('cushion-toggle-input');
+      const cushionDesc = document.getElementById('cushion-addon-desc');
+
+      if (prod.cushionCost) {
+        cushionCard.style.display = 'flex';
+        cushionNotice.style.display = 'none';
+        cushionDesc.textContent = prod.cushionNote ? `${prod.cushionNote}` : `Custom fitted seating cushions (+₹${prod.cushionCost.toLocaleString('en-IN')})`;
+        if (toggleInput) toggleInput.checked = isCushionSelected;
+        if (isCushionSelected) cushionCard.classList.add('active');
+        else cushionCard.classList.remove('active');
+      } else if (prod.cushionNote && prod.cushionNote.toLowerCase().includes('included')) {
+        cushionCard.style.display = 'none';
+        cushionNotice.style.display = 'flex';
+      } else {
+        cushionCard.style.display = 'none';
+        cushionNotice.style.display = 'none';
+      }
+
+      updatePriceDisplay();
+
+      document.getElementById('product-availability').textContent = `⏱️ Availability: ${prod.availability || 'Ready to Dispatch • Handcrafted in Muzaffarnagar'}`;
+      document.getElementById('product-description').textContent = prod.description;
+      document.getElementById('spec-dimensions').textContent = prod.specifications || 'Specifications Coming Soon';
+
+      // Images
+      const images = (prod.images && prod.images.length > 0) ? prod.images : [prod.image];
+      const mainImg = document.getElementById('main-product-img');
+      mainImg.src = images[0];
+      mainImg.alt = prod.name;
+
+      const thumbsRow = document.getElementById('thumbs-row');
+      thumbsRow.innerHTML = images.map((img, i) => {
+        let tag = `View ${i+1}`;
+        if (img.includes('primary') || img.includes('studio')) tag = 'Studio View';
+        else if (img.includes('lifestyle') || img.includes('interior')) tag = 'Home Setting';
+        else if (img.includes('detail')) tag = 'Craft Detail';
+        else tag = 'Artisan View';
+
+        return `
+          <div class="thumb-item ${i === 0 ? 'active' : ''}" onclick="switchDetailPhoto('${img}', this)" title="${tag}">
+            <img src="${img}" alt="${prod.name} ${tag}">
+            <span class="thumb-tag">${tag}</span>
+          </div>
+        `;
+      }).join('');
+
+      // WhatsApp Message
+      trackEvent('ViewProduct', { id: prod.id, name: prod.name, category: prod.category });
+    }
+
+    function onCushionToggleChange(checked) {
+      isCushionSelected = checked;
+      const card = document.getElementById('cushion-addon-card');
+      if (card) {
+        if (checked) card.classList.add('active');
+        else card.classList.remove('active');
+      }
+      updatePriceDisplay();
+    }
+
+    function updatePriceDisplay() {
+      if (!currentProduct) return;
+      const basePrice = currentProduct.price || 0;
+      const cushionPrice = currentProduct.cushionCost || 0;
+      const total = basePrice + (isCushionSelected ? cushionPrice : 0);
+
+      document.getElementById('product-price').textContent = `₹${total.toLocaleString('en-IN')}`;
+
+      const subElem = document.getElementById('product-price-sub');
+      if (subElem) {
+        if (isCushionSelected && cushionPrice > 0) {
+          subElem.innerHTML = `Direct Maker Pricing • <strong style="color: var(--bamboo-base);">Includes Fitted Cushions (+₹${cushionPrice.toLocaleString('en-IN')})</strong>`;
+        } else if (currentProduct.cushionCost) {
+          subElem.textContent = `Direct Maker Pricing • Base furniture piece (cushions optional above)`;
+        } else if (currentProduct.cushionNote) {
+          subElem.textContent = `Direct Maker Pricing • ${currentProduct.cushionNote}`;
+        } else {
+          subElem.textContent = 'Direct Maker Pricing • Pan-India Surface Delivery';
+        }
+      }
+    }
+
+    function switchDetailPhoto(src, elem) {
+      document.getElementById('main-product-img').src = src;
+      document.querySelectorAll('.thumb-item').forEach(t => t.classList.remove('active'));
+      if (elem) elem.classList.add('active');
+    }
+
+    function addToBasketFromDetail() {
+      if (!currentProduct) return;
+      const basePrice = currentProduct.price || 0;
+      const cushionPrice = currentProduct.cushionCost || 0;
+      const finalPrice = basePrice + (isCushionSelected ? cushionPrice : 0);
+      const configuredProduct = {
+        ...currentProduct,
+        id: isCushionSelected ? `${currentProduct.id}-with-cushion` : currentProduct.id,
+        name: isCushionSelected ? `${currentProduct.name} (With Cushions)` : currentProduct.name,
+        price: finalPrice
+      };
+      addItemToCart(configuredProduct, 1);
+      showToast(`Added ${configuredProduct.name} to basket!`);
+    }
+
+    function openWhatsAppInquiry() {
+      if (!currentProduct) return;
+      const basePrice = currentProduct.price || 0;
+      const cushionPrice = currentProduct.cushionCost || 0;
+      const total = basePrice + (isCushionSelected ? cushionPrice : 0);
+      const cushionText = isCushionSelected ? ' WITH matching fitted cushions' : (currentProduct.cushionCost ? ' without cushions' : '');
+      const msg = `Hello MuddaCraft, I am interested in purchasing ${currentProduct.name}${cushionText} (Total: ₹${total.toLocaleString('en-IN')}) sourced from Muzaffarnagar. Could you please share delivery details?`;
+      trackEvent('WhatsAppClick', { product: currentProduct.name, id: currentProduct.id, price: total, withCushion: isCushionSelected });
+      const num = (storeState.whatsapp || '+919876543210').replace(/[^0-9]/g, '');
+      window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function renderRelatedProducts(prod) {
+      const grid = document.getElementById('related-products-grid');
+      if (!grid) return;
+      const related = (storeState.products || []).filter(p => p.id !== prod.id).slice(0, 3);
+
+      grid.innerHTML = related.map(p => `
+        <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'" style="cursor: pointer;">
+          <div class="product-image-wrap">
+            <img src="${p.image}" alt="${p.name}" loading="lazy">
+            <span class="product-badge-tag">${p.category}</span>
+          </div>
+          <div class="product-card-body">
+            <h3 class="product-name">${p.name}</h3>
+            <div class="product-price-row">
+              <span class="product-price">${p.price ? '₹' + p.price.toLocaleString('en-IN') : 'Price on Request'}</span>
+            </div>
+            <a href="product.html?id=${p.id}" class="btn-view-product" style="display: block; margin-top: 10px;">
+              View Details →
+            </a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function openPriceRequestModal() {
+      document.getElementById('price-request-modal').classList.add('open');
+    }
+
+    function closePriceRequestModal() {
+      document.getElementById('price-request-modal').classList.remove('open');
+    }
+
+    async function submitPriceRequest(e) {
+      e.preventDefault();
+      const name = document.getElementById('req-name').value;
+      const phone = document.getElementById('req-phone').value;
+      const city = document.getElementById('req-city').value;
+      const notes = document.getElementById('req-notes').value;
+
+      try {
+        await fetch('/api/bulk-inquiry', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name, phone, city, message: notes,
+            product: currentProduct ? currentProduct.name : 'Catalogue Item',
+            businessName: 'Individual Retail Inquiry'
+          })
+        });
+        closePriceRequestModal();
+        showToast('Quotation request submitted! We will share details on WhatsApp shortly.');
+        // Offer WhatsApp handoff
+        openWhatsAppInquiry();
+      } catch (err) {
+        showToast('Error sending inquiry. Please WhatsApp us directly.');
+      }
+    }
+  </script>
+</body>
+</html>

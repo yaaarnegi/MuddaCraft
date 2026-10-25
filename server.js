@@ -8,6 +8,11 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'store.json');
+const PRODUCTS_DIR = path.join(__dirname, 'assets', 'products');
+
+if (!fs.existsSync(PRODUCTS_DIR)) {
+  fs.mkdirSync(PRODUCTS_DIR, { recursive: true });
+}
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
@@ -29,7 +34,7 @@ function getStoreData() {
     return JSON.parse(raw);
   } catch (err) {
     console.error('Error reading store.json:', err);
-    return {};
+    return { products: [] };
   }
 }
 
@@ -50,7 +55,7 @@ const server = http.createServer((req, res) => {
 
   // Set CORS headers for local development
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -61,7 +66,7 @@ const server = http.createServer((req, res) => {
   // API Endpoints
   if (pathname === '/api/health') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    return res.end(JSON.stringify({ status: 'ok', brand: 'MudhaCraft', timestamp: new Date() }));
+    return res.end(JSON.stringify({ status: 'ok', brand: 'MuddaCraft', supplier: 'A to Z Mudda House', timestamp: new Date() }));
   }
 
   if (pathname === '/api/store' && req.method === 'GET') {
@@ -70,25 +75,194 @@ const server = http.createServer((req, res) => {
     return res.end(JSON.stringify(data));
   }
 
-  if (pathname === '/api/admin/store' && req.method === 'POST') {
+  if (pathname === '/api/product' && req.method === 'GET') {
+    const id = parsedUrl.searchParams.get('id');
+    const store = getStoreData();
+    const product = (store.products || []).find(p => p.id === id);
+    if (product) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify(product));
+    } else {
+      res.writeHead(404, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({ error: 'Product not found' }));
+    }
+  }
+
+  // Upload image to assets/products
+  if (pathname === '/api/admin/upload' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => { body += chunk; });
     req.on('end', () => {
       try {
-        const update = JSON.parse(body || '{}');
-        const current = getStoreData();
-        const merged = { ...current, ...update };
-        const saved = saveStoreData(merged);
-        if (saved) {
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ success: true, message: 'Store settings updated successfully', data: merged }));
-        } else {
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Failed to write store.json' }));
+        const { filename, base64Data } = JSON.parse(body || '{}');
+        if (!filename || !base64Data) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Filename and base64Data required' }));
         }
+
+        // Clean filename and extract data
+        const safeName = filename.toLowerCase().replace(/[^a-z0-9_.-]/g, '-');
+        const uniqueName = `upload-${Date.now()}-${safeName}`;
+        const targetPath = path.join(PRODUCTS_DIR, uniqueName);
+
+        const dataBuffer = Buffer.from(base64Data.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+        fs.writeFileSync(targetPath, dataBuffer);
+
+        const relativeUrl = `assets/products/${uniqueName}`;
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, url: relativeUrl, filename: uniqueName }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Failed to process file upload' }));
+      }
+    });
+    return;
+  }
+
+  // Add a new product
+  if (pathname === '/api/admin/products' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const newProduct = JSON.parse(body || '{}');
+        if (!newProduct.name || !newProduct.category) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Product name and category are required' }));
+        }
+
+        const store = getStoreData();
+        const baseSlug = (newProduct.name || 'product').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const id = newProduct.id || `${baseSlug}-${Date.now().toString().slice(-4)}`;
+
+        const productEntry = {
+          id,
+          name: newProduct.name,
+          category: newProduct.category,
+          filterCategory: newProduct.filterCategory || newProduct.category,
+          price: newProduct.price !== undefined && newProduct.price !== null ? newProduct.price : null,
+          priceDisplay: newProduct.price ? `₹${newProduct.price}` : 'Price on Request',
+          priceConfirmed: !!newProduct.priceConfirmed,
+          stock: newProduct.stock || 'available',
+          availability: newProduct.availability || 'Subject to Supplier Confirmation',
+          image: newProduct.image || 'assets/products/placeholder-cane.svg',
+          images: newProduct.images || [newProduct.image || 'assets/products/placeholder-cane.svg'],
+          supplier: newProduct.supplier || 'A to Z Mudda House, Muzaffarnagar, Uttar Pradesh',
+          description: newProduct.description || 'Authentic traditional Indian craft.',
+          specifications: newProduct.specifications || 'Specifications Coming Soon',
+          featured: !!newProduct.featured,
+          order: (store.products || []).length + 1
+        };
+
+        store.products.push(productEntry);
+        saveStoreData(store);
+
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, product: productEntry }));
       } catch (err) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Invalid payload' }));
+        return res.end(JSON.stringify({ error: 'Invalid product payload' }));
+      }
+    });
+    return;
+  }
+
+  // Update existing product
+  if (pathname === '/api/admin/products' && req.method === 'PUT') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const updated = JSON.parse(body || '{}');
+        if (!updated.id) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Product ID required' }));
+        }
+
+        const store = getStoreData();
+        const idx = store.products.findIndex(p => p.id === updated.id);
+        if (idx === -1) {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Product not found' }));
+        }
+
+        store.products[idx] = { ...store.products[idx], ...updated };
+        // Recalculate priceDisplay
+        if (store.products[idx].price) {
+          store.products[idx].priceDisplay = `₹${store.products[idx].price}`;
+          store.products[idx].priceConfirmed = true;
+        } else {
+          store.products[idx].priceDisplay = 'Price on Request';
+          store.products[idx].priceConfirmed = false;
+        }
+
+        saveStoreData(store);
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, product: store.products[idx] }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Invalid payload' }));
+      }
+    });
+    return;
+  }
+
+  // Delete product
+  if (pathname === '/api/admin/products' && req.method === 'DELETE') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const { id } = JSON.parse(body || '{}');
+        const store = getStoreData();
+        store.products = (store.products || []).filter(p => p.id !== id);
+        saveStoreData(store);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, id }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Failed to delete product' }));
+      }
+    });
+    return;
+  }
+
+  // Reorder products
+  if (pathname === '/api/admin/products/reorder' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const { orderedIds } = JSON.parse(body || '{}');
+        if (!Array.isArray(orderedIds)) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'orderedIds array required' }));
+        }
+
+        const store = getStoreData();
+        const productMap = new Map((store.products || []).map(p => [p.id, p]));
+        const reordered = [];
+
+        orderedIds.forEach((id, index) => {
+          if (productMap.has(id)) {
+            const p = productMap.get(id);
+            p.order = index + 1;
+            reordered.push(p);
+            productMap.delete(id);
+          }
+        });
+
+        // Append any remaining products
+        productMap.forEach(p => reordered.push(p));
+        store.products = reordered;
+        saveStoreData(store);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ success: true, products: store.products }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Invalid reorder payload' }));
       }
     });
     return;
@@ -106,7 +280,6 @@ const server = http.createServer((req, res) => {
     const prefix = pin.substring(0, 2);
     const isRemote = (store.shipping?.remotePrefixes || []).includes(prefix);
     
-    // Zone heuristics based on Indian postal circles (UP origin is Zone 2)
     let zone = 'North';
     let days = '3–5 business days';
     let shippingBase = store.shipping?.base || 250;
@@ -156,7 +329,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({
           success: true,
           orderId,
-          message: 'Order received successfully. Sourced directly from our Muzaffarnagar maker cluster.',
+          message: 'Order received successfully. Sourced directly from A to Z Mudda House, Muzaffarnagar.',
           itemsCount: orderData.items?.length || 0,
           total: orderData.total || 0,
           paymentMethod: orderData.paymentMethod || 'UPI',
@@ -183,7 +356,7 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify({
           success: true,
           inquiryId,
-          message: 'Thank you for your bulk inquiry. Our Muzaffarnagar trade desk will share a custom commercial quote within 4 business hours.',
+          message: 'Thank you for your bulk inquiry. Our trade desk will share a custom commercial quote within 4 business hours.',
           data: inquiry
         }));
       } catch (err) {
@@ -238,7 +411,7 @@ const server = http.createServer((req, res) => {
         <html lang="en">
         <head>
           <meta charset="utf-8">
-          <title>404 - MudhaCraft</title>
+          <title>404 - MuddaCraft</title>
           <style>
             body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #FBF8F3; color: #2B2118; text-align: center; padding: 60px 20px; }
             h1 { font-size: 2rem; margin-bottom: 12px; }
@@ -265,5 +438,6 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`🌿 MudhaCraft Store running at: http://localhost:${PORT}`);
+  console.log(`🌿 MuddaCraft Store running at: http://localhost:${PORT}`);
+  console.log(`📍 Sourced directly from A to Z Mudda House, Muzaffarnagar`);
 });

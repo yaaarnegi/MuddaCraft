@@ -1,5 +1,5 @@
 /**
- * MudhaCraft Studio - Purposeful GSAP & Motion Design
+ * MuddaCraft Studio - Purposeful GSAP & Motion Design
  * Built using official GreenSock best practices:
  * - GPU-accelerated transforms (y, opacity, scale)
  * - prefers-reduced-motion safety

@@ -1,6 +1,7 @@
 /**
- * MudhaCraft Studio - E-commerce Storefront Application
+ * MuddaCraft Studio - E-commerce Storefront Application
  * Traditional Indian Craftsmanship for Modern Homes
+ * Supplier: A to Z Mudda House, Muzaffarnagar, Uttar Pradesh
  */
 
 // Global Store State
@@ -14,7 +15,7 @@ let storeState = {
 };
 
 // Cart State (Persisted in localStorage)
-let cart = JSON.parse(localStorage.getItem('mudhacraft_cart') || '[]');
+let cart = JSON.parse(localStorage.getItem('muddacraft_cart') || localStorage.getItem('mudhacraft_cart') || '[]');
 let activeProduct = null;
 let currentModalQty = 1;
 
@@ -25,17 +26,12 @@ function trackEvent(eventName, payload = {}) {
   const timestamp = new Date().toISOString();
   console.log(`📊 [Analytics Event] ${eventName}:`, payload, `@ ${timestamp}`);
 
-  // Google Analytics 4 integration
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, payload);
   }
-
-  // Meta Pixel integration
   if (typeof window.fbq === 'function') {
     window.fbq('trackCustom', eventName, payload);
   }
-
-  // Google Ads / DataLayer
   if (window.dataLayer && Array.isArray(window.dataLayer)) {
     window.dataLayer.push({ event: eventName, ...payload });
   }
@@ -60,15 +56,17 @@ async function loadStoreData() {
     if (res.ok) {
       const data = await res.json();
       storeState = data;
-      // Merge any local admin overrides if present
-      const localOverrides = localStorage.getItem('mudhacraft_admin_store');
-      if (localOverrides) {
-        try {
-          storeState = { ...storeState, ...JSON.parse(localOverrides) };
-        } catch (e) {
-          console.warn('Could not parse local admin overrides', e);
-        }
-      }
+      return;
+    }
+  } catch (err) {
+    // try static fallback below
+  }
+
+  try {
+    const res = await fetch('data/store.json');
+    if (res.ok) {
+      const data = await res.json();
+      storeState = data;
     }
   } catch (err) {
     console.warn('API store load failed, using fallback bundled state', err);
@@ -76,44 +74,114 @@ async function loadStoreData() {
 }
 
 // ==========================================================================
-// Product Collection Rendering & Filtering
+// Product Collection Rendering & Filtering (7 Categories)
 // ==========================================================================
-function renderProducts(filter = 'all') {
+// State for card cushion toggles
+const cardCushionStates = {};
+
+function toggleCardCushion(productId, checked) {
+  cardCushionStates[productId] = checked;
+  const product = (storeState.products || []).find(p => p.id === productId);
+  if (!product) return;
+  
+  const basePrice = product.price || 0;
+  const extra = product.cushionCost || 0;
+  const finalPrice = basePrice + (checked ? extra : 0);
+
+  const priceElem = document.getElementById(`card-price-${productId}`);
+  if (priceElem) {
+    priceElem.textContent = `₹${finalPrice.toLocaleString('en-IN')}`;
+  }
+
+  const noteElem = document.getElementById(`card-note-${productId}`);
+  if (noteElem) {
+    if (checked && extra > 0) {
+      noteElem.innerHTML = `<span style="color: var(--bamboo-base); font-weight: 700;">✓ Includes Cushions (+₹${extra.toLocaleString('en-IN')})</span>`;
+    } else {
+      noteElem.textContent = product.cushionNote || '';
+    }
+  }
+
+  const linkElem = document.getElementById(`card-link-${productId}`);
+  if (linkElem) {
+    linkElem.href = `product.html?id=${productId}${checked ? '&cushion=1' : ''}`;
+  }
+}
+
+function renderProducts(filter = 'All Products') {
   const grid = document.getElementById('products-grid');
   if (!grid || !storeState.products) return;
 
   const products = storeState.products.filter(p => {
-    if (filter === 'all') return true;
-    return (p.type || '').toLowerCase() === filter.toLowerCase();
+    if (!filter || filter === 'all' || filter === 'All Products') return true;
+    return (p.filterCategory || p.category || '').toLowerCase() === filter.toLowerCase();
   });
 
+  // Sort by order if present
+  products.sort((a, b) => (a.order || 99) - (b.order || 99));
+
   grid.innerHTML = products.map(product => {
-    const primaryImg = product.image || (product.images && product.images[0]) || 'assets/mudha-stool.jpg';
-    const dim = product.dimensions || {};
-    const dimText = dim.diameter ? `${dim.diameter} × ${dim.height}` : 'Dimensions awaiting batch test';
+    const primaryImg = product.image || (product.images && product.images[0]) || 'assets/products/placeholder-cane.svg';
+    const hasConfirmedPrice = product.price !== null && product.price !== undefined && product.priceConfirmed;
+    const isToggled = !!cardCushionStates[product.id];
+    const displayPrice = product.price ? (product.price + (isToggled ? (product.cushionCost || 0) : 0)) : null;
+    const priceHtml = hasConfirmedPrice
+      ? `<span class="product-price" id="card-price-${product.id}">₹${displayPrice.toLocaleString('en-IN')}</span>`
+      : `<span class="product-price" style="font-size: 1.15rem; color: var(--bamboo-base);">Price on Request</span>`;
+    
+    const specsText = product.specifications || 'Specifications Coming Soon';
 
     return `
       <article class="product-card" data-product-id="${product.id}">
-        <div class="product-image-wrap" onclick="openProductModal('${product.id}')">
+        <div class="product-image-wrap" onclick="window.location.href='product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}'">
           <img src="${primaryImg}" alt="${product.name}" loading="lazy">
-          <span class="product-badge-tag">${product.type || 'Mudha'}</span>
+          <span class="product-badge-tag">${product.category || 'Cane Furniture'}</span>
         </div>
         <div class="product-card-body">
-          <span class="product-type-meta">Handcrafted in Uttar Pradesh</span>
-          <h3 class="product-name" onclick="openProductModal('${product.id}')" style="cursor: pointer;">${product.name}</h3>
-          <p class="product-dimensions-snippet">📐 ${dimText}</p>
+          <span class="product-type-meta">A to Z Mudda House • Muzaffarnagar</span>
+          <h3 class="product-name">
+            <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}">${product.name}</a>
+          </h3>
+          <p class="product-dimensions-snippet">📐 ${specsText}</p>
           <div class="product-price-row">
-            <span class="product-price">₹${product.price.toLocaleString('en-IN')}</span>
-            <span class="product-price-note">Introductory test price</span>
+            ${priceHtml}
+            <span id="card-note-${product.id}" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 2px;">
+              ${isToggled ? `<span style="color: var(--bamboo-base); font-weight: 700;">✓ Includes Cushions (+₹${(product.cushionCost || 0).toLocaleString('en-IN')})</span>` : (product.cushionNote || '')}
+            </span>
           </div>
-          <span class="product-shipping-badge">📦 Ships Across India • Bulky Surface Freight</span>
+
+          ${product.cushionCost ? `
+            <div class="card-cushion-toggle-wrap">
+              <div class="card-cushion-label-text">
+                <span>🛋️</span>
+                <span>Fitted Cushions</span>
+                <span class="card-cushion-extra-tag">+₹${product.cushionCost.toLocaleString('en-IN')}</span>
+              </div>
+              <label class="switch-toggle" style="transform: scale(0.85); transform-origin: right center;" title="Toggle fitted cushions">
+                <input type="checkbox" onchange="toggleCardCushion('${product.id}', this.checked)" ${isToggled ? 'checked' : ''}>
+                <span class="slider"></span>
+              </label>
+            </div>
+          ` : (product.cushionNote && product.cushionNote.toLowerCase().includes('included') ? `
+            <div style="font-size: 0.75rem; color: #2E7D32; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;">
+              <span>✓</span> Cushions Included
+            </div>
+          ` : '')}
+
+          <span class="product-shipping-badge">📦 Bulky Surface Freight • Direct Maker Hub</span>
           <div class="product-actions-row">
-            <button class="btn-view-product" onclick="openProductModal('${product.id}')">
+            <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}" id="card-link-${product.id}" class="btn-view-product">
               View Product
-            </button>
-            <button class="btn-quick-add" onclick="quickAddToCart('${product.id}')" title="Quick Add to Basket" aria-label="Add to cart">
-              +
-            </button>
+            </a>
+            ${hasConfirmedPrice ? `
+              <button class="btn-quick-add" onclick="quickAddToCart('${product.id}')" title="Add to Basket" aria-label="Add to cart">
+                +
+              </button>
+            ` : `
+              <button class="btn-quick-add" onclick="openProductWhatsApp('${product.name}', ${product.price || 'null'})" title="Enquire on WhatsApp" style="background: rgba(37, 211, 102, 0.12); color: #128C7E; border-color: rgba(37, 211, 102, 0.3);">
+                💬
+              </button>
+            `}
           </div>
         </div>
       </article>
@@ -122,113 +190,18 @@ function renderProducts(filter = 'all') {
 }
 
 function filterProducts(category, btnElement) {
-  document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.collection-filters .filter-btn').forEach(btn => btn.classList.remove('active'));
   if (btnElement) btnElement.classList.add('active');
   renderProducts(category);
 }
 
-// ==========================================================================
-// Product Detail Modal & "Will it fit?" Visual Scale Guide
-// ==========================================================================
-function openProductModal(productId) {
-  const product = (storeState.products || []).find(p => p.id === productId);
-  if (!product) return;
-
-  activeProduct = product;
-  currentModalQty = 1;
-
-  // Track ViewProduct Analytics Event
-  trackEvent('ViewProduct', {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    category: product.type
-  });
-
-  // Populate Modal Fields
-  document.getElementById('modal-product-title').textContent = product.name;
-  document.getElementById('modal-product-price').textContent = `₹${product.price.toLocaleString('en-IN')}`;
-  document.getElementById('modal-product-desc').textContent = product.description || '';
-  document.getElementById('modal-qty-display').textContent = '1';
-
-  // Images & Gallery
-  const images = (product.images && product.images.length > 0) ? product.images : [product.image || 'assets/mudha-stool.jpg'];
-  const mainImg = document.getElementById('modal-main-img');
-  mainImg.src = images[0];
-  mainImg.alt = product.name;
-
-  const thumbsContainer = document.getElementById('modal-thumbnails');
-  thumbsContainer.innerHTML = images.map((img, idx) => `
-    <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" onclick="switchModalImage('${img}', this)">
-      <img src="${img}" alt="Thumbnail ${idx + 1}">
-    </div>
-  `).join('');
-
-  // Specs
-  const dim = product.dimensions || {};
-  document.getElementById('spec-dimensions').textContent = dim.diameter ? `${dim.diameter} × ${dim.height} (Seat: ${dim.seatHeight || 'Standard'})` : 'Approx 15" Dia × 15" H (Batch confirmation in progress)';
-  document.getElementById('spec-weight').textContent = product.weight || 'Approx 2.2 kg';
-  document.getElementById('spec-capacity').textContent = product.weightCapacity || '110–130 kg (Load testing in progress)';
-  document.getElementById('spec-material').textContent = product.material || 'Seasoned bamboo & river reeds';
-  document.getElementById('spec-assembly').textContent = product.assembly || 'None. 100% pre-assembled';
-  document.getElementById('spec-usage').textContent = Array.isArray(product.recommendedUsage) ? product.recommendedUsage.join(', ') : 'Balcony, Terrace, Garden';
-
-  // "Will It Fit?" Scale Diagram Calculations
-  const isChair = (product.type || '').toLowerCase() === 'chairs' || product.id.includes('back-support') || product.id.includes('balcony-mudha-set');
-  const mudhaHeightPct = isChair ? '65%' : '38%'; // vs 36" railing (100%)
-  const mudhaHeightInches = isChair ? '28"' : '15"';
-  
-  const fitBox = document.getElementById('fit-diagram-bars');
-  if (fitBox) {
-    fitBox.innerHTML = `
-      <div class="fit-scale-bar">
-        <div class="fit-bar-body" style="height: ${mudhaHeightPct}; background: #A07238;"></div>
-        <span class="fit-bar-label"><strong>Mudha</strong><br>${mudhaHeightInches}</span>
-      </div>
-      <div class="fit-scale-bar">
-        <div class="fit-bar-body" style="height: 45%; background: #C5A065;"></div>
-        <span class="fit-bar-label">Coffee Table<br>18"</span>
-      </div>
-      <div class="fit-scale-bar">
-        <div class="fit-bar-body" style="height: 90%; background: #566149;"></div>
-        <span class="fit-bar-label">Balcony Railing<br>36"</span>
-      </div>
-      <div class="fit-scale-bar">
-        <div class="fit-bar-body" style="height: 100%; background: #857262;"></div>
-        <span class="fit-bar-label">Seated Human<br>~42"</span>
-      </div>
-    `;
-  }
-  document.getElementById('fit-footprint').textContent = dim.footprint ? `Footprint: Compact ${dim.footprint} — leaves ample walking room even on narrow 4-foot balconies.` : 'Compact footprint fits comfortably on standard 4ft Indian balconies.';
-
-  // Update Sticky Mobile Bar
-  updateStickyBar(product);
-
-  // Open Modal
-  document.getElementById('product-modal-backdrop').classList.add('open');
-}
-
-function closeProductModal() {
-  document.getElementById('product-modal-backdrop').classList.remove('open');
-}
-
-function switchModalImage(imgSrc, thumbElem) {
-  document.getElementById('modal-main-img').src = imgSrc;
-  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
-  if (thumbElem) thumbElem.classList.add('active');
-}
-
-function updateModalQty(delta) {
-  currentModalQty = Math.max(1, currentModalQty + delta);
-  document.getElementById('modal-qty-display').textContent = currentModalQty;
-}
-
-// Update Mobile Sticky Action Bar
-function updateStickyBar(product) {
-  const stickyBar = document.getElementById('sticky-mobile-bar');
-  if (!stickyBar) return;
-  document.getElementById('sticky-product-name').textContent = product.name;
-  document.getElementById('sticky-price').textContent = `₹${product.price.toLocaleString('en-IN')}`;
+// Helper: Open WhatsApp with exact product context
+function openProductWhatsApp(productName, price) {
+  const priceInfo = price ? ` (₹${Number(price).toLocaleString('en-IN')})` : '';
+  const msg = `Hello MuddaCraft, I'm interested in ordering ${productName}${priceInfo} sourced from Muzaffarnagar. Could you please share delivery details?`;
+  trackEvent('WhatsAppClick', { source: 'ProductCard', product: productName });
+  const num = (storeState.whatsapp || '+919876543210').replace(/[^0-9]/g, '');
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // ==========================================================================
@@ -251,19 +224,18 @@ async function checkPinCodeDelivery() {
     const data = await res.json();
     if (data.valid) {
       resultBox.innerHTML = `
-        <div style="background: rgba(86, 97, 73, 0.1); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(86, 97, 73, 0.2);">
-          <strong style="color: #2E7D32;">✓ Delivery Serviceable to ${pin} (${data.zone})</strong><br>
+        <div style="background: rgba(86, 97, 73, 0.1); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(86, 97, 73, 0.2); margin-top: 6px;">
+          <strong style="color: #2E7D32;">✓ Serviceable to ${pin} (${data.zone})</strong><br>
           <span>⏱️ Estimated Delivery: <strong>${data.estimatedDelivery}</strong> via Surface Cargo</span><br>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Bulky freight: ₹${data.shippingRate} for 1st unit (₹150 for each additional)</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Dispatches directly from A to Z Mudda House, Muzaffarnagar.</span>
         </div>
       `;
     } else {
       resultBox.innerHTML = `<span style="color: #C62828;">${data.message || 'Unable to check PIN code.'}</span>`;
     }
   } catch (err) {
-    // Fallback heuristic if offline
     resultBox.innerHTML = `
-      <div style="background: rgba(86, 97, 73, 0.1); padding: 8px 12px; border-radius: 6px;">
+      <div style="background: rgba(86, 97, 73, 0.1); padding: 8px 12px; border-radius: 6px; margin-top: 6px;">
         <strong style="color: #2E7D32;">✓ Estimated Delivery: 4–6 business days</strong><br>
         <span style="font-size: 0.75rem; color: var(--text-muted);">Dispatches directly from Muzaffarnagar, UP.</span>
       </div>
@@ -272,28 +244,25 @@ async function checkPinCodeDelivery() {
 }
 
 // ==========================================================================
-// Cart System & Calculations
+// Cart System & Calculations (Preserves Existing Functionality)
 // ==========================================================================
 function quickAddToCart(productId) {
   const product = (storeState.products || []).find(p => p.id === productId);
   if (!product) return;
-  addItemToCart(product, 1);
-  showToast(`Added ${product.name} to basket!`);
-}
-
-function addCurrentModalToCart() {
-  if (!activeProduct) return;
-  addItemToCart(activeProduct, currentModalQty);
-  closeProductModal();
-  showToast(`Added ${currentModalQty} × ${activeProduct.name} to basket!`);
-  openCartDrawer();
-}
-
-function buyCurrentModalNow() {
-  if (!activeProduct) return;
-  addItemToCart(activeProduct, currentModalQty);
-  closeProductModal();
-  openCheckoutModal();
+  if (!product.price || !product.priceConfirmed) {
+    openProductWhatsApp(product.name, product.price);
+    return;
+  }
+  const isCushion = !!cardCushionStates[productId];
+  const finalPrice = product.price + (isCushion ? (product.cushionCost || 0) : 0);
+  const configuredItem = {
+    ...product,
+    id: isCushion ? `${product.id}-with-cushion` : product.id,
+    name: isCushion ? `${product.name} (With Cushions)` : product.name,
+    price: finalPrice
+  };
+  addItemToCart(configuredItem, 1);
+  showToast(`Added ${configuredItem.name} to basket!`);
 }
 
 function addItemToCart(product, quantity = 1) {
@@ -305,7 +274,7 @@ function addItemToCart(product, quantity = 1) {
       id: product.id,
       name: product.name,
       price: product.price,
-      image: product.image || (product.images && product.images[0]) || 'assets/mudha-stool.jpg',
+      image: product.image || (product.images && product.images[0]) || 'assets/products/placeholder-cane.svg',
       quantity: quantity
     });
   }
@@ -313,7 +282,6 @@ function addItemToCart(product, quantity = 1) {
   saveCart();
   updateCartUI();
 
-  // Track AddToCart Analytics Event
   trackEvent('AddToCart', {
     id: product.id,
     name: product.name,
@@ -343,7 +311,7 @@ function removeCartItem(productId) {
 }
 
 function saveCart() {
-  localStorage.setItem('mudhacraft_cart', JSON.stringify(cart));
+  localStorage.setItem('muddacraft_cart', JSON.stringify(cart));
 }
 
 function calculateCartTotals() {
@@ -356,14 +324,12 @@ function calculateCartTotals() {
     const additionalFreight = (totalUnits - 1) * (storeState.shipping?.perAdditionalUnit || 150);
     shipping = baseFreight + additionalFreight;
 
-    // Free shipping threshold check
     if (storeState.shipping?.freeShippingThreshold && subtotal >= storeState.shipping.freeShippingThreshold) {
       shipping = 0;
     }
   }
 
   const grandTotal = subtotal + shipping;
-
   return { subtotal, totalUnits, shipping, grandTotal };
 }
 
@@ -408,38 +374,41 @@ function updateCartUI() {
   `).join('');
 
   const totals = calculateCartTotals();
-  document.getElementById('cart-subtotal').textContent = `₹${totals.subtotal.toLocaleString('en-IN')}`;
-  document.getElementById('cart-shipping').textContent = totals.shipping === 0 ? 'FREE (Special Offer)' : `₹${totals.shipping.toLocaleString('en-IN')} (Bulky Cargo)`;
-  document.getElementById('cart-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
+  if (document.getElementById('cart-subtotal')) document.getElementById('cart-subtotal').textContent = `₹${totals.subtotal.toLocaleString('en-IN')}`;
+  if (document.getElementById('cart-shipping')) document.getElementById('cart-shipping').textContent = totals.shipping === 0 ? 'FREE (Special Offer)' : `₹${totals.shipping.toLocaleString('en-IN')} (Bulky Cargo)`;
+  if (document.getElementById('cart-total')) document.getElementById('cart-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
 }
 
 function openCartDrawer() {
-  document.getElementById('cart-drawer-backdrop').classList.add('open');
+  const drawer = document.getElementById('cart-drawer-backdrop');
+  if (drawer) drawer.classList.add('open');
 }
 
 function closeCartDrawer() {
-  document.getElementById('cart-drawer-backdrop').classList.remove('open');
+  const drawer = document.getElementById('cart-drawer-backdrop');
+  if (drawer) drawer.classList.remove('open');
 }
 
 // ==========================================================================
-// Checkout Flow & Indian Payment Methods
+// Checkout Flow
 // ==========================================================================
 function openCheckoutModal() {
   closeCartDrawer();
   const totals = calculateCartTotals();
   if (totals.totalUnits === 0) {
-    showToast('Your basket is empty. Please add a Mudha first.');
+    showToast('Your basket is empty. Please add a product first.');
     return;
   }
 
-  // Populate checkout summary
+  const checkoutModal = document.getElementById('checkout-modal-backdrop');
+  if (!checkoutModal) return;
+
   document.getElementById('checkout-items-count').textContent = `${totals.totalUnits} items`;
   document.getElementById('checkout-total-display').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
   document.getElementById('checkout-step-1').style.display = 'block';
   document.getElementById('checkout-step-2').style.display = 'none';
   document.getElementById('checkout-confirmation').style.display = 'none';
 
-  // Track BeginCheckout Analytics Event
   trackEvent('BeginCheckout', {
     itemsCount: totals.totalUnits,
     subtotal: totals.subtotal,
@@ -447,35 +416,23 @@ function openCheckoutModal() {
     total: totals.grandTotal
   });
 
-  document.getElementById('checkout-modal-backdrop').classList.add('open');
+  checkoutModal.classList.add('open');
 }
 
 function closeCheckoutModal() {
-  document.getElementById('checkout-modal-backdrop').classList.remove('open');
+  const checkoutModal = document.getElementById('checkout-modal-backdrop');
+  if (checkoutModal) checkoutModal.classList.remove('open');
 }
 
 function proceedToPaymentStep(event) {
   if (event) event.preventDefault();
-
   const name = document.getElementById('checkout-name').value.trim();
   const phone = document.getElementById('checkout-phone').value.trim();
   const pin = document.getElementById('checkout-pincode').value.trim();
   const address = document.getElementById('checkout-address').value.trim();
-  const city = document.getElementById('checkout-city').value.trim();
-  const state = document.getElementById('checkout-state').value.trim();
 
-  if (!name || !phone || !pin || !address || !city || !state) {
+  if (!name || !phone || !pin || !address) {
     showToast('Please fill all required delivery address fields.');
-    return;
-  }
-
-  if (!/^\d{10}$/.test(phone)) {
-    showToast('Please enter a valid 10-digit Indian mobile number.');
-    return;
-  }
-
-  if (!/^\d{6}$/.test(pin)) {
-    showToast('Please enter a valid 6-digit Indian PIN code.');
     return;
   }
 
@@ -504,7 +461,6 @@ async function placeOrder() {
     address: document.getElementById('checkout-address').value.trim(),
     city: document.getElementById('checkout-city').value.trim(),
     state: document.getElementById('checkout-state').value.trim(),
-    landmark: document.getElementById('checkout-landmark').value.trim(),
   };
 
   const payload = {
@@ -524,12 +480,10 @@ async function placeOrder() {
     const data = await res.json();
 
     if (data.success) {
-      // Clear Cart
       cart = [];
       saveCart();
       updateCartUI();
 
-      // Track Purchase Analytics Event
       trackEvent('Purchase', {
         orderId: data.orderId,
         total: totals.grandTotal,
@@ -537,15 +491,13 @@ async function placeOrder() {
         paymentMethod
       });
 
-      // Display Confirmation Screen
       document.getElementById('checkout-step-2').style.display = 'none';
       document.getElementById('checkout-confirmation').style.display = 'block';
       document.getElementById('confirmed-order-id').textContent = data.orderId;
       document.getElementById('confirmed-order-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
       document.getElementById('confirmed-order-phone').textContent = customerData.phone;
 
-      // WhatsApp Order Link
-      const waMsg = encodeURIComponent(`Hello MudhaCraft, I have placed order ${data.orderId} for ₹${totals.grandTotal}. Looking forward to dispatch from Muzaffarnagar!`);
+      const waMsg = encodeURIComponent(`Hello MuddaCraft, I have placed order ${data.orderId} for ₹${totals.grandTotal}. Looking forward to dispatch from Muzaffarnagar!`);
       const waLink = document.getElementById('btn-order-wa');
       if (waLink) {
         waLink.href = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`;
@@ -582,7 +534,6 @@ async function submitBulkInquiry(event) {
     const data = await res.json();
 
     if (data.success) {
-      // Track BulkInquiry Analytics Event
       trackEvent('BulkInquiry', {
         quantity: payload.quantity,
         product: payload.product,
@@ -592,8 +543,7 @@ async function submitBulkInquiry(event) {
       form.reset();
       showToast('Bulk inquiry received! Our trade desk will contact you within 4 hours.');
 
-      // Offer direct WhatsApp transfer
-      const waMsg = encodeURIComponent(`Hello MudhaCraft Trade Desk, I just submitted Bulk Inquiry (${payload.quantity} units for ${payload.businessName || payload.name} in ${payload.city}). Please share your commercial trade pricing.`);
+      const waMsg = encodeURIComponent(`Hello MuddaCraft Trade Desk, I just submitted Bulk Inquiry (${payload.quantity} units for ${payload.businessName || payload.name} in ${payload.city}). Please share your commercial trade pricing.`);
       window.open(`https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`, '_blank');
     }
   } catch (err) {
@@ -602,7 +552,7 @@ async function submitBulkInquiry(event) {
 }
 
 // ==========================================================================
-// Transit Damage Claim Flow (With Photo Upload)
+// Transit Damage Claim Flow
 // ==========================================================================
 function openTransitDamageModal() {
   document.getElementById('damage-modal-backdrop').classList.add('open');
@@ -678,9 +628,12 @@ function selectUseCase(id, btnElem) {
     btnElem.classList.add('active');
   }
 
-  document.getElementById('use-panel-title').textContent = useCase.title;
-  document.getElementById('use-panel-tagline').textContent = useCase.tagline;
-  document.getElementById('use-panel-desc').textContent = useCase.description;
+  const titleEl = document.getElementById('use-panel-title');
+  if (titleEl) titleEl.textContent = useCase.title;
+  const tagEl = document.getElementById('use-panel-tagline');
+  if (tagEl) tagEl.textContent = useCase.tagline;
+  const descEl = document.getElementById('use-panel-desc');
+  if (descEl) descEl.textContent = useCase.description;
   const imgElem = document.getElementById('use-panel-img');
   if (imgElem) {
     imgElem.src = useCase.image;
@@ -717,7 +670,7 @@ function toggleFaq(index) {
 }
 
 // ==========================================================================
-// Policy Modals (Shipping, Returns, Privacy, Terms, Contact)
+// Policy Modals
 // ==========================================================================
 function openPolicyModal(policyType) {
   const titles = {
@@ -725,15 +678,15 @@ function openPolicyModal(policyType) {
     returns: 'Returns & 100% Transit Damage Replacement Policy',
     privacy: 'Privacy Policy',
     terms: 'Terms & Conditions',
-    contact: 'Contact Us & Maker Workshop Hub'
+    contact: 'Contact Us & Workshop Hub'
   };
 
   const contents = {
     shipping: `
       <h4>Surface Freight Logistics for Bulky Furniture</h4>
-      <p>Because traditional bamboo Mudhas are bulky, structural seating items, they cannot be shipped via small air courier flyers. We partner with specialized national surface freight carriers who handle furniture transit with care.</p>
+      <p>Because traditional bamboo Mudhas and cane sets are bulky, structural seating items, they cannot be shipped via small air courier flyers. We partner with specialized national surface freight carriers who handle furniture transit with care.</p>
       <ul>
-        <li><strong>Dispatch Hub:</strong> Direct from Muzaffarnagar maker cluster, Uttar Pradesh.</li>
+        <li><strong>Dispatch Hub:</strong> Direct from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.</li>
         <li><strong>Transit Timeline:</strong> 4–7 business days for Delhi NCR, West, and Central India; 6–10 business days for South, East, and regional postal PIN codes.</li>
         <li><strong>Tracking:</strong> Complete real-time airway bill tracking is provided directly to your mobile number via WhatsApp upon carrier pickup.</li>
         <li><strong>Shipping Fee Economics:</strong> ₹250 base freight for the first unit, and ₹150 for each additional unit. Free shipping automatically applies on orders above ₹4,500.</li>
@@ -741,7 +694,7 @@ function openPolicyModal(policyType) {
     `,
     returns: `
       <h4>100% Free Transit Replacement Guarantee</h4>
-      <p>Traditional bamboo craft is resilient, but road transit can occasionally cause surface scrapes or breakage. We stand behind every piece that leaves our workshop.</p>
+      <p>Traditional cane craft is resilient, but road transit can occasionally cause surface scrapes or breakage. We stand behind every piece that leaves our workshop.</p>
       <ul>
         <li><strong>Transit Damage Policy:</strong> If your Mudha arrives with transit damage, simply take 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery.</li>
         <li><strong>Zero Return Hassle:</strong> You do NOT have to worry about repacking or shipping bulky furniture back to Uttar Pradesh. Upon reviewing your photos, we dispatch a brand-new replacement immediately at zero cost.</li>
@@ -757,79 +710,307 @@ function openPolicyModal(policyType) {
     `,
     terms: `
       <h4>Terms of Service</h4>
-      <p>MudhaCraft operates as an artisanal direct-sourcing brand. Natural variations in bamboo reed tint, cane weave tension, and slight measurement variances of ±1 inch are inherent characteristics of authentic Indian handcraft.</p>
-      <p>All prices listed on the site are in Indian National Rupees (INR) and inclusive of applicable GST.</p>
+      <p>MuddaCraft operates as an artisanal direct-sourcing brand in partnership with A to Z Mudda House, Muzaffarnagar. Natural variations in bamboo reed tint, cane weave tension, and slight measurement variances are inherent characteristics of authentic Indian handcraft.</p>
     `,
     contact: `
-      <h4>Get in Touch with MudhaCraft</h4>
+      <h4>Get in Touch with MuddaCraft</h4>
       <p>Have questions about dimensions, balcony placement, custom sets, or café orders? We are here to help.</p>
       <div style="background: var(--bg-primary); padding: 16px; border-radius: 8px; margin-top: 12px;">
         <p><strong>WhatsApp Support:</strong> ${storeState.whatsapp || '+91 98765 43210'}</p>
-        <p><strong>Email:</strong> ${storeState.email || 'namaste@mudhacraft.in'}</p>
-        <p><strong>Maker Sourcing Cluster:</strong> Muzaffarnagar Industrial Hub, Uttar Pradesh 251001, India</p>
+        <p><strong>Email:</strong> ${storeState.email || 'namaste@muddacraft.in'}</p>
+        <p><strong>Supplier Workshop Hub:</strong> A to Z Mudda House, Muzaffarnagar, Uttar Pradesh 251001, India</p>
         <p><strong>Operating Hours:</strong> Monday – Saturday, 9:00 AM – 7:00 PM IST</p>
       </div>
     `
   };
 
-  document.getElementById('policy-modal-title').textContent = titles[policyType] || 'Policy';
-  document.getElementById('policy-modal-body').innerHTML = contents[policyType] || '<p>Content awaiting update.</p>';
-  document.getElementById('policy-modal-backdrop').classList.add('open');
+  const titleEl = document.getElementById('policy-modal-title');
+  if (titleEl) titleEl.textContent = titles[policyType] || 'Policy';
+  const bodyEl = document.getElementById('policy-modal-body');
+  if (bodyEl) bodyEl.innerHTML = contents[policyType] || '<p>Content awaiting update.</p>';
+  const backdrop = document.getElementById('policy-modal-backdrop');
+  if (backdrop) backdrop.classList.add('open');
 }
 
 function closePolicyModal() {
-  document.getElementById('policy-modal-backdrop').classList.remove('open');
+  const backdrop = document.getElementById('policy-modal-backdrop');
+  if (backdrop) backdrop.classList.remove('open');
 }
 
 // ==========================================================================
-// Admin / Owner Control Panel (Client + Server Sync)
+// Product Management System (CMS) - Uploads, CRUD, Reorder
 // ==========================================================================
 function openAdminModal() {
-  document.getElementById('admin-modal-backdrop').classList.add('open');
-  populateAdminForm();
+  const backdrop = document.getElementById('admin-modal-backdrop');
+  if (backdrop) backdrop.classList.add('open');
+  switchAdminTab('products');
 }
 
 function closeAdminModal() {
-  document.getElementById('admin-modal-backdrop').classList.remove('open');
+  const backdrop = document.getElementById('admin-modal-backdrop');
+  if (backdrop) backdrop.classList.remove('open');
 }
 
-function populateAdminForm() {
+function switchAdminTab(tabName) {
+  document.querySelectorAll('.admin-tab-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById(`admin-tab-${tabName}`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  const prodSection = document.getElementById('admin-section-products');
+  const addSection = document.getElementById('admin-section-add');
+  const shipSection = document.getElementById('admin-section-shipping');
+
+  if (prodSection) prodSection.style.display = tabName === 'products' ? 'block' : 'none';
+  if (addSection) addSection.style.display = tabName === 'add' ? 'block' : 'none';
+  if (shipSection) shipSection.style.display = tabName === 'shipping' ? 'block' : 'none';
+
+  if (tabName === 'products') populateAdminProductsList();
+  if (tabName === 'shipping') populateAdminShippingForm();
+}
+
+function populateAdminProductsList() {
   const container = document.getElementById('admin-products-list');
   if (!container || !storeState.products) return;
 
-  container.innerHTML = storeState.products.map(p => `
-    <div style="border: 1px solid var(--border-light); padding: 12px; border-radius: 8px; margin-bottom: 10px; background: #FFF;">
-      <strong>${p.name}</strong> (${p.id})
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px;">
-        <div>
-          <label style="font-size: 0.75rem;">Price (₹)</label>
-          <input type="number" id="admin-price-${p.id}" value="${p.price}" style="width: 100%; border: 1px solid #CCC; padding: 6px; border-radius: 4px;">
+  const prods = [...storeState.products].sort((a, b) => (a.order || 99) - (b.order || 99));
+
+  container.innerHTML = prods.map((p, index) => `
+    <div class="admin-product-row" style="display: flex; gap: 14px; align-items: center; border: 1px solid var(--border-light); padding: 12px; border-radius: 8px; margin-bottom: 12px; background: #FFF;">
+      <img src="${p.image}" alt="${p.name}" style="width: 56px; height: 56px; object-fit: cover; border-radius: 6px; background: var(--bg-secondary); flex-shrink: 0;">
+      
+      <div style="flex-grow: 1; min-width: 0;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <strong style="font-size: 0.9375rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${p.name}</strong>
+          <span style="font-size: 0.6875rem; background: var(--bg-secondary); padding: 2px 6px; border-radius: 4px;">${p.category}</span>
         </div>
-        <div>
-          <label style="font-size: 0.75rem;">Stock Status</label>
-          <select id="admin-stock-${p.id}" style="width: 100%; border: 1px solid #CCC; padding: 6px; border-radius: 4px;">
-            <option value="available" ${p.stock === 'available' ? 'selected' : ''}>In Stock</option>
-            <option value="enquiry" ${p.stock === 'enquiry' ? 'selected' : ''}>Enquiry Only</option>
-            <option value="soldout" ${p.stock === 'soldout' ? 'selected' : ''}>Sold Out</option>
-          </select>
+        <div style="display: flex; gap: 14px; margin-top: 6px; font-size: 0.8125rem; color: var(--text-muted);">
+          <span>Price: <strong>${p.price ? '₹' + p.price : 'Price on Request'}</strong></span>
+          <span>Status: <strong style="color: ${p.stock === 'available' ? '#2E7D32' : '#C62828'};">${p.stock}</strong></span>
         </div>
+      </div>
+
+      <div style="display: flex; gap: 6px; flex-shrink: 0;">
+        <button type="button" onclick="moveProductOrder('${p.id}', -1)" title="Move Up" style="padding: 6px 8px; border: 1px solid #DDD; border-radius: 4px; font-size: 0.75rem;">⬆️</button>
+        <button type="button" onclick="moveProductOrder('${p.id}', 1)" title="Move Down" style="padding: 6px 8px; border: 1px solid #DDD; border-radius: 4px; font-size: 0.75rem;">⬇️</button>
+        <button type="button" onclick="openEditProductModal('${p.id}')" title="Edit Product" style="padding: 6px 10px; background: var(--bamboo-base); color: #FFF; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Edit</button>
+        <button type="button" onclick="deleteProduct('${p.id}')" title="Delete" style="padding: 6px 8px; background: #DC3545; color: #FFF; border-radius: 4px; font-size: 0.75rem;">🗑️</button>
       </div>
     </div>
   `).join('');
+}
 
+async function moveProductOrder(productId, direction) {
+  const prods = [...storeState.products].sort((a, b) => (a.order || 99) - (b.order || 99));
+  const idx = prods.findIndex(p => p.id === productId);
+  if (idx === -1) return;
+  const targetIdx = idx + direction;
+  if (targetIdx < 0 || targetIdx >= prods.length) return;
+
+  const temp = prods[idx];
+  prods[idx] = prods[targetIdx];
+  prods[targetIdx] = temp;
+
+  const orderedIds = prods.map(p => p.id);
+  try {
+    const res = await fetch('/api/admin/products/reorder', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ orderedIds })
+    });
+    const data = await res.json();
+    if (data.success) {
+      storeState.products = data.products;
+      populateAdminProductsList();
+      renderProducts();
+      showToast('Product order updated!');
+    }
+  } catch (err) {
+    showToast('Failed to update product order');
+  }
+}
+
+async function deleteProduct(productId) {
+  if (!confirm('Are you sure you want to remove this product from the catalogue?')) return;
+
+  try {
+    const res = await fetch('/api/admin/products', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: productId })
+    });
+    const data = await res.json();
+    if (data.success) {
+      storeState.products = storeState.products.filter(p => p.id !== productId);
+      populateAdminProductsList();
+      renderProducts();
+      showToast('Product removed');
+    }
+  } catch (err) {
+    showToast('Failed to delete product');
+  }
+}
+
+// Upload helper for adding or editing product photo
+async function uploadProductPhotoFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async () => {
+      try {
+        const res = await fetch('/api/admin/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            filename: file.name,
+            base64Data: reader.result
+          })
+        });
+        const data = await res.json();
+        if (data.success) {
+          resolve(data.url);
+        } else {
+          reject(new Error(data.error || 'Upload failed'));
+        }
+      } catch (err) {
+        reject(err);
+      }
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Add New Product Form Submission
+async function submitAddNewProduct(e) {
+  e.preventDefault();
+  const form = e.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Saving & Uploading...';
+
+  try {
+    let imageUrl = 'assets/products/placeholder-cane.svg';
+    const fileInput = document.getElementById('new-prod-photo');
+    if (fileInput.files.length > 0) {
+      imageUrl = await uploadProductPhotoFile(fileInput.files[0]);
+    }
+
+    const priceVal = form.price.value.trim();
+    const payload = {
+      name: form.name.value.trim(),
+      category: form.category.value,
+      filterCategory: form.category.value,
+      price: priceVal ? parseInt(priceVal, 10) : null,
+      priceConfirmed: !!priceVal,
+      description: form.description.value.trim(),
+      supplier: 'A to Z Mudda House, Muzaffarnagar, Uttar Pradesh',
+      image: imageUrl,
+      images: [imageUrl],
+      stock: form.stock.value || 'available',
+      specifications: form.specifications.value.trim() || 'Specifications Coming Soon'
+    };
+
+    const res = await fetch('/api/admin/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      storeState.products.push(data.product);
+      form.reset();
+      showToast(`Product "${data.product.name}" added to catalogue!`);
+      switchAdminTab('products');
+      renderProducts();
+    }
+  } catch (err) {
+    showToast('Failed to add product: ' + err.message);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Add Product to Catalogue';
+  }
+}
+
+// Edit Product Modal Handling
+function openEditProductModal(productId) {
+  const prod = storeState.products.find(p => p.id === productId);
+  if (!prod) return;
+
+  document.getElementById('edit-prod-id').value = prod.id;
+  document.getElementById('edit-prod-name').value = prod.name;
+  document.getElementById('edit-prod-category').value = prod.category;
+  document.getElementById('edit-prod-price').value = prod.price || '';
+  document.getElementById('edit-prod-stock').value = prod.stock || 'available';
+  document.getElementById('edit-prod-desc').value = prod.description || '';
+  document.getElementById('edit-prod-specs').value = prod.specifications || '';
+  document.getElementById('edit-prod-current-img').src = prod.image;
+
+  document.getElementById('edit-product-modal').classList.add('open');
+}
+
+function closeEditProductModal() {
+  document.getElementById('edit-product-modal').classList.remove('open');
+}
+
+async function submitEditProduct(e) {
+  e.preventDefault();
+  const form = e.target;
+  const prodId = document.getElementById('edit-prod-id').value;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+
+  try {
+    let imageUrl = null;
+    const fileInput = document.getElementById('edit-prod-photo');
+    if (fileInput.files.length > 0) {
+      imageUrl = await uploadProductPhotoFile(fileInput.files[0]);
+    }
+
+    const priceVal = document.getElementById('edit-prod-price').value.trim();
+    const updatePayload = {
+      id: prodId,
+      name: document.getElementById('edit-prod-name').value.trim(),
+      category: document.getElementById('edit-prod-category').value,
+      filterCategory: document.getElementById('edit-prod-category').value,
+      price: priceVal ? parseInt(priceVal, 10) : null,
+      stock: document.getElementById('edit-prod-stock').value,
+      description: document.getElementById('edit-prod-desc').value.trim(),
+      specifications: document.getElementById('edit-prod-specs').value.trim()
+    };
+    if (imageUrl) {
+      updatePayload.image = imageUrl;
+      updatePayload.images = [imageUrl];
+    }
+
+    const res = await fetch('/api/admin/products', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatePayload)
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      const idx = storeState.products.findIndex(p => p.id === prodId);
+      if (idx !== -1) storeState.products[idx] = data.product;
+      closeEditProductModal();
+      populateAdminProductsList();
+      renderProducts();
+      showToast('Product updated successfully!');
+    }
+  } catch (err) {
+    showToast('Failed to update product: ' + err.message);
+  } finally {
+    submitBtn.disabled = false;
+  }
+}
+
+function populateAdminShippingForm() {
   document.getElementById('admin-shipping-base').value = storeState.shipping?.base || 250;
   document.getElementById('admin-shipping-add').value = storeState.shipping?.perAdditionalUnit || 150;
   document.getElementById('admin-cod-toggle').checked = !!storeState.codEnabled;
 }
 
-async function saveAdminChanges() {
-  (storeState.products || []).forEach(p => {
-    const priceInput = document.getElementById(`admin-price-${p.id}`);
-    const stockSelect = document.getElementById(`admin-stock-${p.id}`);
-    if (priceInput) p.price = parseInt(priceInput.value, 10) || p.price;
-    if (stockSelect) p.stock = stockSelect.value;
-  });
-
+async function saveAdminShipping() {
   const baseShip = parseInt(document.getElementById('admin-shipping-base').value, 10) || 250;
   const addShip = parseInt(document.getElementById('admin-shipping-add').value, 10) || 150;
   const codVal = document.getElementById('admin-cod-toggle').checked;
@@ -838,24 +1019,16 @@ async function saveAdminChanges() {
   storeState.shipping.perAdditionalUnit = addShip;
   storeState.codEnabled = codVal;
 
-  // Persist locally
-  localStorage.setItem('mudhacraft_admin_store', JSON.stringify(storeState));
-
-  // Try pushing to server
   try {
     await fetch('/api/admin/store', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(storeState)
     });
+    showToast('Shipping settings saved!');
   } catch (err) {
-    console.warn('Could not sync to server filesystem, local storage saved');
+    showToast('Error updating settings');
   }
-
-  closeAdminModal();
-  renderProducts();
-  updateCartUI();
-  showToast('Store settings updated successfully!');
 }
 
 // ==========================================================================
@@ -863,7 +1036,7 @@ async function saveAdminChanges() {
 // ==========================================================================
 function openWhatsAppChat(customMessage = '') {
   trackEvent('WhatsAppClick', { source: customMessage ? 'ProductContext' : 'FloatingButton' });
-  const text = customMessage || 'Hello MudhaCraft, I am interested in your traditional bamboo Mudhas from Uttar Pradesh.';
+  const text = customMessage || 'Hello MuddaCraft, I am interested in your traditional bamboo Mudhas from A to Z Mudda House, Muzaffarnagar.';
   const url = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }
@@ -881,11 +1054,10 @@ function showToast(message) {
 }
 
 function initAnalytics() {
-  console.log('✅ MudhaCraft Analytics engine initialized (GA4, Meta Pixel, Ads hooks active)');
+  console.log('✅ MuddaCraft Analytics engine initialized (GA4, Meta Pixel, Ads hooks active)');
 }
 
 function setupEventListeners() {
-  // Shortcut for admin panel (Ctrl + Shift + A)
   window.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
       e.preventDefault();
