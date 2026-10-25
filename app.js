@@ -390,6 +390,19 @@ function closeCartDrawer() {
   if (drawer) drawer.classList.remove('open');
 }
 
+function toggleMobileNav(forceState) {
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+  if (!backdrop) return;
+  if (typeof forceState === 'boolean') {
+    if (forceState) backdrop.classList.add('open');
+    else backdrop.classList.remove('open');
+  } else {
+    backdrop.classList.toggle('open');
+  }
+}
+window.toggleMobileNav = toggleMobileNav;
+
+
 // ==========================================================================
 // Checkout Flow
 // ==========================================================================

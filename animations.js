@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .from(".hero-title", { y: 20, opacity: 0, duration: 0.9 }, "-=0.3")
       .from(".hero-subtitle", { y: 15, opacity: 0, duration: 0.7 }, "-=0.5")
       .from(".hero-actions", { y: 15, opacity: 0, duration: 0.6 }, "-=0.4")
-      .from(".trust-item", { y: 10, opacity: 0, stagger: 0.1, duration: 0.5 }, "-=0.3")
-      .from(".hero-image-card", { scale: 0.97, opacity: 0, duration: 1 }, "-=0.8");
+      .from(".hero-illustration-frame, .hero-image-card", { scale: 0.97, opacity: 0, duration: 1 }, "-=0.8");
+
 
     // 2. ScrollTrigger reveals for key content blocks
     if (typeof ScrollTrigger !== 'undefined') {

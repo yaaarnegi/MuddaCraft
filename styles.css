@@ -1,44 +1,57 @@
 /* ==========================================================================
-   MuddaCraft Studio - Design System & Stylesheet
-   Aesthetic: Warm, Premium-but-Affordable Traditional Indian Craftsmanship
+   MuddaCraft Studio - Official Brand Guidelines v3 System
+   Aesthetic: Authentic Handcrafted Bamboo Furniture & Indian Print Culture
    ========================================================================== */
 
 :root {
-  /* Color Palette - Design DNA Tokens */
-  --bg-primary: #FAF6EF;
-  --bg-secondary: #F3ECE0;
-  --bg-card: #FFFFFF;
-  --bg-elevated: #FFFDF9;
-  --bg-dark: #241C16;
+  /* Official Brand Palette (Mudda Craft Brand Guidelines v3) */
+  --mudda-paper: #F6F2E8;         /* 58% dominant canvas: warm unbleached paper */
+  --mudda-sand: #E7DCCB;          /* 20% secondary: panels, cards, backplates */
+  --mudda-oxblood: #81252A;       /* 12% ink: illustration strokes, borders, dark fields */
+  --mudda-terracotta: #C33720;     /* 7% brand CTA: logo color, primary buttons */
+  --mudda-charcoal: #282321;       /* Body typography & deep details */
+  --mudda-muted: #74645B;          /* Secondary metadata, subtitles, captions */
+  --mudda-olive: #636A4D;          /* 2% natural craft & material notes */
+  --mudda-mustard: #D8A849;        /* 1% small craft stamps, seals, highlights */
+  --mudda-chalk: #FFFCF5;          /* Card backgrounds & reversed ink */
 
-  /* Bamboo & Earth Tones */
-  --bamboo-light: #DFBF88;
-  --bamboo-base: #A07238;
-  --bamboo-hover: #865C28;
-  --bamboo-dark: #5C3E1B;
-  --terracotta: #A6573C;
-  --olive-muted: #566149;
+  /* Backward Compatibility Aliases */
+  --bg-primary: var(--mudda-paper);
+  --bg-secondary: var(--mudda-sand);
+  --bg-card: var(--mudda-chalk);
+  --bg-elevated: #FFFFFF;
+  --bg-dark: var(--mudda-oxblood);
+
+  /* Earth & Brand Tones */
+  --bamboo-light: var(--mudda-sand);
+  --bamboo-base: var(--mudda-terracotta);
+  --bamboo-hover: #A82E19;
+  --bamboo-dark: var(--mudda-oxblood);
+  --terracotta: var(--mudda-terracotta);
+  --olive-muted: var(--mudda-olive);
 
   /* Typography Colors */
-  --text-primary: #281F19;
-  --text-secondary: #56473B;
-  --text-muted: #857262;
-  --text-light: #FAF6EF;
-  --border-light: #E7DDCE;
-  --border-focus: #A07238;
+  --text-primary: var(--mudda-charcoal);
+  --text-secondary: var(--mudda-muted);
+  --text-muted: #8F8077;
+  --text-light: var(--mudda-paper);
+  --border-light: rgba(129, 37, 42, 0.16);
+  --border-focus: var(--mudda-oxblood);
 
   /* Shadows & Radius */
-  --shadow-sm: 0 2px 8px rgba(40, 31, 25, 0.04);
-  --shadow-md: 0 4px 16px rgba(40, 31, 25, 0.08);
-  --shadow-lg: 0 12px 32px rgba(40, 31, 25, 0.12);
+  --shadow-sm: 0 2px 8px rgba(40, 35, 33, 0.05);
+  --shadow-md: 0 4px 16px rgba(40, 35, 33, 0.08);
+  --shadow-lg: 0 12px 32px rgba(40, 35, 33, 0.14);
   --radius-sm: 6px;
   --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-lg: 14px;
+  --radius-card: 14px;
   --radius-pill: 9999px;
 
   /* Fonts */
-  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Liberation Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Lato', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
 
   /* Transitions */
   --transition-fast: 0.18s ease;
@@ -61,8 +74,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--mudda-paper);
+  color: var(--mudda-charcoal);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
@@ -103,24 +116,60 @@ button {
 }
 
 /* ==========================================================================
+   Brand Guidelines Pattern Utilities
+   ========================================================================== */
+
+.pattern-weave {
+  background-image: url('/assets/visual-assets/mudda-weave.svg');
+  background-repeat: repeat;
+  background-size: 112px 112px;
+}
+
+.pattern-ribs {
+  background-image: url('/assets/visual-assets/bamboo-ribs.svg');
+  background-repeat: repeat;
+  background-size: 150px 150px;
+}
+
+.divider-bamboo-ribs {
+  height: 20px;
+  background-image: url('/assets/visual-assets/bamboo-ribs.svg');
+  background-repeat: repeat-x;
+  background-size: 120px 20px;
+  opacity: 0.28;
+  margin: 28px 0;
+}
+
+.divider-braid {
+  height: 10px;
+  background-image: url('/assets/visual-assets/binding-braid.svg');
+  background-repeat: repeat-x;
+  background-size: 70px 10px;
+  opacity: 0.45;
+  margin: 16px 0;
+}
+
+/* ==========================================================================
    Announcement Bar & Navigation Header
    ========================================================================== */
 
 .announcement-bar {
-  background-color: var(--bg-dark);
-  color: var(--bg-primary);
+  background-color: var(--mudda-oxblood);
+  color: var(--mudda-chalk);
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.02em;
   padding: 8px 16px;
   text-align: center;
+  position: relative;
+  border-bottom: 2px solid rgba(255, 252, 245, 0.16);
 }
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 246, 239, 0.94);
+  background: rgba(246, 242, 232, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
@@ -131,39 +180,49 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 72px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.brand-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-logo-title {
   font-family: var(--font-serif);
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--mudda-charcoal);
   letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
-.brand-icon {
-  font-size: 1.4rem;
-  color: var(--bamboo-base);
-}
-
-.brand-tag {
-  color: var(--bamboo-base);
-  font-weight: 600;
+.brand-logo-tag {
+  color: var(--mudda-terracotta);
 }
 
 .brand-sub {
-  display: block;
   font-family: var(--font-sans);
   font-size: 0.6875rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--mudda-muted);
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-top: -4px;
+  margin-top: 2px;
 }
 
 .nav-links {
@@ -175,15 +234,15 @@ button {
 
 .nav-link {
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 600;
+  color: var(--mudda-charcoal);
   transition: color var(--transition-fast);
   position: relative;
   padding: 6px 0;
 }
 
 .nav-link:hover {
-  color: var(--bamboo-base);
+  color: var(--mudda-terracotta);
 }
 
 .header-actions {
@@ -198,10 +257,10 @@ button {
   gap: 6px;
   padding: 8px 14px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #128C7E;
   background: rgba(37, 211, 102, 0.1);
-  border: 1px solid rgba(37, 211, 102, 0.25);
+  border: 1px solid rgba(37, 211, 102, 0.28);
   border-radius: var(--radius-pill);
   transition: all var(--transition-fast);
 }
@@ -216,18 +275,18 @@ button {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: var(--bg-card);
+  background: var(--mudda-chalk);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-pill);
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--mudda-charcoal);
   box-shadow: var(--shadow-sm);
   transition: all var(--transition-fast);
 }
 
 .cart-button:hover {
-  border-color: var(--bamboo-base);
+  border-color: var(--mudda-terracotta);
   box-shadow: var(--shadow-md);
 }
 
@@ -238,7 +297,7 @@ button {
   min-width: 20px;
   height: 20px;
   padding: 0 6px;
-  background: var(--bamboo-base);
+  background: var(--mudda-terracotta);
   color: #FFF;
   border-radius: var(--radius-pill);
   font-size: 0.75rem;
@@ -248,8 +307,87 @@ button {
 .mobile-menu-btn {
   display: none;
   font-size: 1.5rem;
-  padding: 6px;
-  color: var(--text-primary);
+  padding: 6px 10px;
+  color: var(--mudda-charcoal);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  line-height: 1;
+}
+
+/* Mobile Off-Canvas Navigation Drawer */
+.mobile-nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(40, 35, 33, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.mobile-nav-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 84%;
+  max-width: 320px;
+  background: var(--mudda-paper);
+  box-shadow: var(--shadow-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-backdrop.open .mobile-nav-drawer {
+  transform: translateX(0);
+}
+
+.mobile-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 20px;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mobile-nav-links a {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--mudda-charcoal);
+  display: block;
+  padding: 6px 0;
+  transition: color var(--transition-fast);
+}
+
+.mobile-nav-links a:hover {
+  color: var(--mudda-terracotta);
+}
+
+.mobile-nav-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.8125rem;
+  color: var(--mudda-muted);
 }
 
 /* ==========================================================================
@@ -383,7 +521,7 @@ button {
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
-  background: var(--bg-secondary);
+  background: var(--mudda-sand);
   border: 1px solid var(--border-light);
 }
 
@@ -398,21 +536,74 @@ button {
   transform: scale(1.02);
 }
 
+.hero-illustration-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--mudda-sand);
+  border: 1px solid rgba(129, 37, 42, 0.22);
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px 72px;
+}
+
+.hero-illustration-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/visual-assets/mudda-weave.svg');
+  background-repeat: repeat;
+  background-size: 112px 112px;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.hero-primary-img {
+  position: relative;
+  z-index: 2;
+  max-width: 82%;
+  max-height: 380px;
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 14px 28px rgba(40, 35, 33, 0.16));
+}
+
+.hero-illustration-frame:hover .hero-primary-img {
+  transform: scale(1.03) translateY(-4px);
+}
+
+.hero-craft-stamp {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 3;
+  width: 52px;
+  height: 52px;
+  background-image: url('/assets/visual-assets/blockprint-rosette.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.65;
+}
+
 .hero-floating-pill {
   position: absolute;
   bottom: 20px;
   left: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 252, 245, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 12px 18px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(129, 37, 42, 0.2);
   box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 4;
 }
 
 .hero-pill-text {
@@ -944,12 +1135,44 @@ button {
   align-items: center;
 }
 
+.postcard-wrapper {
+  position: relative;
+  padding: 16px;
+  background: var(--mudda-chalk);
+  border: 1.5px solid rgba(129, 37, 42, 0.28);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+}
+
+.postcard-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed rgba(129, 37, 42, 0.35);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.postcard-stamp-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 54px;
+  height: 54px;
+  background-image: url('/assets/visual-assets/blockprint-rosette.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.75;
+}
+
 .craft-image-frame {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--border-light);
+  background: var(--mudda-sand);
 }
 
 .craft-image-frame img {
@@ -988,14 +1211,17 @@ button {
 }
 
 .craft-transparency-box {
-  background: rgba(160, 114, 56, 0.08);
-  border-left: 3px solid var(--bamboo-base);
+  background: rgba(129, 37, 42, 0.05);
+  border-left: 3px solid var(--mudda-oxblood);
   padding: 16px 20px;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   margin-top: 16px;
   font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.55;
+  border-top: 1px solid rgba(129, 37, 42, 0.1);
+  border-right: 1px solid rgba(129, 37, 42, 0.1);
+  border-bottom: 1px solid rgba(129, 37, 42, 0.1);
 }
 
 /* ==========================================================================
@@ -1058,10 +1284,22 @@ button {
    ========================================================================== */
 
 .bulk-section {
-  background: var(--bg-dark);
-  color: var(--text-light);
+  background: var(--mudda-oxblood);
+  color: var(--mudda-chalk);
   padding: 80px 0;
   position: relative;
+  overflow: hidden;
+}
+
+.bulk-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/visual-assets/hand-hatch.svg');
+  background-repeat: repeat;
+  background-size: 140px 140px;
+  opacity: 0.12;
+  pointer-events: none;
 }
 
 .bulk-grid {
@@ -1069,6 +1307,8 @@ button {
   grid-template-columns: 1fr 1.1fr;
   gap: 48px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .bulk-info-title {
@@ -1077,11 +1317,12 @@ button {
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 20px;
+  color: var(--mudda-chalk);
 }
 
 .bulk-info-desc {
   font-size: 1.05rem;
-  color: rgba(250, 246, 239, 0.82);
+  color: rgba(255, 252, 245, 0.88);
   line-height: 1.6;
   margin-bottom: 28px;
 }
@@ -1094,20 +1335,21 @@ button {
 }
 
 .bulk-target-tag {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 252, 245, 0.12);
+  border: 1px solid rgba(255, 252, 245, 0.25);
   padding: 6px 14px;
   border-radius: var(--radius-pill);
   font-size: 0.8125rem;
-  color: var(--text-light);
+  color: var(--mudda-chalk);
 }
 
 .bulk-form-card {
-  background: var(--bg-card);
-  color: var(--text-primary);
+  background: var(--mudda-paper);
+  color: var(--mudda-charcoal);
   border-radius: var(--radius-lg);
   padding: 32px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .bulk-form-card h3 {
@@ -2147,15 +2389,50 @@ button {
   }
 
   .mobile-menu-btn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .btn-header-wa span {
+  .btn-header-wa .btn-header-wa-text {
     display: none;
+  }
+
+  .btn-header-wa {
+    padding: 8px 10px;
+  }
+
+  .collection-filters {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    gap: 8px;
+  }
+
+  .collection-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .hero-title {
     font-size: 2.25rem;
+  }
+
+  .hero-illustration-frame {
+    min-height: 360px;
+    padding: 24px 16px 60px;
+  }
+
+  .hero-primary-img {
+    max-height: 280px;
   }
 
   .trust-indicators {
@@ -2185,7 +2462,8 @@ button {
     padding: 10px 16px;
   }
 
-  .floating-wa-btn span {
+  .floating-wa-btn .wa-text {
     display: none;
   }
 }
+

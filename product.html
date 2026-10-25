@@ -15,7 +15,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Lato:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -247,17 +247,17 @@
 
   <!-- Top Announcement Bar -->
   <div class="announcement-bar">
-    🌿 Direct Maker Sourcing from A to Z Mudda House, Muzaffarnagar, UP • Pan-India Surface Freight
+    मुज़फ़्फ़रनगर शिल्पकला • Direct Maker Sourcing from A to Z Mudda House, Muzaffarnagar, UP • Pan-India Surface Freight
   </div>
 
   <!-- Navigation Header -->
   <header class="site-header">
     <div class="container nav-wrapper">
       <a href="/" class="brand-logo" aria-label="MuddaCraft Homepage">
-        <span class="brand-icon">🌾</span>
-        <div>
-          <span>Mudda<span class="brand-tag">Craft</span></span>
-          <span class="brand-sub">Crafted in Uttar Pradesh</span>
+        <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-logo-title">Mudda<span class="brand-logo-tag">Craft</span></span>
+          <span class="brand-sub">Muzaffarnagar, UP</span>
         </div>
       </a>
 
@@ -272,17 +272,42 @@
       </nav>
 
       <div class="header-actions">
-        <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" class="btn-header-wa">
+        <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" class="btn-header-wa" aria-label="WhatsApp Us">
           <span>💬</span>
-          <span>WhatsApp</span>
+          <span class="btn-header-wa-text">WhatsApp</span>
         </a>
         <button class="cart-button" onclick="openCartDrawer()" aria-label="View basket">
           <span>🧺 Basket</span>
           <span class="cart-count">0</span>
         </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu">
+          ☰
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Off-Canvas Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileNav(false)">
+    <div class="mobile-nav-drawer" onclick="event.stopPropagation()">
+      <div class="mobile-nav-header">
+        <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" height="38">
+        <button class="modal-close-btn" onclick="toggleMobileNav(false)" aria-label="Close navigation">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/#collection" onclick="toggleMobileNav(false)">Shop Mudhas</a></li>
+        <li><a href="/#why-mudha" onclick="toggleMobileNav(false)">Why Mudha?</a></li>
+        <li><a href="/#craftsmanship" onclick="toggleMobileNav(false)">Craft Origin</a></li>
+        <li><a href="/#bulk-orders" onclick="toggleMobileNav(false)">Café & Bulk Orders</a></li>
+        <li><a href="/#faqs" onclick="toggleMobileNav(false)">Care & FAQ</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p><strong>MuddaCraft Studio</strong></p>
+        <p>Handmade Bamboo & Cane Furniture</p>
+        <p style="margin-top: 6px; color: var(--mudda-terracotta);">📍 Muzaffarnagar, Uttar Pradesh</p>
+      </div>
+    </div>
+  </div>
 
   <main class="container">
     <!-- Breadcrumb -->
