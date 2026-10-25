@@ -380,6 +380,7 @@ function updateCartUI() {
 }
 
 function openCartDrawer() {
+  updateCartUI();
   const drawer = document.getElementById('cart-drawer-backdrop');
   if (drawer) drawer.classList.add('open');
 }
@@ -403,11 +404,26 @@ function openCheckoutModal() {
   const checkoutModal = document.getElementById('checkout-modal-backdrop');
   if (!checkoutModal) return;
 
-  document.getElementById('checkout-items-count').textContent = `${totals.totalUnits} items`;
-  document.getElementById('checkout-total-display').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
-  document.getElementById('checkout-step-1').style.display = 'block';
-  document.getElementById('checkout-step-2').style.display = 'none';
-  document.getElementById('checkout-confirmation').style.display = 'none';
+  const itemsCountElem = document.getElementById('checkout-items-count');
+  if (itemsCountElem) itemsCountElem.textContent = `${totals.totalUnits} items`;
+
+  const totalDisplayElem = document.getElementById('checkout-total-display');
+  if (totalDisplayElem) totalDisplayElem.textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
+
+  const step1 = document.getElementById('checkout-step-1');
+  if (step1) step1.style.display = 'block';
+
+  const step2 = document.getElementById('checkout-step-2');
+  if (step2) step2.style.display = 'none';
+
+  const confirmation = document.getElementById('checkout-confirmation');
+  if (confirmation) confirmation.style.display = 'none';
+
+  const payBtn = document.getElementById('btn-place-order');
+  if (payBtn) {
+    payBtn.innerHTML = `Pay ₹${totals.grandTotal.toLocaleString('en-IN')} with Razorpay 🔒`;
+    payBtn.disabled = false;
+  }
 
   trackEvent('BeginCheckout', {
     itemsCount: totals.totalUnits,
@@ -436,6 +452,13 @@ function proceedToPaymentStep(event) {
     return;
   }
 
+  const totals = calculateCartTotals();
+  const payBtn = document.getElementById('btn-place-order');
+  if (payBtn) {
+    payBtn.innerHTML = `Pay ₹${totals.grandTotal.toLocaleString('en-IN')} with Razorpay 🔒`;
+    payBtn.disabled = false;
+  }
+
   document.getElementById('checkout-step-1').style.display = 'none';
   document.getElementById('checkout-step-2').style.display = 'block';
   document.getElementById('step-indicator-1').classList.remove('active');
@@ -449,64 +472,257 @@ function backToAddressStep() {
   document.getElementById('step-indicator-1').classList.add('active');
 }
 
-async function placeOrder() {
-  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'UPI';
+// ==========================================================================
+// Razorpay Standard Web Checkout Integration
+// ==========================================================================
+async function payWithRazorpay(simulate = false) {
   const totals = calculateCartTotals();
+  if (totals.totalUnits === 0 || totals.grandTotal <= 0) {
+    showToast('Your basket is empty. Please add a product first.');
+    return;
+  }
 
   const customerData = {
-    name: document.getElementById('checkout-name').value.trim(),
-    phone: document.getElementById('checkout-phone').value.trim(),
-    email: document.getElementById('checkout-email').value.trim(),
-    pincode: document.getElementById('checkout-pincode').value.trim(),
-    address: document.getElementById('checkout-address').value.trim(),
-    city: document.getElementById('checkout-city').value.trim(),
-    state: document.getElementById('checkout-state').value.trim(),
+    name: document.getElementById('checkout-name')?.value.trim() || '',
+    phone: document.getElementById('checkout-phone')?.value.trim() || '',
+    email: document.getElementById('checkout-email')?.value.trim() || '',
+    pincode: document.getElementById('checkout-pincode')?.value.trim() || '',
+    address: document.getElementById('checkout-address')?.value.trim() || '',
+    city: document.getElementById('checkout-city')?.value.trim() || '',
+    state: document.getElementById('checkout-state')?.value.trim() || '',
   };
 
-  const payload = {
-    items: cart,
-    total: totals.grandTotal,
-    paymentMethod,
-    shippingAddress: customerData,
-    deliveryEstimate: '4–7 business days via Surface Freight'
+  if (!customerData.name || !customerData.phone || !customerData.pincode || !customerData.address) {
+    showToast('Please fill in all required delivery address fields.');
+    backToAddressStep();
+    return;
+  }
+
+  const payBtn = document.getElementById('btn-place-order');
+  const originalBtnHtml = `Pay ₹${totals.grandTotal.toLocaleString('en-IN')} with Razorpay 🔒`;
+
+  if (payBtn) {
+    payBtn.disabled = true;
+    payBtn.innerHTML = '<span>⏳ Preparing Secure Checkout...</span>';
+  }
+
+  const resetPayButton = () => {
+    if (payBtn) {
+      payBtn.disabled = false;
+      payBtn.innerHTML = originalBtnHtml;
+    }
   };
 
   try {
-    const res = await fetch('/api/checkout', {
+    // Step 1: Backend - Create Order on Razorpay
+    const amountInPaise = Math.round(totals.grandTotal * 100);
+    if (amountInPaise < 100) {
+      throw new Error('Order amount must be at least ₹1.00 (100 paise)');
+    }
+
+    const orderRes = await fetch('/api/create-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({
+        amount: amountInPaise,
+        currency: 'INR',
+        receipt: 'rcpt_' + Date.now().toString().slice(-8),
+        simulate: !!simulate,
+        notes: {
+          customer_name: customerData.name,
+          customer_phone: customerData.phone,
+          pincode: customerData.pincode,
+          items_count: totals.totalUnits
+        }
+      })
     });
-    const data = await res.json();
 
-    if (data.success) {
-      cart = [];
-      saveCart();
-      updateCartUI();
-
-      trackEvent('Purchase', {
-        orderId: data.orderId,
-        total: totals.grandTotal,
-        itemsCount: totals.totalUnits,
-        paymentMethod
-      });
-
-      document.getElementById('checkout-step-2').style.display = 'none';
-      document.getElementById('checkout-confirmation').style.display = 'block';
-      document.getElementById('confirmed-order-id').textContent = data.orderId;
-      document.getElementById('confirmed-order-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
-      document.getElementById('confirmed-order-phone').textContent = customerData.phone;
-
-      const waMsg = encodeURIComponent(`Hello MuddaCraft, I have placed order ${data.orderId} for ₹${totals.grandTotal}. Looking forward to dispatch from Muzaffarnagar!`);
-      const waLink = document.getElementById('btn-order-wa');
-      if (waLink) {
-        waLink.href = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`;
-      }
+    const orderData = await orderRes.json();
+    if (!orderRes.ok || !orderData.order_id) {
+      const errObj = new Error(orderData.error || 'Failed to initialize Razorpay order');
+      errObj.isAuthError = !!orderData.isAuthError;
+      throw errObj;
     }
+
+    // Handle simulated test payment (if simulation requested)
+    if (orderData.simulated) {
+      showToast('⚡ Running Razorpay Sandbox Simulation...');
+      if (payBtn) payBtn.innerHTML = '<span>⏳ Processing Simulated Payment...</span>';
+
+      setTimeout(async () => {
+        try {
+          const verifyRes = await fetch('/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: orderData.order_id,
+              razorpay_payment_id: `pay_sim_${Date.now().toString().slice(-8)}`,
+              razorpay_signature: 'simulated_test_signature',
+              customerData,
+              items: cart,
+              total: totals.grandTotal,
+              simulated: true
+            })
+          });
+
+          const verifyData = await verifyRes.json();
+
+          if (verifyRes.ok && verifyData.success) {
+            cart = [];
+            saveCart();
+            updateCartUI();
+
+            document.getElementById('checkout-step-2').style.display = 'none';
+            document.getElementById('checkout-confirmation').style.display = 'block';
+            document.getElementById('confirmed-order-id').textContent = verifyData.orderId;
+            document.getElementById('confirmed-order-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
+            document.getElementById('confirmed-order-phone').textContent = customerData.phone;
+
+            const paymentIdDisplay = document.getElementById('confirmed-payment-id');
+            if (paymentIdDisplay) paymentIdDisplay.textContent = verifyData.razorpay_payment_id + ' (Demo)';
+
+            const waMsg = encodeURIComponent(
+              `Hello MudhaCraft, I have completed payment (${verifyData.razorpay_payment_id}) for order ${verifyData.orderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
+            );
+            const waLink = document.getElementById('btn-order-wa');
+            if (waLink) {
+              waLink.href = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`;
+            }
+
+            showToast('✅ Test order placed & verified successfully!');
+          }
+        } catch (simErr) {
+          showToast('Simulation error. Please retry.');
+          resetPayButton();
+        }
+      }, 800);
+      return;
+    }
+
+    // Verify Razorpay SDK is present
+    if (typeof Razorpay === 'undefined') {
+      throw new Error('Razorpay Checkout SDK is not available. Please verify network connectivity.');
+    }
+
+    // Step 2: Frontend - Open Razorpay Modal
+    const options = {
+      key: orderData.key_id,
+      amount: orderData.amount,
+      currency: orderData.currency || 'INR',
+      name: 'MudhaCraft Studio',
+      description: `Bulky Surface Delivery (${totals.totalUnits} items) • Muzaffarnagar Hub`,
+      image: '/assets/products/placeholder-cane.svg',
+      order_id: orderData.order_id,
+      prefill: {
+        name: customerData.name,
+        email: customerData.email,
+        contact: customerData.phone
+      },
+      notes: {
+        shipping_pincode: customerData.pincode,
+        shipping_city: customerData.city,
+        shipping_state: customerData.state
+      },
+      theme: {
+        color: '#A07238' // MudhaCraft signature bamboo-base tone
+      },
+      modal: {
+        ondismiss: function () {
+          showToast('Payment window cancelled. You can retry whenever ready.');
+          resetPayButton();
+        }
+      },
+      handler: async function (paymentResponse) {
+        // Step 3: Backend - Verify Payment Signature
+        try {
+          if (payBtn) {
+            payBtn.innerHTML = '<span>🔒 Verifying Payment Signature...</span>';
+          }
+
+          const verifyRes = await fetch('/api/verify-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              razorpay_order_id: paymentResponse.razorpay_order_id,
+              razorpay_payment_id: paymentResponse.razorpay_payment_id,
+              razorpay_signature: paymentResponse.razorpay_signature,
+              customerData,
+              items: cart,
+              total: totals.grandTotal
+            })
+          });
+
+          const verifyData = await verifyRes.json();
+
+          if (verifyRes.ok && verifyData.success) {
+            const confirmedOrderId = verifyData.orderId || ('MUDHA-' + Math.floor(100000 + Math.random() * 900000));
+
+            // Clear basket upon verified payment
+            cart = [];
+            saveCart();
+            updateCartUI();
+
+            trackEvent('Purchase', {
+              orderId: confirmedOrderId,
+              paymentId: paymentResponse.razorpay_payment_id,
+              razorpayOrderId: paymentResponse.razorpay_order_id,
+              total: totals.grandTotal,
+              itemsCount: totals.totalUnits,
+              paymentMethod: 'Razorpay'
+            });
+
+            // Transition to Step 3 Confirmation Screen
+            document.getElementById('checkout-step-2').style.display = 'none';
+            document.getElementById('checkout-confirmation').style.display = 'block';
+            document.getElementById('confirmed-order-id').textContent = confirmedOrderId;
+            document.getElementById('confirmed-order-total').textContent = `₹${totals.grandTotal.toLocaleString('en-IN')}`;
+            document.getElementById('confirmed-order-phone').textContent = customerData.phone;
+
+            const paymentIdDisplay = document.getElementById('confirmed-payment-id');
+            if (paymentIdDisplay) {
+              paymentIdDisplay.textContent = paymentResponse.razorpay_payment_id;
+            }
+
+            const waMsg = encodeURIComponent(
+              `Hello MudhaCraft, I have completed payment (${paymentResponse.razorpay_payment_id}) for order ${confirmedOrderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
+            );
+            const waLink = document.getElementById('btn-order-wa');
+            if (waLink) {
+              waLink.href = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`;
+            }
+
+            showToast('Payment successful! Your order has been placed.');
+          } else {
+            showToast('Payment verification failed: ' + (verifyData.error || 'Signature mismatch. Payment not verified.'));
+            resetPayButton();
+          }
+        } catch (verifyErr) {
+          console.error('Signature verification call failed:', verifyErr);
+          showToast('Payment verification failed due to network error. Please contact support.');
+          resetPayButton();
+        }
+      }
+    };
+
+    const rzp = new Razorpay(options);
+
+    rzp.on('payment.failed', function (failureResponse) {
+      console.error('Razorpay payment failed:', failureResponse.error);
+      const desc = failureResponse.error?.description || failureResponse.error?.reason || 'Transaction could not be completed';
+      showToast(`Payment Failed: ${desc}`);
+      resetPayButton();
+    });
+
+    rzp.open();
   } catch (err) {
-    showToast('Network error while placing order. Please retry.');
+    console.error('Razorpay checkout error:', err);
+    showToast(err.message || 'Error initializing secure payment. Please retry.');
+    resetPayButton();
   }
 }
+
+// Backward-compatible alias
+const placeOrder = payWithRazorpay;
 
 // ==========================================================================
 // Bulk B2B Inquiry Handling

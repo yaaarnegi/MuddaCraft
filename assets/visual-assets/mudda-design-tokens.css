@@ -1,0 +1,43 @@
+/* Mudda Craft - design tokens */
+:root {
+  --mudda-paper: #F6F2E8;
+  --mudda-sand: #E7DCCB;
+  --mudda-ink: #81252A;
+  --mudda-terracotta: #C33720;
+  --mudda-charcoal: #282321;
+  --mudda-muted: #74645B;
+  --mudda-olive: #636A4D;
+  --mudda-mustard: #D8A849;
+  --font-body: "Lato", "Noto Sans Devanagari", sans-serif;
+  --font-display: "Liberation Serif", Georgia, serif;
+  --radius-card: 14px;
+  --line-thin: 1px;
+  --space-section: clamp(3rem, 8vw, 7rem);
+}
+
+body { background: var(--mudda-paper); color: var(--mudda-charcoal); font-family: var(--font-body); }
+
+/* Pattern as a low-contrast utility, never behind critical copy */
+.pattern-weave {
+  background-image: url('/brand/mudda-weave.svg');
+  background-repeat: repeat; background-size: 112px 112px;
+  opacity: .16;
+}
+.pattern-ribs {
+  background-image: url('/brand/bamboo-ribs.svg');
+  background-repeat: repeat; background-size: 150px 150px;
+  opacity: .14;
+}
+.product-illustration {
+  border: 1px solid rgba(129,37,42,.38);
+  border-radius: var(--radius-card);
+  background: var(--mudda-sand);
+  overflow: hidden;
+}
+.product-illustration img { display:block; width:100%; height:auto; }
+
+/* Product cards: quiet outline, handmade illustration does the storytelling */
+.product-card { border:1px solid rgba(129,37,42,.20); border-radius:var(--radius-card); background:#FFFCF5; overflow:hidden; }
+.product-card:hover .product-card__image { transform:scale(1.02); }
+.product-card__image { transition:transform 180ms ease-out; }
+@media (prefers-reduced-motion: reduce) { .product-card__image { transition:none; } }

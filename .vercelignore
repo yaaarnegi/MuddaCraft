@@ -6,3 +6,6 @@ scripts/
 .DS_Store
 .git
 .gemini/
+.env
+.env.*
+vendor/liquid-glass-js/demo.gif

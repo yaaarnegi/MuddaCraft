@@ -1,6 +1,9 @@
+import 'dotenv/config';
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
+import Razorpay from 'razorpay';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -9,6 +12,12 @@ const __dirname = path.dirname(__filename);
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'store.json');
 const PRODUCTS_DIR = path.join(__dirname, 'assets', 'products');
+
+// Initialize Razorpay SDK instance using environment variables
+const razorpay = new Razorpay({
+  key_id: process.env.RAZORPAY_KEY_ID || '',
+  key_secret: process.env.RAZORPAY_KEY_SECRET || ''
+});
 
 if (!fs.existsSync(PRODUCTS_DIR)) {
   fs.mkdirSync(PRODUCTS_DIR, { recursive: true });
@@ -315,6 +324,180 @@ const server = http.createServer((req, res) => {
       isRemote,
       carrier: 'Surface Furniture Express (Road Freight)'
     }));
+  }
+
+  // Razorpay: Get Public Key ID (never exposes secret)
+  if (pathname === '/api/razorpay-key' && req.method === 'GET') {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({
+      keyId: process.env.RAZORPAY_KEY_ID || ''
+    }));
+  }
+
+  // Razorpay: Step 1 - Create Order
+  if (pathname === '/api/create-order' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', async () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const rawAmount = payload.amount;
+        const amount = Number(rawAmount);
+        const currency = (payload.currency || 'INR').toUpperCase();
+        const receipt = payload.receipt || `rcpt_${Date.now().toString().slice(-8)}`;
+        const notes = payload.notes || {};
+
+        // Auth check: verify credentials are configured on server
+        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
+          res.writeHead(401, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Razorpay API credentials not configured on server' }));
+        }
+
+        // Validate amount >= 100 paise (₹1 minimum per Razorpay specifications)
+        if (!amount || isNaN(amount) || amount < 100) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Invalid amount. Minimum order amount is 100 paise (₹1.00)' }));
+        }
+
+        if (payload.simulate) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({
+            success: true,
+            order_id: `order_sim_${Date.now().toString().slice(-8)}`,
+            amount: Math.round(amount),
+            currency,
+            key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_TsDTKwUVhjD7pL',
+            simulated: true
+          }));
+        }
+
+        const orderOptions = {
+          amount: Math.round(amount),
+          currency,
+          receipt,
+          notes
+        };
+
+        const order = await razorpay.orders.create(orderOptions);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({
+          success: true,
+          order_id: order.id,
+          amount: order.amount,
+          currency: order.currency,
+          key_id: process.env.RAZORPAY_KEY_ID
+        }));
+      } catch (err) {
+        console.error('Razorpay Create Order Error:', err);
+        // Distinguish auth failure (401) vs server error (500)
+        const isAuthError = err?.statusCode === 401 || (err?.error?.code === 'BAD_REQUEST_ERROR' && (err?.error?.description || '').toLowerCase().includes('auth'));
+        const statusCode = isAuthError ? 401 : 500;
+        const errorMessage = isAuthError
+          ? 'Razorpay Authentication failed: Key ID or Key Secret is invalid or expired in your Razorpay Dashboard. Please check or regenerate under Settings > API Keys.'
+          : (err?.error?.description || err?.message || 'Failed to create Razorpay order');
+        res.writeHead(statusCode, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: errorMessage, isAuthError }));
+      }
+    });
+    return;
+  }
+
+  // Razorpay: Step 3 - Verify Payment Signature
+  if (pathname === '/api/verify-payment' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const { razorpay_order_id, razorpay_payment_id, razorpay_signature, customerData, items, total, simulated } = payload;
+
+        if (!razorpay_order_id) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({
+            error: 'Missing required field: razorpay_order_id is required'
+          }));
+        }
+
+        // Handle simulated test payment verification
+        if (simulated || razorpay_signature === 'simulated_test_signature' || (razorpay_order_id && razorpay_order_id.startsWith('order_sim_'))) {
+          const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({
+            success: true,
+            message: 'Test payment simulated & verified successfully. Order confirmed.',
+            orderId,
+            razorpay_order_id,
+            razorpay_payment_id: razorpay_payment_id || `pay_sim_${Date.now().toString().slice(-8)}`,
+            total: total || 0,
+            customerData: customerData || {},
+            itemsCount: items?.length || 0,
+            paidAt: new Date().toISOString(),
+            simulated: true
+          }));
+        }
+
+        // Validation: Missing fields
+        if (!razorpay_payment_id || !razorpay_signature) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({
+            error: 'Missing required fields: razorpay_order_id, razorpay_payment_id, and razorpay_signature are required'
+          }));
+        }
+
+        if (!process.env.RAZORPAY_KEY_SECRET) {
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({ error: 'Razorpay secret key not configured on server' }));
+        }
+
+        // HMAC-SHA256 signature verification: order_id + "|" + payment_id
+        const expectedSignature = crypto
+          .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
+          .update(`${razorpay_order_id}|${razorpay_payment_id}`)
+          .digest('hex');
+
+        // Timing-safe buffer comparison to prevent timing attacks
+        let isSignatureValid = false;
+        try {
+          const expectedBuffer = Buffer.from(expectedSignature, 'utf-8');
+          const receivedBuffer = Buffer.from(razorpay_signature, 'utf-8');
+          if (expectedBuffer.length === receivedBuffer.length && crypto.timingSafeEqual(expectedBuffer, receivedBuffer)) {
+            isSignatureValid = true;
+          }
+        } catch (cmpErr) {
+          isSignatureValid = false;
+        }
+
+        if (!isSignatureValid) {
+          // Signature mismatch: return 400, do NOT mark as paid
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          return res.end(JSON.stringify({
+            success: false,
+            error: 'Payment verification failed: Signature mismatch. Order not marked as paid.'
+          }));
+        }
+
+        // Signature verified successfully -> generate confirmed store order ID
+        const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({
+          success: true,
+          message: 'Payment signature verified successfully. Order confirmed.',
+          orderId,
+          razorpay_order_id,
+          razorpay_payment_id,
+          total: total || 0,
+          customerData: customerData || {},
+          itemsCount: items?.length || 0,
+          paidAt: new Date().toISOString()
+        }));
+      } catch (err) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({ error: 'Invalid JSON payload for payment verification' }));
+      }
+    });
+    return;
   }
 
   // Checkout API

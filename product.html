@@ -353,11 +353,14 @@
           </div>
 
           <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <button type="button" id="btn-add-to-cart-detail" class="btn-primary" style="flex: 1; min-width: 170px; padding: 14px 22px; font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);" onclick="addToBasketFromDetail()">
+            <button type="button" id="btn-add-to-cart-detail" class="btn-primary" style="flex: 1; min-width: 150px; padding: 14px 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);" onclick="addToBasketFromDetail()">
               🛒 Add to Basket
             </button>
-            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 1; min-width: 170px; margin-top: 0; padding: 14px 22px; text-decoration: none;">
-              <span>💬 Enquire on WhatsApp</span>
+            <button type="button" id="btn-buy-now-detail" class="btn-primary" style="flex: 1; min-width: 150px; padding: 14px 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md); background: #241C16; border-color: #241C16;" onclick="buyNowFromDetail()">
+              ⚡ Buy Now (Razorpay)
+            </button>
+            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 1; min-width: 150px; margin-top: 0; padding: 14px 20px; text-decoration: none;">
+              <span>💬 WhatsApp</span>
             </a>
           </div>
         </div>
@@ -457,6 +460,9 @@
           </button>
         </form>
       </div>
+    </div>
+  </div>
+
   <!-- Slide-Over Cart Drawer -->
   <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
     <div class="cart-drawer" onclick="event.stopPropagation()">
@@ -608,12 +614,23 @@
           ℹ️ <strong>Why is COD paused?</strong> Traditional bamboo Mudhas are bulky structural items incurring high two-way road freight. Pausing COD prevents transit returns, keeping consumer prices fair. Every prepaid order includes our <strong>100% Transit Damage Replacement Guarantee</strong>.
         </div>
 
+        <div class="razorpay-badge-card" style="display: flex; align-items: center; justify-content: space-between; background: rgba(160, 114, 56, 0.08); border: 1px solid rgba(160, 114, 56, 0.25); padding: 12px 16px; border-radius: var(--radius-md); margin-top: 14px; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.25rem;">🔒</span>
+            <div>
+              <strong style="color: var(--text-primary); font-size: 0.875rem;">Razorpay Standard Web Checkout</strong>
+              <div style="font-size: 0.75rem; color: var(--text-secondary);">Direct 256-bit encrypted gateway • UPI, Cards, NetBanking</div>
+            </div>
+          </div>
+          <span style="font-size: 0.72rem; font-weight: 700; color: #2E7D32; background: #E8F5E9; padding: 4px 8px; border-radius: var(--radius-pill);">Instant & Verified</span>
+        </div>
+
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
           <button type="button" class="btn-secondary" onclick="backToAddressStep()">
             ← Back to Address
           </button>
-          <button type="button" class="btn-primary" onclick="placeOrder()">
-            Place Order & Pay
+          <button type="button" class="btn-primary" id="btn-place-order" onclick="payWithRazorpay()" style="min-width: 220px;">
+            Pay with Razorpay 🔒
           </button>
         </div>
       </div>
@@ -623,12 +640,14 @@
         <span style="font-size: 3.5rem;">🎉</span>
         <h3 style="font-family: var(--font-serif); font-size: 2rem; margin: 12px 0 6px;">Thank You for Supporting Authentic Craft!</h3>
         <p style="font-size: 0.9375rem; color: var(--text-secondary); margin-bottom: 20px;">
-          Your order has been received. Our workshop in Muzaffarnagar is preparing your shipment.
+          Your order has been received and verified via Razorpay. Our workshop in Muzaffarnagar is preparing your shipment.
         </p>
 
-        <div style="background: var(--bg-primary); border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 24px; min-width: 280px;">
+        <div style="background: var(--bg-primary); border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 24px; min-width: 300px;">
           <div><strong>Order ID:</strong> <span id="confirmed-order-id">MUDHA-000000</span></div>
+          <div><strong>Payment ID:</strong> <span id="confirmed-payment-id">Confirmed</span></div>
           <div><strong>Total Paid:</strong> <span id="confirmed-order-total">₹0</span></div>
+          <div><strong>Gateway:</strong> Razorpay Standard Checkout (256-bit SSL)</div>
           <div><strong>WhatsApp Tracking:</strong> <span id="confirmed-order-phone">Registered</span></div>
           <div><strong>Estimated Dispatch:</strong> 1–2 business days via Surface Cargo</div>
         </div>
@@ -649,7 +668,7 @@
   <footer class="site-footer">
     <div class="container footer-bottom" style="border-top: none;">
       <div>
-        &copy; 2026 MuddaCraft Studio. Sourced directly from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.
+        &copy; 2026 MudhaCraft Studio. Sourced directly from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.
       </div>
       <div>
         <a href="/" style="color: var(--bamboo-light); text-decoration: underline;">Return to Home</a>
@@ -661,6 +680,7 @@
   <div class="toast-container" id="toast-container"></div>
 
   <!-- Page Logic -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <script src="app.js"></script>
   <script>
     let currentProduct = null;
@@ -798,6 +818,13 @@
       };
       addItemToCart(configuredProduct, 1);
       showToast(`Added ${configuredProduct.name} to basket!`);
+      openCartDrawer();
+    }
+
+    function buyNowFromDetail() {
+      if (!currentProduct) return;
+      addToBasketFromDetail();
+      openCheckoutModal();
     }
 
     function openWhatsAppInquiry() {

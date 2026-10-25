@@ -8,7 +8,18 @@
     "start": "node server.js",
     "dev": "node --watch server.js"
   },
-  "keywords": ["mudda", "artisanal", "ecommerce", "furniture", "handmade", "sarkanda"],
+  "keywords": [
+    "mudda",
+    "artisanal",
+    "ecommerce",
+    "furniture",
+    "handmade",
+    "sarkanda"
+  ],
   "author": "MuddaCraft Studio",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "razorpay": "^2.9.8"
+  }
 }

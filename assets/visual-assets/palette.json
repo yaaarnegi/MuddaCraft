@@ -1,0 +1,25 @@
+{
+  "brand": "Mudda Craft",
+  "palette": {
+    "paper": "#F6F2E8",
+    "sand": "#E7DCCB",
+    "oxblood_ink": "#81252A",
+    "terracotta_logo": "#C33720",
+    "charcoal": "#282321",
+    "muted_text": "#74645B",
+    "olive_optional": "#636A4D",
+    "mustard_optional": "#D8A849"
+  },
+  "fonts": {
+    "body": "Lato / Noto Sans Devanagari",
+    "display": "Liberation Serif / Georgia"
+  },
+  "usage": {
+    "oxblood": "illustration ink, borders, labels",
+    "terracotta": "existing logo, primary CTA, headlines",
+    "paper": "main background",
+    "sand": "panels and product backplates",
+    "olive": "rare natural accent",
+    "mustard": "rare accent, never dominant"
+  }
+}
