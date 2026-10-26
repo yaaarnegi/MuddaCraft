@@ -127,61 +127,54 @@ function renderProducts(filter = 'All Products') {
     const displayPrice = product.price ? (product.price + (isToggled ? (product.cushionCost || 0) : 0)) : null;
     const priceHtml = hasConfirmedPrice
       ? `<span class="product-price" id="card-price-${product.id}">₹${displayPrice.toLocaleString('en-IN')}</span>`
-      : `<span class="product-price" style="font-size: 1.15rem; color: var(--bamboo-base);">Price on Request</span>`;
+      : `<span class="product-price" style="font-size: 1.15rem; color: var(--mudda-terracotta);">Price on Request</span>`;
     
-    const specsText = product.specifications || 'Specifications Coming Soon';
+    // Wireframe 02: One concise sentence describing material, use, or key benefit
+    const shortBenefit = product.description 
+      ? product.description.split('.')[0] + '.' 
+      : 'Handwoven with natural riverbank reeds and seasoned bamboo.';
+
+    const kickerText = product.filterCategory || product.category || 'Handcrafted Mudda';
 
     return `
       <article class="product-card" data-product-id="${product.id}">
-        <div class="product-image-wrap" onclick="window.location.href='product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}'">
+        <div class="product-image-wrap" onclick="window.location.href='product.html?id=${product.id}'">
           <img src="${primaryImg}" alt="${product.name}" loading="lazy">
-          <span class="product-badge-tag">${product.category || 'Cane Furniture'}</span>
+          <span class="product-badge-tag">${kickerText}</span>
+          ${hasConfirmedPrice ? `
+            <button type="button" class="card-quick-add-btn" onclick="event.stopPropagation(); quickAddToCart('${product.id}')" title="Quick Add to Basket" aria-label="Add to cart">
+              +
+            </button>
+          ` : ''}
         </div>
         <div class="product-card-body">
-          <h3 class="product-name">
-            <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}">${product.name}</a>
-          </h3>
+          <div class="product-card-meta-top">
+            <span class="product-card-kicker">MUZAFFARNAGAR CRAFT</span>
+            <h3 class="product-name">
+              <a href="product.html?id=${product.id}">${product.name}</a>
+            </h3>
+          </div>
+
           <div class="product-price-row">
-            ${priceHtml}
-            <span id="card-note-${product.id}" class="card-price-subnote">
-              ${isToggled ? `<span style="color: var(--mudda-oxblood); font-weight: 600;">✓ Includes Cushions (+₹${(product.cushionCost || 0).toLocaleString('en-IN')})</span>` : (product.cushionNote || '')}
-            </span>
+            <div class="product-price-wrapper">
+              ${priceHtml}
+              <span class="product-card-freight-note">Free Shipping > ₹4,500</span>
+            </div>
           </div>
 
-          <div class="card-cushion-slot">
-            ${product.cushionCost ? `
-              <div class="card-cushion-toggle-wrap">
-                <div class="card-cushion-label-text">
-                  <span>Cushion</span>
-                  <span class="card-cushion-extra-tag">+₹${product.cushionCost.toLocaleString('en-IN')}</span>
-                </div>
-                <label class="switch-toggle" title="Toggle fitted cushions">
-                  <input type="checkbox" onchange="toggleCardCushion('${product.id}', this.checked)" ${isToggled ? 'checked' : ''}>
-                  <span class="slider"></span>
-                </label>
-              </div>
-            ` : (product.cushionNote && product.cushionNote.toLowerCase().includes('included') ? `
-              <div class="card-cushion-status">
-                <span class="cushion-check">✓</span> Cushions Included
-              </div>
-            ` : `
-              <div class="card-cushion-spacer"></div>
-            `)}
+          <p class="product-card-desc">${shortBenefit}</p>
+
+          <div class="product-card-tags">
+            <span class="product-tag-pill">🌿 River Cane & Bamboo</span>
+            <span class="product-tag-pill">📦 Zero Assembly</span>
+            ${product.cushionCost ? `<span class="product-tag-pill">🛋️ Cushion Option (+₹${product.cushionCost})</span>` : ''}
           </div>
 
-          <div class="product-actions-row">
-            <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}" id="card-link-${product.id}" class="btn-view-product">
-              View Product
+          <div class="product-card-action-wrap">
+            <a href="product.html?id=${product.id}" id="card-link-${product.id}" class="btn-card-primary">
+              <span>Explore Piece & Options</span>
+              <span class="btn-card-arrow">→</span>
             </a>
-            ${hasConfirmedPrice ? `
-              <button class="btn-quick-add" onclick="quickAddToCart('${product.id}')" title="Add to Basket" aria-label="Add to cart">
-                +
-              </button>
-            ` : `
-              <button class="btn-quick-add" onclick="openProductWhatsApp('${product.name}', ${product.price || 'null'})" title="Enquire on WhatsApp" aria-label="Enquire on WhatsApp" style="color: #128C7E; border-color: rgba(37, 211, 102, 0.4);">
-                💬
-              </button>
-            `}
           </div>
         </div>
       </article>

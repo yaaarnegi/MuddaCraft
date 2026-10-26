@@ -814,11 +814,25 @@ button {
 }
 
 .product-card-body {
-  padding: 20px;
+  padding: 22px 20px 20px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: space-between;
+}
+
+.product-card-meta-top {
+  margin-bottom: 8px;
+}
+
+.product-card-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mudda-muted);
+  margin-bottom: 6px;
+  display: block;
 }
 
 .product-name {
@@ -826,9 +840,9 @@ button {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--mudda-charcoal);
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   line-height: 1.3;
-  min-height: 3.25em;
+  min-height: 2.6em;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -847,25 +861,127 @@ button {
 
 .product-price-row {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-bottom: 12px;
-  min-height: 46px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(129, 37, 42, 0.08);
+}
+
+.product-price-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .product-price {
   font-family: var(--font-sans);
-  font-size: 1.4rem;
+  font-size: 1.375rem;
   font-weight: 700;
-  color: var(--mudda-oxblood);
+  color: var(--mudda-terracotta);
   letter-spacing: -0.01em;
 }
 
-.card-price-subnote {
-  font-size: 0.75rem;
+.product-card-freight-note {
+  font-size: 0.71875rem;
+  color: var(--mudda-olive);
+  font-weight: 600;
+}
+
+.product-card-desc {
+  font-size: 0.84375rem;
   color: var(--mudda-muted);
-  line-height: 1.3;
-  min-height: 1.3em;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5em;
+}
+
+.product-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.product-tag-pill {
+  font-size: 0.71875rem;
+  font-weight: 600;
+  color: var(--mudda-charcoal);
+  background: var(--mudda-paper);
+  border: 1px solid rgba(129, 37, 42, 0.12);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.product-card-action-wrap {
+  margin-top: auto;
+}
+
+.btn-card-primary {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--mudda-chalk);
+  color: var(--mudda-charcoal);
+  border: 1.5px solid rgba(129, 37, 42, 0.22);
+  padding: 11px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.90625rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.btn-card-primary:hover {
+  background-color: var(--mudda-terracotta);
+  border-color: var(--mudda-terracotta);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(196, 90, 60, 0.28);
+  transform: translateY(-1px);
+}
+
+.btn-card-arrow {
+  transition: transform 0.2s ease;
+}
+
+.btn-card-primary:hover .btn-card-arrow {
+  transform: translateX(4px);
+}
+
+.card-quick-add-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 252, 245, 0.95);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(129, 37, 42, 0.18);
+  color: var(--mudda-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 3;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.card-quick-add-btn:hover {
+  background: var(--mudda-terracotta);
+  border-color: var(--mudda-terracotta);
+  color: #FFFFFF;
+  transform: scale(1.08);
 }
 
 /* Compact Cushion Slot on Cards */

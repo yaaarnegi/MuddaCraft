@@ -37,33 +37,35 @@
     .product-page-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
-      gap: 52px;
+      gap: 48px;
       padding: 24px 0 64px;
+      align-items: start;
     }
     .product-gallery-sticky {
       position: sticky;
-      top: 96px;
+      top: 104px;
     }
     .main-photo-frame {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
+      background: var(--mudda-chalk);
+      border: 1.5px solid rgba(129, 37, 42, 0.12);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      height: 480px;
+      height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 16px rgba(44, 30, 22, 0.05);
       margin-bottom: 16px;
+      position: relative;
     }
     .main-photo-frame img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .main-photo-frame:hover img {
-      transform: scale(1.03);
+      transform: scale(1.025);
     }
     .thumbs-row {
       display: flex;
@@ -78,7 +80,7 @@
       border: 2px solid transparent;
       overflow: hidden;
       cursor: pointer;
-      background: var(--bg-secondary);
+      background: var(--mudda-chalk);
       flex-shrink: 0;
       position: relative;
       box-shadow: var(--shadow-sm);
@@ -89,7 +91,7 @@
       box-shadow: var(--shadow-md);
     }
     .thumb-item.active {
-      border-color: var(--bamboo-base);
+      border-color: var(--mudda-terracotta);
     }
     .thumb-item img {
       width: 100%;
@@ -110,102 +112,315 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    .product-meta-header {
+
+    /* Section 04: Product Detail Stack (Wireframe 04 Alignment) */
+    .product-info-column {
+      display: flex;
+      flex-direction: column;
+    }
+    .product-detail-stack {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(129, 37, 42, 0.14);
+      border-radius: var(--radius-lg);
+      padding: 32px 30px;
+      box-shadow: 0 4px 20px rgba(44, 30, 22, 0.05);
+    }
+    .product-detail-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.71875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--mudda-terracotta);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .product-detail-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+      line-height: 1.25;
+      margin: 0 0 12px 0;
+    }
+    .product-meta-subrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 20px;
     }
     .supplier-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(160, 114, 56, 0.08);
-      border: 1px solid rgba(160, 114, 56, 0.2);
-      color: var(--bamboo-dark);
+      background: rgba(196, 90, 60, 0.08);
+      border: 1px solid rgba(196, 90, 60, 0.2);
+      color: var(--mudda-terracotta);
       padding: 4px 12px;
       border-radius: var(--radius-pill);
       font-size: 0.75rem;
       font-weight: 600;
-      margin-bottom: 12px;
     }
-    .product-detail-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.2vw, 2.75rem);
+    .product-category-badge {
+      display: inline-flex;
+      align-items: center;
+      background: var(--mudda-paper);
+      border: 1px solid rgba(129, 37, 42, 0.12);
+      color: var(--mudda-muted);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
       font-weight: 600;
-      color: var(--text-primary);
-      line-height: 1.2;
-      margin-bottom: 10px;
     }
-    .price-inquiry-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
+    .product-price-box {
+      margin-bottom: 16px;
+    }
+    .product-price-headline {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
     }
     .price-tag-large {
-      font-size: 1.75rem;
+      font-family: var(--font-sans);
+      font-size: 2.1rem;
       font-weight: 700;
-      color: var(--bamboo-base);
-      display: block;
-      margin-bottom: 4px;
+      color: var(--mudda-terracotta);
+      letter-spacing: -0.01em;
+    }
+    .price-freight-tag {
+      font-size: 0.78125rem;
+      color: var(--mudda-olive);
+      font-weight: 600;
+      background: rgba(85, 107, 47, 0.08);
+      border: 1px solid rgba(85, 107, 47, 0.2);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
     }
     .price-tag-sub {
       font-size: 0.8125rem;
-      color: var(--text-muted);
+      color: var(--mudda-muted);
+      margin-bottom: 10px;
     }
     .availability-tag {
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      font-size: 0.78125rem;
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+      background: rgba(196, 90, 60, 0.08);
+      border: 1px solid rgba(196, 90, 60, 0.18);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+    .product-wireframe-divider {
+      border: none;
+      border-top: 1px solid rgba(129, 37, 42, 0.12);
+      margin: 18px 0;
+    }
+    .product-detail-summary {
+      font-size: 0.96875rem;
+      line-height: 1.6;
+      color: var(--mudda-charcoal);
+      margin: 0 0 20px 0;
+    }
+    
+    /* Wireframe 04: Grouped Key Details (Material • Dimensions • Care) */
+    .product-key-details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .key-detail-card {
+      background: var(--mudda-chalk);
+      border: 1px solid rgba(129, 37, 42, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .key-detail-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .key-detail-icon {
+      font-size: 0.95rem;
+    }
+    .key-detail-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--mudda-muted);
+    }
+    .key-detail-val {
       font-size: 0.8125rem;
       font-weight: 600;
-      color: #856404;
-      background: #FFF3CD;
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      margin-top: 10px;
+      color: var(--mudda-charcoal);
+      line-height: 1.35;
     }
-    .btn-wa-inquiry-large {
+
+    /* Cushion Add-on Card */
+    .cushion-addon-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--mudda-paper);
+      border: 1.5px solid rgba(129, 37, 42, 0.14);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      transition: all var(--transition-fast);
+    }
+    .cushion-addon-card.active {
+      background: rgba(196, 90, 60, 0.06);
+      border-color: var(--mudda-terracotta);
+    }
+    .cushion-addon-info {
+      flex: 1;
+      padding-right: 12px;
+    }
+    .cushion-addon-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .cushion-addon-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+    }
+    .cushion-addon-desc {
+      font-size: 0.78125rem;
+      color: var(--mudda-muted);
+    }
+    .cushion-included-notice {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(85, 107, 47, 0.08);
+      border: 1px solid rgba(85, 107, 47, 0.2);
+      color: var(--mudda-olive);
+      font-weight: 600;
+      font-size: 0.8125rem;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+    }
+
+    /* Wireframe 04: One Prominent Action Stack */
+    .product-actions-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .btn-detail-primary {
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      background: #25D366;
-      color: #FFF;
+      background: var(--mudda-terracotta);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-sm);
       padding: 16px 24px;
-      border-radius: var(--radius-md);
       font-size: 1.05rem;
-      font-weight: 600;
-      width: 100%;
-      margin-top: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(196, 90, 60, 0.3);
       transition: all var(--transition-fast);
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
     }
-    .btn-wa-inquiry-large:hover {
-      background: #1EBE5D;
+    .btn-detail-primary:hover {
+      background: var(--mudda-oxblood);
       transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(129, 37, 42, 0.35);
     }
-    .btn-request-price {
+    .btn-detail-price {
+      font-weight: 500;
+      opacity: 0.95;
+    }
+    .product-secondary-actions {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 10px;
+    }
+    .btn-detail-buy-now {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: var(--bamboo-base);
-      color: #FFF;
-      padding: 14px 24px;
-      border-radius: var(--radius-md);
-      font-size: 0.95rem;
+      gap: 6px;
+      background: var(--mudda-chalk);
+      color: var(--mudda-charcoal);
+      border: 1.5px solid rgba(129, 37, 42, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.875rem;
       font-weight: 600;
-      width: 100%;
-      margin-top: 10px;
+      cursor: pointer;
       transition: all var(--transition-fast);
     }
-    .btn-request-price:hover {
-      background: var(--bamboo-hover);
+    .btn-detail-buy-now:hover {
+      background: #FFFFFF;
+      border-color: var(--mudda-terracotta);
+      color: var(--mudda-terracotta);
     }
+    .btn-detail-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: #25D366;
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+    }
+    .btn-detail-wa:hover {
+      background: #1EBE5D;
+      transform: translateY(-1px);
+    }
+
+    /* Trust Strip */
+    .product-trust-strip {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px;
+      background: var(--mudda-chalk);
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(129, 37, 42, 0.08);
+      font-size: 0.78125rem;
+      color: var(--mudda-muted);
+      margin-bottom: 22px;
+    }
+    .trust-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .trust-strip-check {
+      color: var(--mudda-olive);
+      font-weight: 700;
+    }
+
+    /* Specifications */
     .spec-table-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
+      background: #FFFFFF;
+      border: 1.5px solid rgba(129, 37, 42, 0.12);
       border-radius: var(--radius-md);
       overflow: hidden;
       margin-bottom: 24px;
@@ -215,23 +430,25 @@
       grid-template-columns: 140px 1fr;
       padding: 12px 18px;
       font-size: 0.875rem;
-      border-bottom: 1px solid var(--border-light);
+      border-bottom: 1px solid rgba(129, 37, 42, 0.08);
     }
     .spec-table-row:last-child {
       border-bottom: none;
     }
     .spec-label {
-      color: var(--text-muted);
+      color: var(--mudda-muted);
       font-weight: 600;
     }
     .spec-value {
-      color: var(--text-primary);
+      color: var(--mudda-charcoal);
     }
+
     .related-products-section {
       padding: 48px 0 80px;
-      border-top: 1px solid var(--border-light);
-      background: var(--bg-secondary);
+      border-top: 1px solid rgba(129, 37, 42, 0.12);
+      background: var(--mudda-paper);
     }
+
     @media (max-width: 900px) {
       .product-page-grid {
         grid-template-columns: 1fr;
@@ -240,14 +457,26 @@
       .main-photo-frame {
         height: 380px;
       }
+      .product-detail-stack {
+        padding: 24px 20px;
+      }
+    }
+    @media (max-width: 600px) {
+      .product-key-details-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .product-secondary-actions {
+        grid-template-columns: 1fr;
+      }
     }
     @media (max-width: 480px) {
       .main-photo-frame {
         height: 280px;
       }
-      .gallery-thumbnails img {
-        width: 60px;
-        height: 60px;
+      .thumb-item {
+        width: 70px;
+        height: 70px;
       }
       .spec-table-row {
         grid-template-columns: 110px 1fr;
@@ -346,34 +575,72 @@
         </div>
       </div>
 
-      <!-- Right: Product Information -->
+      <!-- Right: Product Information Stack (Wireframe 04 Alignment) -->
       <div class="product-info-column">
-        <div class="product-meta-header">
-          <div class="supplier-pill">
-            <span>📍</span>
-            <span id="product-supplier">A to Z Mudda House, Muzaffarnagar</span>
-          </div>
+        <div class="product-detail-stack">
+          <!-- Kicker & Category -->
+          <span class="product-detail-kicker">MUZAFFARNAGAR CRAFT • DIRECT SOURCING</span>
           <h1 class="product-detail-title" id="product-title">Loading Product...</h1>
-          <div style="font-size: 0.875rem; color: var(--bamboo-base); font-weight: 600;" id="product-category">
-            Category
+          
+          <div class="product-meta-subrow">
+            <div class="supplier-pill">
+              <span>📍</span>
+              <span id="product-supplier">A to Z Mudda House, Muzaffarnagar</span>
+            </div>
+            <span class="product-category-badge" id="product-category">Category</span>
           </div>
-        </div>
 
-        <!-- Pricing & Enquiries Box -->
-        <div class="price-inquiry-box">
-          <span class="price-tag-large" id="product-price">₹0</span>
-          <span class="price-tag-sub" id="product-price-sub">Direct Maker Pricing • Pan-India Surface Delivery</span>
-          <br>
-          <span class="availability-tag" id="product-availability">
-            ⏱️ Availability: Ready to Dispatch • Handcrafted in Muzaffarnagar
-          </span>
+          <!-- Grouped Price Box (Wireframe 04) -->
+          <div class="product-price-box">
+            <div class="product-price-headline">
+              <span class="price-tag-large" id="product-price">₹0</span>
+              <span class="price-freight-tag">Free Shipping > ₹4,500</span>
+            </div>
+            <div class="price-tag-sub" id="product-price-sub">Direct Maker Pricing • Pan-India Delivery • 100% Transit Safe</div>
+            <div class="availability-tag" id="product-availability">
+              ⏱️ Ready to Dispatch • Handcrafted in Muzaffarnagar
+            </div>
+          </div>
+
+          <!-- Wireframe 04 Divider Line -->
+          <hr class="product-wireframe-divider">
+
+          <!-- Concise Description (Wireframe 04: One concise sentence describing material, use, or key benefit) -->
+          <p class="product-detail-summary" id="product-description">
+            Loading details...
+          </p>
+
+          <!-- Grouped Key Details (Wireframe 04: Material • Dimensions • Care) -->
+          <div class="product-key-details-grid">
+            <div class="key-detail-card">
+              <div class="key-detail-header">
+                <span class="key-detail-icon">🌿</span>
+                <span class="key-detail-label">Material</span>
+              </div>
+              <div class="key-detail-val" id="spec-material">Natural river reed & bamboo</div>
+            </div>
+            <div class="key-detail-card">
+              <div class="key-detail-header">
+                <span class="key-detail-icon">📐</span>
+                <span class="key-detail-label">Dimensions</span>
+              </div>
+              <div class="key-detail-val" id="spec-dimensions">Specifications Coming Soon</div>
+            </div>
+            <div class="key-detail-card">
+              <div class="key-detail-header">
+                <span class="key-detail-icon">✨</span>
+                <span class="key-detail-label">Care</span>
+              </div>
+              <div class="key-detail-val">Wipe with dry cloth; keep airy</div>
+            </div>
+          </div>
 
           <!-- Cushion Add-on Toggle Card -->
           <div id="cushion-addon-card" class="cushion-addon-card" style="display: none;">
             <div class="cushion-addon-info">
               <div class="cushion-addon-header">
                 <span class="cushion-addon-icon">🛋️</span>
-                <span class="cushion-addon-title">Include Matching Cushions</span>
+                <span class="cushion-addon-title">Include Matching Fitted Cushions</span>
               </div>
               <div class="cushion-addon-desc" id="cushion-addon-desc">
                 Custom fitted seating cushions
@@ -390,44 +657,58 @@
             <span>✓ Seating Cushions Included with this set</span>
           </div>
 
-          <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <button type="button" id="btn-buy-now-detail" class="btn-primary" style="flex: 1.2; min-width: 160px; padding: 14px 22px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background: var(--mudda-terracotta); border: 1px solid var(--mudda-terracotta); box-shadow: 0 2px 8px rgba(195, 55, 32, 0.25);" onclick="buyNowFromDetail()">
-              ⚡ Buy Now (Razorpay)
+          <!-- Action Stack: One Dominant Primary Action + Clean Secondary Row -->
+          <div class="product-actions-stack">
+            <button type="button" id="btn-add-to-cart-detail" class="btn-detail-primary" onclick="addToBasketFromDetail()">
+              <span>🛒 Add to Basket</span>
+              <span class="btn-detail-price" id="btn-detail-price"></span>
             </button>
-            <button type="button" id="btn-add-to-cart-detail" class="btn-secondary" style="flex: 1; min-width: 140px; padding: 14px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background: var(--mudda-chalk); border: 1.5px solid rgba(129, 37, 42, 0.2); color: var(--mudda-charcoal);" onclick="addToBasketFromDetail()">
-              🛒 Add to Basket
-            </button>
-            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 0.8; min-width: 130px; margin-top: 0; padding: 14px 18px; text-decoration: none; border-radius: var(--radius-sm);">
-              <span>💬 WhatsApp</span>
-            </a>
+            <div class="product-secondary-actions">
+              <button type="button" id="btn-buy-now-detail" class="btn-detail-buy-now" onclick="buyNowFromDetail()">
+                ⚡ Instant Checkout (Razorpay)
+              </button>
+              <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-detail-wa">
+                <span>💬 WhatsApp Inquiry</span>
+              </a>
+            </div>
           </div>
 
-          <div class="product-trust-strip" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(129, 37, 42, 0.12); font-size: 0.78125rem; color: var(--mudda-muted);">
-            <span>✓ 100% Free Transit Replacement</span>
-            <span>✓ Pre-assembled • No Tools Needed</span>
-            <span>✓ Direct from Muzaffarnagar Workshop</span>
+          <!-- Trust Strip -->
+          <div class="product-trust-strip">
+            <div class="trust-strip-item">
+              <span class="trust-strip-check">✓</span>
+              <span>100% Free Transit Damage Replacement Guarantee</span>
+            </div>
+            <div class="trust-strip-item">
+              <span class="trust-strip-check">✓</span>
+              <span>Pre-assembled • No Tools or Assembly Needed</span>
+            </div>
+            <div class="trust-strip-item">
+              <span class="trust-strip-check">✓</span>
+              <span>Direct Maker Sourcing from Muzaffarnagar Workshop</span>
+            </div>
+          </div>
+
+          <!-- Bulky PIN Freight Estimator -->
+          <div class="pincode-box">
+            <div style="font-size: 0.8125rem; font-weight: 700; color: var(--mudda-charcoal); margin-bottom: 6px;">
+              🚚 Check Surface Delivery Timeline
+            </div>
+            <div class="pincode-row">
+              <input type="text" id="pincode-input" class="pincode-input" placeholder="Enter 6-digit PIN code" maxlength="6">
+              <button class="btn-check-pin" onclick="checkPinCodeDelivery()">Check</button>
+            </div>
+            <div class="pincode-result" id="pincode-result"></div>
           </div>
         </div>
 
-        <!-- Description -->
-        <div style="margin-bottom: 24px;">
-          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 8px;">About This Piece</h3>
-          <p id="product-description" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
-            Loading details...
-          </p>
-        </div>
-
-        <!-- Specifications -->
-        <div style="margin-bottom: 28px;">
-          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 12px;">Craft Specifications</h3>
+        <!-- Full Specifications Accordion / Collapsible Section -->
+        <div style="margin-top: 24px;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 12px; color: var(--mudda-charcoal);">Detailed Craft Specifications</h3>
           <div class="spec-table-card">
             <div class="spec-table-row">
               <span class="spec-label">Material</span>
-              <span class="spec-value" id="spec-material">Natural seasoned bamboo & cane</span>
-            </div>
-            <div class="spec-table-row">
-              <span class="spec-label">Dimensions</span>
-              <span class="spec-value" id="spec-dimensions">Specifications Coming Soon</span>
+              <span class="spec-value" id="spec-material-full">Natural seasoned river reed & bamboo cane</span>
             </div>
             <div class="spec-table-row">
               <span class="spec-label">Assembly</span>
@@ -442,18 +723,6 @@
               <span class="spec-value">100% Free Transit Damage Replacement</span>
             </div>
           </div>
-        </div>
-
-        <!-- Bulky PIN Freight Estimator -->
-        <div class="pincode-box" style="margin-bottom: 24px;">
-          <div style="font-size: 0.8125rem; font-weight: 700; color: var(--text-primary);">
-            🚚 Check Surface Delivery Timeline
-          </div>
-          <div class="pincode-row">
-            <input type="text" id="pincode-input" class="pincode-input" placeholder="Enter 6-digit PIN code" maxlength="6">
-            <button class="btn-check-pin" onclick="checkPinCodeDelivery()">Check</button>
-          </div>
-          <div class="pincode-result" id="pincode-result"></div>
         </div>
       </div>
     </div>
@@ -815,6 +1084,11 @@
       document.getElementById('product-description').textContent = prod.description;
       document.getElementById('spec-dimensions').textContent = prod.specifications || 'Specifications Coming Soon';
 
+      const specMat = document.getElementById('spec-material');
+      if (specMat) specMat.textContent = prod.material || 'Natural river reed & bamboo';
+      const specMatFull = document.getElementById('spec-material-full');
+      if (specMatFull) specMatFull.textContent = prod.material || 'Natural seasoned river reed & bamboo cane';
+
       // Images
       const images = (prod.images && prod.images.length > 0) ? prod.images : [prod.image];
       const mainImg = document.getElementById('main-product-img');
@@ -857,18 +1131,22 @@
       const cushionPrice = currentProduct.cushionCost || 0;
       const total = basePrice + (isCushionSelected ? cushionPrice : 0);
 
-      document.getElementById('product-price').textContent = `₹${total.toLocaleString('en-IN')}`;
+      const priceElem = document.getElementById('product-price');
+      if (priceElem) priceElem.textContent = `₹${total.toLocaleString('en-IN')}`;
+
+      const btnPrice = document.getElementById('btn-detail-price');
+      if (btnPrice) btnPrice.textContent = `— ₹${total.toLocaleString('en-IN')}`;
 
       const subElem = document.getElementById('product-price-sub');
       if (subElem) {
         if (isCushionSelected && cushionPrice > 0) {
-          subElem.innerHTML = `Direct Maker Pricing • <strong style="color: var(--bamboo-base);">Includes Fitted Cushions (+₹${cushionPrice.toLocaleString('en-IN')})</strong>`;
+          subElem.innerHTML = `Direct Maker Pricing • <strong style="color: var(--mudda-terracotta);">Includes Fitted Cushions (+₹${cushionPrice.toLocaleString('en-IN')})</strong>`;
         } else if (currentProduct.cushionCost) {
           subElem.textContent = `Direct Maker Pricing • Base furniture piece (cushions optional above)`;
         } else if (currentProduct.cushionNote) {
           subElem.textContent = `Direct Maker Pricing • ${currentProduct.cushionNote}`;
         } else {
-          subElem.textContent = 'Direct Maker Pricing • Pan-India Surface Delivery';
+          subElem.textContent = 'Direct Maker Pricing • Pan-India Delivery • 100% Transit Safe';
         }
       }
     }
@@ -918,23 +1196,51 @@
       if (!grid) return;
       const related = (storeState.products || []).filter(p => p.id !== prod.id).slice(0, 3);
 
-      grid.innerHTML = related.map(p => `
-        <article class="product-card" onclick="window.location.href='product.html?id=${p.id}'" style="cursor: pointer;">
-          <div class="product-image-wrap">
+      grid.innerHTML = related.map(p => {
+        const shortBenefit = p.description 
+          ? p.description.split('.')[0] + '.' 
+          : 'Handwoven with natural riverbank reeds and seasoned bamboo.';
+        const kickerText = p.filterCategory || p.category || 'Handcrafted Mudda';
+        const hasConfirmedPrice = !!p.price;
+        return `
+        <article class="product-card" data-product-id="${p.id}">
+          <div class="product-image-wrap" onclick="window.location.href='product.html?id=${p.id}'">
             <img src="${p.image}" alt="${p.name}" loading="lazy">
-            <span class="product-badge-tag">${p.category}</span>
+            <span class="product-badge-tag">${kickerText}</span>
+            ${hasConfirmedPrice ? `
+              <button type="button" class="card-quick-add-btn" onclick="event.stopPropagation(); quickAddToCart('${p.id}')" title="Quick Add to Basket" aria-label="Add to cart">
+                +
+              </button>
+            ` : ''}
           </div>
           <div class="product-card-body">
-            <h3 class="product-name">${p.name}</h3>
-            <div class="product-price-row">
-              <span class="product-price">${p.price ? '₹' + p.price.toLocaleString('en-IN') : 'Price on Request'}</span>
+            <div class="product-card-meta-top">
+              <span class="product-card-kicker">MUZAFFARNAGAR CRAFT</span>
+              <h3 class="product-name">
+                <a href="product.html?id=${p.id}">${p.name}</a>
+              </h3>
             </div>
-            <a href="product.html?id=${p.id}" class="btn-view-product" style="display: block; margin-top: 10px;">
-              View Details →
-            </a>
+            <div class="product-price-row">
+              <div class="product-price-wrapper">
+                <span class="product-price">${hasConfirmedPrice ? '₹' + p.price.toLocaleString('en-IN') : 'Price on Request'}</span>
+                <span class="product-card-freight-note">Free Shipping > ₹4,500</span>
+              </div>
+            </div>
+            <p class="product-card-desc">${shortBenefit}</p>
+            <div class="product-card-tags">
+              <span class="product-tag-pill">🌿 River Cane & Bamboo</span>
+              <span class="product-tag-pill">📦 Zero Assembly</span>
+              ${p.cushionCost ? `<span class="product-tag-pill">🛋️ Cushion Option (+₹${p.cushionCost})</span>` : ''}
+            </div>
+            <div class="product-card-action-wrap">
+              <a href="product.html?id=${p.id}" class="btn-card-primary">
+                <span>Explore Piece & Options</span>
+                <span class="btn-card-arrow">→</span>
+              </a>
+            </div>
           </div>
         </article>
-      `).join('');
+      `}).join('');
     }
 
     function openPriceRequestModal() {
