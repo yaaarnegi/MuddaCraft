@@ -188,6 +188,17 @@ function filterProducts(category, btnElement) {
   renderProducts(category);
 }
 
+// Section 09: Filter collection by setting tile and smooth-scroll
+function filterBySetting(category) {
+  const buttons = Array.from(document.querySelectorAll('#collection-filters .filter-btn'));
+  const targetBtn = buttons.find(b => b.textContent.trim().toLowerCase().includes(category.toLowerCase()));
+  filterProducts(category, targetBtn || buttons[0]);
+  const collectionSection = document.getElementById('collection');
+  if (collectionSection) {
+    collectionSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 // Helper: Open WhatsApp with exact product context
 function openProductWhatsApp(productName, price) {
   const priceInfo = price ? ` (₹${Number(price).toLocaleString('en-IN')})` : '';
@@ -733,19 +744,29 @@ const placeOrder = payWithRazorpay;
 // ==========================================================================
 // Bulk B2B Inquiry Handling
 // ==========================================================================
+// Section 10: Commercial Enquiry Form (Wireframe 10 Alignment)
+// ==========================================================================
 async function submitBulkInquiry(event) {
   event.preventDefault();
   const form = event.target;
+  const alertBox = document.getElementById('bulk-feedback-alert');
+  const submitBtn = document.getElementById('bulk-submit-btn');
+
   const payload = {
-    name: form.name.value,
-    businessName: form.businessName.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    city: form.city.value,
-    quantity: form.quantity.value,
-    product: form.product.value,
-    message: form.message.value
+    name: form.name ? form.name.value : '',
+    businessName: form.businessName ? form.businessName.value : '',
+    phone: form.phone ? form.phone.value : '',
+    email: form.email ? form.email.value : '',
+    city: form.city ? form.city.value : '',
+    quantity: form.quantity ? form.quantity.value : '',
+    product: form.product ? form.product.value : (form.quantity ? form.quantity.value + ' units' : 'Bulk enquiry'),
+    message: form.message ? form.message.value : ''
   };
+
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending enquiry...</span>';
+  }
 
   try {
     const res = await fetch('/api/bulk-inquiry', {
@@ -758,18 +779,39 @@ async function submitBulkInquiry(event) {
     if (data.success) {
       trackEvent('BulkInquiry', {
         quantity: payload.quantity,
-        product: payload.product,
         businessName: payload.businessName
       });
 
-      form.reset();
-      showToast('Bulk inquiry received! Our trade desk will contact you within 4 hours.');
+      if (alertBox) {
+        alertBox.className = 'bulk-feedback-alert success';
+        alertBox.innerHTML = `<strong>✓ Commercial Enquiry Received! (Ref: ${data.inquiryId})</strong><br>Our Muzaffarnagar trade desk will review your requirements and provide custom trade pricing, sample availability, and road freight schedules within 4 business hours.`;
+        alertBox.style.display = 'block';
+        alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
 
-      const waMsg = encodeURIComponent(`Hello MuddaCraft Trade Desk, I just submitted Bulk Inquiry (${payload.quantity} units for ${payload.businessName || payload.name} in ${payload.city}). Please share your commercial trade pricing.`);
-      window.open(`https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${waMsg}`, '_blank');
+      form.reset();
+      showToast('Enquiry received! Opening trade desk WhatsApp...');
+
+      const waMsg = encodeURIComponent(`Hello MuddaCraft Trade Desk, I just submitted Commercial Enquiry (${payload.quantity} for ${payload.businessName || payload.name} in ${payload.city}). Reference: ${data.inquiryId}. Please share trade pricing.`);
+      const num = (storeState.whatsapp || '+919876543210').replace(/[^0-9]/g, '');
+      setTimeout(() => {
+        window.open(`https://wa.me/${num}?text=${waMsg}`, '_blank');
+      }, 1000);
+    } else {
+      throw new Error(data.error || 'Submission failed');
     }
   } catch (err) {
-    showToast('Failed to submit bulk inquiry. Please contact us on WhatsApp directly.');
+    if (alertBox) {
+      alertBox.className = 'bulk-feedback-alert error';
+      alertBox.innerHTML = `<strong>⚠️ Submission issue:</strong> Could not submit online. Please message our commercial desk directly on WhatsApp.`;
+      alertBox.style.display = 'block';
+    }
+    showToast('Failed to submit bulk enquiry. Please contact us on WhatsApp directly.');
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Send enquiry</span><span class="btn-arrow">→</span>';
+    }
   }
 }
 
