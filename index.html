@@ -321,7 +321,7 @@
       </div>
     </section>
 
-    <!-- 4. Craftsmanship / Origin Section -->
+    <!-- Section 08: Maker / Story Section (Wireframe 08 Alignment) -->
     <section class="section" id="craftsmanship">
       <div class="container craft-grid">
         <div class="postcard-wrapper">
@@ -331,24 +331,21 @@
           </div>
         </div>
         <div class="craft-content">
-          <span class="craft-kicker">[DIRECT WORKSHOP SOURCING]</span>
-          <h2 class="craft-title">Handcrafted in Muzaffarnagar. Built for Modern Living.</h2>
+          <span class="craft-kicker">OUR STORY</span>
+          <h2 class="craft-title">Meet the Makers of Muzaffarnagar</h2>
           <p class="craft-text">
             For generations, skilled craftspeople across the upper Gangetic plains of Muzaffarnagar, Uttar Pradesh have harvested riverbank Sarkanda reeds and seasoned wild bamboo, hand-lacing them into resilient, time-tested seating.
           </p>
           <p class="craft-text">
-            Instead of routing through layered wholesale middlemen, regional traders, and expensive urban retail stores, we connect directly with small manufacturing workshops in Muzaffarnagar.
+            We connect directly with small family-run workshops to bring honest pricing, traditional double-bound craftsmanship, and authentic Indian furniture straight to your home.
           </p>
-          <p class="craft-text">
-            This direct link enables honest, transparent pricing, ensures traditional structural binding techniques are preserved, and delivers authentic regional craftsmanship directly to your doorstep.
-          </p>
-          <div class="craft-transparency-box">
-            <strong>Honest Maker Promise:</strong> We operate on a direct-sourcing model. We do not make unsupported claims about environmental certifications or artisan wage multipliers — we simply provide genuine, time-tested Indian furniture directly from the makers to you.
-          </div>
-          <div style="margin-top: 24px;">
-            <a href="#collection" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
-              <span>Explore Workshop Collection</span>
-              <span>→</span>
+          <div class="craft-actions-row">
+            <button type="button" class="btn-story-secondary" onclick="openStoryModal()">
+              <span>Read our story</span>
+              <span class="btn-story-arrow">→</span>
+            </button>
+            <a href="#collection" class="btn-story-shop">
+              <span>Explore collection ↓</span>
             </a>
           </div>
         </div>
@@ -962,6 +959,40 @@
             Submit Replacement Claim
           </button>
         </form>
+      </div>
+    </div>
+  <!-- Story Modal (Wireframe 08 Full Story & Maker Details) -->
+  <div class="modal-backdrop" id="story-modal" onclick="closeStoryModal()">
+    <div class="modal-dialog" style="max-width: 680px;" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeStoryModal()" aria-label="Close story">&times;</button>
+      <div style="padding: 36px 32px;">
+        <span class="section-kicker" style="color: var(--mudda-terracotta);">Muzaffarnagar Artisanship</span>
+        <h2 style="font-family: var(--font-serif); font-size: 2rem; font-weight: 600; margin: 6px 0 16px; color: var(--mudda-charcoal);">
+          Our Maker Story: Generations of Reed & Cane Craft
+        </h2>
+        <div style="font-size: 0.9375rem; color: var(--mudda-charcoal); line-height: 1.7; display: flex; flex-direction: column; gap: 14px;">
+          <p>
+            For generations, families across the Upper Gangetic plains of Muzaffarnagar, Uttar Pradesh have harvested riverbank Sarkanda reeds (Saccharum bengalense) and seasoned wild bamboo. Through patient manual curing and hand-twining, they transform raw river reeds into remarkably resilient, lightweight seating.
+          </p>
+          <p>
+            Instead of routing furniture through layered wholesale middlemen, regional traders, and expensive urban showrooms, MuddaCraft connects directly with small manufacturing workshops in Muzaffarnagar.
+          </p>
+          <p>
+            This direct link enables honest, transparent pricing, ensures traditional structural binding techniques are preserved, and delivers authentic regional craftsmanship directly to your doorstep with zero assembly required.
+          </p>
+          <div class="craft-transparency-box" style="margin-top: 8px;">
+            <strong>Honest Maker Promise:</strong> We operate on a direct-sourcing model. We do not make unsupported claims about environmental certifications or artisan wage multipliers — we simply provide genuine, time-tested Indian furniture directly from the makers to you.
+          </div>
+        </div>
+        <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="#collection" class="btn-primary" onclick="closeStoryModal()" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; text-decoration: none; border-radius: var(--radius-sm);">
+            <span>Explore Workshop Pieces</span>
+            <span>→</span>
+          </a>
+          <button type="button" class="btn-secondary" onclick="closeStoryModal()" style="padding: 12px 20px; border-radius: var(--radius-sm); cursor: pointer;">
+            Close Story
+          </button>
+        </div>
       </div>
     </div>
   </div>

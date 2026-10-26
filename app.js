@@ -979,6 +979,25 @@ function closePolicyModal() {
 }
 
 // ==========================================================================
+// Maker Story Modal (Wireframe 08)
+// ==========================================================================
+function openStoryModal() {
+  const modal = document.getElementById('story-modal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeStoryModal() {
+  const modal = document.getElementById('story-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// ==========================================================================
 // Product Management System (CMS) - Uploads, CRUD, Reorder
 // ==========================================================================
 function openAdminModal() {
