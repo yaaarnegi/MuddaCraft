@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story: Handcrafted in Muzaffarnagar | MuddaCraft</title>
+  <meta name="description" content="Discover the generational craft of Sarkanda river reed and bamboo furniture from family-run workshops in Muzaffarnagar, Uttar Pradesh.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Our Story: Handcrafted in Muzaffarnagar | MuddaCraft">
+  <meta property="og:description" content="Generations of reed harvesting, bamboo seasoning, and honest Indian furniture making.">
+  <meta property="og:image" content="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Lato:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .story-hero {
+      padding: 64px 0 56px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 30%, rgba(196, 90, 60, 0.08) 0%, transparent 70%);
+      border-bottom: 1px solid rgba(129, 37, 42, 0.1);
+    }
+    .story-hero-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--mudda-terracotta);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+    .story-hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4.5vw, 3.75rem);
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+      line-height: 1.15;
+      max-width: 820px;
+      margin: 0 auto 18px;
+    }
+    .story-hero-sub {
+      font-size: 1.125rem;
+      color: var(--mudda-muted);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .story-content-section {
+      padding: 64px 0 80px;
+    }
+    .story-narrative-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .story-article {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--mudda-charcoal);
+    }
+    .story-article h2 {
+      font-family: var(--font-serif);
+      font-size: 1.95rem;
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+      margin-top: 20px;
+      line-height: 1.25;
+    }
+    .story-callout {
+      background: var(--mudda-chalk);
+      border-left: 4px solid var(--mudda-terracotta);
+      padding: 24px 28px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 12px 0;
+      font-size: 1rem;
+      border-top: 1px solid rgba(129, 37, 42, 0.1);
+      border-right: 1px solid rgba(129, 37, 42, 0.1);
+      border-bottom: 1px solid rgba(129, 37, 42, 0.1);
+    }
+    .story-sidebar-sticky {
+      position: sticky;
+      top: 104px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .story-photo-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(129, 37, 42, 0.18);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      box-shadow: 0 8px 24px rgba(44, 30, 22, 0.05);
+    }
+    .story-photo-frame {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      height: 380px;
+    }
+    .story-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .story-photo-caption {
+      font-size: 0.8125rem;
+      color: var(--mudda-muted);
+      padding: 12px 6px 4px;
+      text-align: center;
+      line-height: 1.45;
+    }
+    .story-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 48px 0;
+    }
+    .story-pillar-card {
+      background: var(--mudda-chalk);
+      border: 1px solid rgba(129, 37, 42, 0.14);
+      border-radius: var(--radius-md);
+      padding: 24px 22px;
+    }
+    .story-pillar-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .story-pillar-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--mudda-charcoal);
+      margin-bottom: 8px;
+    }
+    .story-pillar-desc {
+      font-size: 0.875rem;
+      color: var(--mudda-muted);
+      line-height: 1.55;
+    }
+    @media (max-width: 900px) {
+      .story-narrative-grid {
+        grid-template-columns: 1fr;
+      }
+      .story-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .story-sidebar-sticky {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    मुज़फ़्फ़रनगर शिल्पकला • Direct Maker Sourcing from A to Z Mudda House, Muzaffarnagar, UP • Pan-India Surface Freight
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-wrapper">
+      <a href="/" class="brand-logo" aria-label="MuddaCraft Homepage">
+        <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" class="brand-logo-img">
+        <div class="brand-logo-text">
+          <span class="brand-logo-title">Mudda<span class="brand-logo-tag">Craft</span></span>
+          <span class="brand-sub">Muzaffarnagar, UP</span>
+        </div>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="/#collection" class="nav-link">Shop Muddas</a></li>
+          <li><a href="/#why-mudda" class="nav-link">Why Mudda?</a></li>
+          <li><a href="/story.html" class="nav-link active">Our Story</a></li>
+          <li><a href="/#bulk-orders" class="nav-link">Café & Bulk</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" class="btn-header-wa" aria-label="WhatsApp Us">
+          <span>💬</span>
+          <span class="btn-header-wa-text">WhatsApp</span>
+        </a>
+        <button class="cart-button" onclick="openCartDrawer()" aria-label="View basket">
+          <span>🧺 Basket</span>
+          <span class="cart-count">0</span>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileNav(true)" aria-label="Open Navigation Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Off-Canvas Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" onclick="toggleMobileNav(false)">
+    <div class="mobile-nav-drawer" onclick="event.stopPropagation()">
+      <div class="mobile-nav-header">
+        <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" height="38">
+        <button class="modal-close-btn" onclick="toggleMobileNav(false)" aria-label="Close navigation">&times;</button>
+      </div>
+      <ul class="mobile-nav-links">
+        <li><a href="/#collection" onclick="toggleMobileNav(false)">Shop Muddas</a></li>
+        <li><a href="/#why-mudda" onclick="toggleMobileNav(false)">Why Mudda?</a></li>
+        <li><a href="/story.html" onclick="toggleMobileNav(false)">Our Story</a></li>
+        <li><a href="/#bulk-orders" onclick="toggleMobileNav(false)">Café & Bulk</a></li>
+        <li><a href="/#faqs" onclick="toggleMobileNav(false)">Care & FAQ</a></li>
+      </ul>
+      <div class="mobile-nav-footer">
+        <p><strong>MuddaCraft Studio</strong></p>
+        <p>Handmade Bamboo & Cane Furniture</p>
+        <p style="margin-top: 6px; color: var(--mudda-terracotta);">📍 Muzaffarnagar, Uttar Pradesh</p>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Story Hero -->
+    <section class="story-hero">
+      <div class="container">
+        <span class="story-hero-kicker">ORIGIN & MAKER HERITAGE</span>
+        <h1 class="story-hero-title">The Living Craft of Muzaffarnagar</h1>
+        <p class="story-hero-sub">
+          Generations of seasonal Sarkanda reed harvesting, manual cane bending, and honest Indian furniture making direct from maker workshops.
+        </p>
+      </div>
+    </section>
+
+    <!-- Narrative Section -->
+    <section class="story-content-section">
+      <div class="container story-narrative-grid">
+        <article class="story-article">
+          <p>
+            Along the riverbanks and canal plains of western Uttar Pradesh, the seasonal <strong>Sarkanda reed</strong> (<em>Saccharum bengalense</em>) grows wild. For over a century, local craft communities in Muzaffarnagar have harvested these resilient tall stalks after the monsoon, peeling the golden outer layers and sun-drying the inner core until it gains its signature tensile flexibility.
+          </p>
+
+          <h2>A Legacy Built Without Screws or Glue</h2>
+          <p>
+            Unlike modern composite or factory-pressed furniture, a genuine Indian Mudda contains no nails, hidden metal fasteners, or chemical resin glues. Its strength is entirely structural: hundreds of tightly bundled vertical reeds form an hourglass or cylindrical core, locked into place by heavy tension twining of jute and natural cotton cords.
+          </p>
+          <p>
+            The top and bottom rims are bent from seasoned solid bamboo, cross-stitched with reinforced tire cord or heavy-gauge thread binding. This creates a piece of seating that weighs only 3 to 6 kg, yet comfortably supports over 120 kg with natural ergonomic flex.
+          </p>
+
+          <div class="story-pillars-grid">
+            <div class="story-pillar-card">
+              <span class="story-pillar-icon">🌾</span>
+              <h3 class="story-pillar-title">River Reeds</h3>
+              <p class="story-pillar-desc">Naturally hollow river stalks provide air ventilation and stay cool even under harsh sun.</p>
+            </div>
+            <div class="story-pillar-card">
+              <span class="story-pillar-icon">🎋</span>
+              <h3 class="story-pillar-title">Seasoned Cane</h3>
+              <p class="story-pillar-desc">Flame-tempered bamboo rims curved by hand for structural rim stability.</p>
+            </div>
+            <div class="story-pillar-card">
+              <span class="story-pillar-icon">📦</span>
+              <h3 class="story-pillar-title">100% Assembled</h3>
+              <p class="story-pillar-desc">Every piece arrives pre-woven and ready to sit on — zero tools or assembly required.</p>
+            </div>
+          </div>
+
+          <h2>Direct from the Workshop Floor</h2>
+          <p>
+            Traditionally, Mudda furniture has traveled through layered middlemen: local aggregators, regional wholesale mandis, transport brokers, and expensive urban retail stores. By the time a chair reaches a customer in Bengaluru or Mumbai, its price has doubled while the maker receives only a fraction.
+          </p>
+          <p>
+            MuddaCraft operates on a direct maker connection. We work hand-in-hand with <strong>A to Z Mudda House</strong> and family workshop clusters in Muzaffarnagar. We handle surface freight logistics and direct packaging, ensuring makers earn honest wages and customers receive genuine regional craft at fair, uninflated prices.
+          </p>
+
+          <div class="story-callout">
+            <strong style="color: var(--mudda-oxblood); font-family: var(--font-serif); font-size: 1.2rem; display: block; margin-bottom: 6px;">The Honest Maker Promise</strong>
+            We do not invent fairy-tale sustainability certificates or artificial artisan wage multipliers. We simply deliver genuine, durable, time-tested Indian furniture straight from the hands that weave it to your veranda, balcony, or living room.
+          </div>
+
+          <div style="margin-top: 24px;">
+            <a href="/#collection" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; text-decoration: none; border-radius: var(--radius-sm); font-weight: 700;">
+              <span>Explore Handcrafted Muddas</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Sidebar Sticky Card -->
+        <aside class="story-sidebar-sticky">
+          <div class="story-photo-card">
+            <div class="story-photo-frame">
+              <img src="assets/products/prod-14-four-seater-mudha-set-maroon-lifestyle.webp" alt="Artisan Handcrafted Mudda Workshop">
+            </div>
+            <div class="story-photo-caption">
+              <strong>Muzaffarnagar Craft Hub</strong><br>
+              Traditional round drum stools and center tables being hand-laced with maroon cord binding.
+            </div>
+          </div>
+
+          <div style="background: var(--mudda-chalk); border: 1px solid rgba(129, 37, 42, 0.14); border-radius: var(--radius-md); padding: 22px;">
+            <h4 style="font-family: var(--font-serif); font-size: 1.15rem; margin-bottom: 8px; color: var(--mudda-charcoal);">Have Custom Dimensions?</h4>
+            <p style="font-size: 0.84375rem; color: var(--mudda-muted); line-height: 1.5; margin-bottom: 14px;">
+              Our Muzaffarnagar workshop accepts custom sizing for boutique cafés, resort balconies, and architects.
+            </p>
+            <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" style="display: inline-flex; align-items: center; gap: 6px; color: var(--mudda-terracotta); font-weight: 700; font-size: 0.875rem; text-decoration: underline;">
+              <span>Ask via WhatsApp Desk</span>
+              <span>→</span>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="brand-logo" style="margin-bottom: 12px;">
+          <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" style="height: 44px; filter: brightness(0) invert(1);">
+          <div class="brand-logo-text">
+            <span class="brand-logo-title" style="color: #FFF;">Mudda<span class="brand-logo-tag">Craft</span></span>
+            <span class="brand-sub" style="color: var(--mudda-sand);">Muzaffarnagar, UP</span>
+          </div>
+        </div>
+        <p style="font-size: 0.875rem; color: rgba(255, 252, 245, 0.85); line-height: 1.55;">
+          Revitalizing traditional Indian bamboo and cane furniture for modern homes, balconies, and everyday conversations.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="/#collection">Shop All Muddas</a></li>
+          <li><a href="/#why-mudda">Why Mudda?</a></li>
+          <li><a href="/story.html">Our Story</a></li>
+          <li><a href="/#bulk-orders">Café & Bulk</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openWhatsAppInquiry()">Direct WhatsApp Desk</a></li>
+          <li><a href="/#faqs">Delivery & Care FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom" style="border-top: 1px solid rgba(255, 252, 245, 0.15); padding-top: 18px;">
+      <div>
+        &copy; 2026 MuddaCraft. Direct maker sourcing from Muzaffarnagar, Uttar Pradesh.
+      </div>
+      <div>
+        <a href="/" style="color: var(--mudda-sand); text-decoration: underline;">Return to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-Over Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop" onclick="closeCartDrawer()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-drawer-header">
+        <h3>🧺 Your Basket</h3>
+        <button class="modal-close-btn" onclick="closeCartDrawer()" aria-label="Close cart">&times;</button>
+      </div>
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+      <div class="cart-drawer-footer" id="cart-drawer-footer">
+        <div class="cart-summary-row">
+          <span>Subtotal</span>
+          <span id="cart-drawer-subtotal">₹0</span>
+        </div>
+        <button class="btn-primary" style="width: 100%; margin-top: 14px;" onclick="openCheckoutModal()">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadStoreData();
+      updateCartBadge();
+    });
+    function openWhatsAppInquiry() {
+      const msg = "Hello MuddaCraft, I read your story about the Muzaffarnagar artisans. I would like to learn more about your pieces.";
+      const num = (storeState.whatsapp || '+919876543210').replace(/[^0-9]/g, '');
+      window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
