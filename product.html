@@ -241,6 +241,20 @@
         height: 380px;
       }
     }
+    @media (max-width: 480px) {
+      .main-photo-frame {
+        height: 280px;
+      }
+      .gallery-thumbnails img {
+        width: 60px;
+        height: 60px;
+      }
+      .spec-table-row {
+        grid-template-columns: 110px 1fr;
+        padding: 10px 12px;
+        font-size: 0.8125rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -378,15 +392,21 @@
           </div>
 
           <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
-            <button type="button" id="btn-add-to-cart-detail" class="btn-primary" style="flex: 1; min-width: 150px; padding: 14px 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md);" onclick="addToBasketFromDetail()">
-              🛒 Add to Basket
-            </button>
-            <button type="button" id="btn-buy-now-detail" class="btn-primary" style="flex: 1; min-width: 150px; padding: 14px 20px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-md); background: #241C16; border-color: #241C16;" onclick="buyNowFromDetail()">
+            <button type="button" id="btn-buy-now-detail" class="btn-primary" style="flex: 1.2; min-width: 160px; padding: 14px 22px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background: var(--mudda-terracotta); border: 1px solid var(--mudda-terracotta); box-shadow: 0 2px 8px rgba(195, 55, 32, 0.25);" onclick="buyNowFromDetail()">
               ⚡ Buy Now (Razorpay)
             </button>
-            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 1; min-width: 150px; margin-top: 0; padding: 14px 20px; text-decoration: none;">
+            <button type="button" id="btn-add-to-cart-detail" class="btn-secondary" style="flex: 1; min-width: 140px; padding: 14px 18px; font-size: 0.95rem; font-weight: 600; cursor: pointer; border-radius: var(--radius-sm); background: var(--mudda-chalk); border: 1.5px solid rgba(129, 37, 42, 0.2); color: var(--mudda-charcoal);" onclick="addToBasketFromDetail()">
+              🛒 Add to Basket
+            </button>
+            <a href="javascript:void(0)" id="btn-whatsapp-inquiry" onclick="openWhatsAppInquiry()" class="btn-wa-inquiry-large" style="flex: 0.8; min-width: 130px; margin-top: 0; padding: 14px 18px; text-decoration: none; border-radius: var(--radius-sm);">
               <span>💬 WhatsApp</span>
             </a>
+          </div>
+
+          <div class="product-trust-strip" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(129, 37, 42, 0.12); font-size: 0.78125rem; color: var(--mudda-muted);">
+            <span>✓ 100% Free Transit Replacement</span>
+            <span>✓ Pre-assembled • No Tools Needed</span>
+            <span>✓ Direct from Muzaffarnagar Workshop</span>
           </div>
         </div>
 
@@ -691,12 +711,42 @@
 
   <!-- Footer -->
   <footer class="site-footer">
-    <div class="container footer-bottom" style="border-top: none;">
+    <div class="container footer-grid" style="margin-bottom: 24px;">
+      <div class="footer-brand">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+          <img src="assets/visual-assets/mudda-craft-logo-transparent-cropped.png" alt="MuddaCraft" style="height: 44px; filter: brightness(0) invert(1);">
+          <div style="display: flex; flex-direction: column;">
+            <span style="font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--mudda-chalk); letter-spacing: -0.01em; line-height: 1.1;">Mudda<span style="color: var(--mudda-mustard);">Craft</span></span>
+            <span style="font-family: var(--font-devanagari); font-size: 0.75rem; color: var(--mudda-sand); letter-spacing: 0.06em;">मुज़फ़्फ़रनगर शिल्पकला</span>
+          </div>
+        </div>
+        <p style="font-size: 0.875rem; color: rgba(255, 252, 245, 0.85); line-height: 1.55;">
+          Revitalizing traditional Indian bamboo and cane furniture for modern homes, balconies, and everyday conversations.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="/#collection">Shop All Mudhas</a></li>
+          <li><a href="/#why-mudha">Why Mudha?</a></li>
+          <li><a href="/#craftsmanship">Craft Origin</a></li>
+          <li><a href="/#bulk-orders">Café & Bulk Orders</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openWhatsAppInquiry()">Direct WhatsApp Desk</a></li>
+          <li><a href="/#faqs">Delivery & Care FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom" style="border-top: 1px solid rgba(255, 252, 245, 0.15); padding-top: 18px;">
       <div>
-        &copy; 2026 MudhaCraft Studio. Sourced directly from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.
+        &copy; 2026 MuddaCraft. Direct maker sourcing from Muzaffarnagar, Uttar Pradesh.
       </div>
       <div>
-        <a href="/" style="color: var(--bamboo-light); text-decoration: underline;">Return to Home</a>
+        <a href="/" style="color: var(--mudda-sand); text-decoration: underline;">Return to Home</a>
       </div>
     </div>
   </footer>
@@ -922,5 +972,13 @@
       }
     }
   </script>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="javascript:void(0)" onclick="openWhatsAppInquiry()" class="floating-wa-btn" aria-label="Chat with MuddaCraft on WhatsApp">
+    <svg class="wa-icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.031 2C6.495 2 2 6.484 2 12.019c0 1.954.561 3.823 1.625 5.43L2 22l4.708-1.576A9.972 9.972 0 0 0 12.031 22c5.536 0 10.031-4.484 10.031-10.019C22.062 6.484 17.567 2 12.031 2zm0 18.286c-1.637 0-3.238-.468-4.632-1.354l-.332-.211-2.784.931.933-2.716-.23-.346a8.23 8.23 0 0 1-1.282-4.571c0-4.57 3.719-8.286 8.327-8.286 4.608 0 8.327 3.716 8.327 8.286 0 4.57-3.719 8.286-8.327 8.286zm4.562-6.208c-.25-.125-1.478-.73-1.708-.813-.23-.083-.396-.125-.563.125-.167.25-.646.813-.792.98-.146.167-.292.188-.542.063-.25-.125-1.054-.388-2.008-1.239-.742-.662-1.243-1.48-1.389-1.73-.146-.25-.016-.385.109-.51.112-.112.25-.292.375-.438.125-.146.167-.25.25-.417.083-.167.042-.313-.021-.438s-.563-1.354-.771-1.854c-.203-.487-.41-.42-.563-.428-.146-.008-.313-.01-.479-.01s-.438.063-.667.313c-.23.25-.875.854-.875 2.083 0 1.229.896 2.417 1.021 2.583.125.167 1.764 2.693 4.274 3.776.598.258 1.064.413 1.428.529.6.191 1.147.164 1.579.1.481-.072 1.478-.604 1.687-1.188.208-.583.208-1.083.146-1.188-.063-.104-.23-.167-.48-.292z"/>
+    </svg>
+    <span class="wa-text">Chat with us</span>
+  </a>
 </body>
 </html>

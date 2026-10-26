@@ -138,37 +138,37 @@ function renderProducts(filter = 'All Products') {
           <span class="product-badge-tag">${product.category || 'Cane Furniture'}</span>
         </div>
         <div class="product-card-body">
-          <span class="product-type-meta">A to Z Mudda House • Muzaffarnagar</span>
           <h3 class="product-name">
             <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}">${product.name}</a>
           </h3>
-          <p class="product-dimensions-snippet">📐 ${specsText}</p>
           <div class="product-price-row">
             ${priceHtml}
-            <span id="card-note-${product.id}" style="font-size: 0.72rem; color: var(--text-muted); display: block; margin-top: 2px;">
-              ${isToggled ? `<span style="color: var(--bamboo-base); font-weight: 700;">✓ Includes Cushions (+₹${(product.cushionCost || 0).toLocaleString('en-IN')})</span>` : (product.cushionNote || '')}
+            <span id="card-note-${product.id}" class="card-price-subnote">
+              ${isToggled ? `<span style="color: var(--mudda-oxblood); font-weight: 600;">✓ Includes Cushions (+₹${(product.cushionCost || 0).toLocaleString('en-IN')})</span>` : (product.cushionNote || '')}
             </span>
           </div>
 
-          ${product.cushionCost ? `
-            <div class="card-cushion-toggle-wrap">
-              <div class="card-cushion-label-text">
-                <span>🛋️</span>
-                <span>Fitted Cushions</span>
-                <span class="card-cushion-extra-tag">+₹${product.cushionCost.toLocaleString('en-IN')}</span>
+          <div class="card-cushion-slot">
+            ${product.cushionCost ? `
+              <div class="card-cushion-toggle-wrap">
+                <div class="card-cushion-label-text">
+                  <span>Cushion</span>
+                  <span class="card-cushion-extra-tag">+₹${product.cushionCost.toLocaleString('en-IN')}</span>
+                </div>
+                <label class="switch-toggle" title="Toggle fitted cushions">
+                  <input type="checkbox" onchange="toggleCardCushion('${product.id}', this.checked)" ${isToggled ? 'checked' : ''}>
+                  <span class="slider"></span>
+                </label>
               </div>
-              <label class="switch-toggle" style="transform: scale(0.85); transform-origin: right center;" title="Toggle fitted cushions">
-                <input type="checkbox" onchange="toggleCardCushion('${product.id}', this.checked)" ${isToggled ? 'checked' : ''}>
-                <span class="slider"></span>
-              </label>
-            </div>
-          ` : (product.cushionNote && product.cushionNote.toLowerCase().includes('included') ? `
-            <div style="font-size: 0.75rem; color: #2E7D32; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 4px;">
-              <span>✓</span> Cushions Included
-            </div>
-          ` : '')}
+            ` : (product.cushionNote && product.cushionNote.toLowerCase().includes('included') ? `
+              <div class="card-cushion-status">
+                <span class="cushion-check">✓</span> Cushions Included
+              </div>
+            ` : `
+              <div class="card-cushion-spacer"></div>
+            `)}
+          </div>
 
-          <span class="product-shipping-badge">📦 Bulky Surface Freight • Direct Maker Hub</span>
           <div class="product-actions-row">
             <a href="product.html?id=${product.id}${isToggled ? '&cushion=1' : ''}" id="card-link-${product.id}" class="btn-view-product">
               View Product
@@ -178,7 +178,7 @@ function renderProducts(filter = 'All Products') {
                 +
               </button>
             ` : `
-              <button class="btn-quick-add" onclick="openProductWhatsApp('${product.name}', ${product.price || 'null'})" title="Enquire on WhatsApp" style="background: rgba(37, 211, 102, 0.12); color: #128C7E; border-color: rgba(37, 211, 102, 0.3);">
+              <button class="btn-quick-add" onclick="openProductWhatsApp('${product.name}', ${product.price || 'null'})" title="Enquire on WhatsApp" aria-label="Enquire on WhatsApp" style="color: #128C7E; border-color: rgba(37, 211, 102, 0.4);">
                 💬
               </button>
             `}
