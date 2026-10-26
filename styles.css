@@ -708,33 +708,75 @@ button {
    Product Collection
    ========================================================================== */
 
+/* ==========================================================================
+   Section 05: Category Navigation (Wireframe 05 Alignment)
+   ========================================================================== */
+.category-nav-wrapper {
+  margin-bottom: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-nav-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.71875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mudda-muted);
+  margin-bottom: 14px;
+  display: block;
+  text-align: center;
+}
+
+.collection-filters-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-arrow {
+  display: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--mudda-muted);
+  padding: 0 4px;
+  user-select: none;
+  opacity: 0.6;
+}
+
 .collection-filters {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 36px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 9px 20px;
-  border-radius: var(--radius-pill);
-  font-size: 0.875rem;
+  padding: 10px 22px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.90625rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   color: var(--mudda-charcoal);
   background: var(--mudda-chalk);
   border: 1.5px solid rgba(129, 37, 42, 0.16);
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(44, 30, 22, 0.04);
 }
 
 .filter-btn:hover {
   border-color: var(--mudda-terracotta);
   color: var(--mudda-terracotta);
-  background: var(--mudda-paper);
+  background: #FFFFFF;
+  transform: translateY(-1px);
 }
 
 .filter-btn:focus-visible {
@@ -746,7 +788,7 @@ button {
   background: var(--mudda-terracotta);
   border-color: var(--mudda-terracotta);
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(195, 55, 32, 0.25);
+  box-shadow: 0 4px 12px rgba(196, 90, 60, 0.28);
 }
 
 .products-grid {
@@ -1319,11 +1361,14 @@ button {
   border: 1px solid rgba(129, 37, 42, 0.12);
 }
 
-/* Use cases interactive showcase */
+/* ==========================================================================
+   Section 06: Category Landing Section (Wireframe 06 Alignment)
+   Editorial split layout with one message and CTA
+   ========================================================================== */
 .use-cases-tabs {
-  background: var(--mudda-chalk);
-  border: 1px solid rgba(129, 37, 42, 0.14);
-  border-radius: 14px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(129, 37, 42, 0.14);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 6px 24px rgba(40, 35, 33, 0.05);
 }
@@ -1331,69 +1376,158 @@ button {
 .use-nav {
   display: flex;
   overflow-x: auto;
-  border-bottom: 1px solid rgba(129, 37, 42, 0.12);
+  border-bottom: 1.5px solid rgba(129, 37, 42, 0.12);
   background: var(--mudda-paper);
+  scrollbar-width: none;
+}
+
+.use-nav::-webkit-scrollbar {
+  display: none;
 }
 
 .use-tab-btn {
   padding: 16px 24px;
-  font-size: 0.9375rem;
+  font-family: var(--font-sans);
+  font-size: 0.90625rem;
   font-weight: 600;
   color: var(--mudda-charcoal);
   white-space: nowrap;
+  background: transparent;
+  border: none;
   border-bottom: 3px solid transparent;
   transition: all var(--transition-fast);
   cursor: pointer;
 }
 
+.use-tab-btn:hover {
+  color: var(--mudda-terracotta);
+  background: rgba(196, 90, 60, 0.04);
+}
+
 .use-tab-btn.active {
-  color: var(--mudda-oxblood);
-  background: var(--mudda-chalk);
+  color: var(--mudda-terracotta);
+  background: #FFFFFF;
   border-bottom-color: var(--mudda-terracotta);
   font-weight: 700;
 }
 
+/* Wireframe 06: Editorial split layout (Image on LEFT, Message on RIGHT) */
 .use-content-panel {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-}
-
-.use-text-side {
-  padding: 40px;
-}
-
-.use-panel-title {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 600;
-  color: var(--mudda-charcoal);
-  margin-bottom: 10px;
-}
-
-.use-panel-tagline {
-  font-size: 1.05rem;
-  color: var(--mudda-terracotta);
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.use-panel-desc {
-  font-size: 0.95rem;
-  color: var(--mudda-muted);
-  line-height: 1.6;
-  margin-bottom: 24px;
+  min-height: 420px;
 }
 
 .use-image-side {
-  height: 360px;
-  background: var(--mudda-sand);
+  height: 100%;
+  min-height: 420px;
+  background: var(--mudda-chalk);
+  position: relative;
+  overflow: hidden;
 }
 
 .use-image-side img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.use-content-panel:hover .use-image-side img {
+  transform: scale(1.025);
+}
+
+.use-text-side {
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.category-landing-kicker {
+  font-family: var(--font-sans);
+  font-size: 0.71875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--mudda-terracotta);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.use-panel-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 2.8vw, 2.5rem);
+  font-weight: 600;
+  color: var(--mudda-charcoal);
+  line-height: 1.2;
+  margin: 0 0 12px 0;
+}
+
+.use-panel-tagline {
+  font-size: 1.0625rem;
+  color: var(--mudda-terracotta);
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.use-panel-desc {
+  font-size: 0.9375rem;
+  color: var(--mudda-muted);
+  line-height: 1.6;
+  margin: 0 0 28px 0;
+  max-width: 480px;
+}
+
+.category-landing-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.category-landing-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--mudda-terracotta);
+  color: #FFFFFF;
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-shadow: 0 3px 12px rgba(196, 90, 60, 0.28);
+}
+
+.category-landing-btn:hover {
+  background: var(--mudda-oxblood);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(129, 37, 42, 0.35);
+}
+
+.category-landing-subnote {
+  font-size: 0.78125rem;
+  color: var(--mudda-muted);
+}
+
+@media (max-width: 900px) {
+  .use-content-panel {
+    grid-template-columns: 1fr;
+  }
+  .use-image-side {
+    height: 300px;
+    min-height: 300px;
+  }
+  .use-text-side {
+    padding: 32px 24px;
+  }
+  .use-panel-title {
+    font-size: 1.75rem;
+  }
 }
 
 /* ==========================================================================
@@ -2772,15 +2906,45 @@ button {
     padding: 8px 10px;
   }
 
+  .category-nav-wrapper {
+    align-items: flex-start;
+    margin-bottom: 24px;
+    width: 100%;
+  }
+
+  .category-nav-kicker {
+    text-align: left;
+    padding-left: 2px;
+    margin-bottom: 8px;
+  }
+
+  .collection-filters-container {
+    justify-content: flex-start;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .scroll-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--mudda-terracotta);
+    padding: 0 4px;
+    opacity: 0.7;
+  }
+
   .collection-filters {
     justify-content: flex-start;
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding-bottom: 8px;
-    margin-bottom: 24px;
-    gap: 8px;
+    padding-bottom: 6px;
+    margin-bottom: 0;
+    gap: 10px;
+    width: 100%;
   }
 
   .collection-filters::-webkit-scrollbar {
@@ -2790,6 +2954,8 @@ button {
   .filter-btn {
     flex-shrink: 0;
     white-space: nowrap;
+    padding: 9px 18px;
+    font-size: 0.84375rem;
   }
 
   .hero-title {

@@ -861,6 +861,25 @@ function selectUseCase(id, btnElem) {
     imgElem.src = useCase.image;
     imgElem.alt = useCase.title;
   }
+
+  const ctaBtn = document.getElementById('category-landing-cta');
+  if (ctaBtn) {
+    ctaBtn.onclick = (e) => {
+      e.preventDefault();
+      let targetCat = 'All Products';
+      if (id === 'balcony') targetCat = 'Balcony Sets';
+      else if (id === 'terrace') targetCat = 'Classic Muddas';
+      else if (id === 'garden') targetCat = 'Cane Chairs';
+      else if (id === 'cafe') targetCat = 'Sofa Sets';
+      else if (id === 'resort') targetCat = 'Daybeds';
+      
+      const filterBtns = Array.from(document.querySelectorAll('.filter-btn'));
+      const matchingBtn = filterBtns.find(b => b.textContent.trim().toLowerCase().includes(targetCat.toLowerCase())) || filterBtns[0];
+      filterProducts(targetCat, matchingBtn);
+      const collEl = document.getElementById('collection');
+      if (collEl) collEl.scrollIntoView({ behavior: 'smooth' });
+    };
+  }
 }
 
 // ==========================================================================

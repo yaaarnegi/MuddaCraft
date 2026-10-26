@@ -195,15 +195,22 @@
           </p>
         </div>
 
-        <!-- Filter Controls -->
-        <div class="collection-filters">
-          <button class="filter-btn active" onclick="filterProducts('All Products', this)">All Muddas</button>
-          <button class="filter-btn" onclick="filterProducts('Classic Muddas', this)">Classic Muddas</button>
-          <button class="filter-btn" onclick="filterProducts('Cane Chairs', this)">Cane Chairs</button>
-          <button class="filter-btn" onclick="filterProducts('Balcony Sets', this)">Balcony Sets</button>
-          <button class="filter-btn" onclick="filterProducts('Sofa Sets', this)">Sofa Sets</button>
-          <button class="filter-btn" onclick="filterProducts('Tables & Décor', this)">Tables & Décor</button>
-          <button class="filter-btn" onclick="filterProducts('Daybeds', this)">Daybeds</button>
+        <!-- Section 05: Category Navigation (Wireframe 05 Alignment) -->
+        <div class="category-nav-wrapper">
+          <span class="category-nav-kicker">BROWSE BY CATEGORY</span>
+          <div class="collection-filters-container">
+            <span class="scroll-arrow scroll-arrow-left" aria-hidden="true">←</span>
+            <div class="collection-filters" id="collection-filters">
+              <button class="filter-btn active" onclick="filterProducts('All Products', this)">All Muddas</button>
+              <button class="filter-btn" onclick="filterProducts('Classic Muddas', this)">Classic Muddas</button>
+              <button class="filter-btn" onclick="filterProducts('Cane Chairs', this)">Cane Chairs</button>
+              <button class="filter-btn" onclick="filterProducts('Balcony Sets', this)">Balcony Sets</button>
+              <button class="filter-btn" onclick="filterProducts('Sofa Sets', this)">Sofa Sets</button>
+              <button class="filter-btn" onclick="filterProducts('Tables & Décor', this)">Tables & Décor</button>
+              <button class="filter-btn" onclick="filterProducts('Daybeds', this)">Daybeds</button>
+            </div>
+            <span class="scroll-arrow scroll-arrow-right" aria-hidden="true">→</span>
+          </div>
         </div>
 
         <!-- Product Cards Grid (Rendered dynamically from data/store.json) -->
@@ -287,22 +294,27 @@
           </div>
         </div>
 
-        <!-- Interactive Use-Cases Tabs -->
+        <!-- Section 06: Category Landing Section (Wireframe 06 Alignment) -->
         <div class="use-cases-tabs">
           <div class="use-nav" id="use-nav-tabs">
             <!-- Rendered dynamically via app.js -->
           </div>
           <div class="use-content-panel">
+            <div class="use-image-side">
+              <img id="use-panel-img" src="assets/products/prod-12-two-seater-balcony-set-lifestyle.webp" alt="Balcony Seating" loading="lazy">
+            </div>
             <div class="use-text-side">
+              <span class="category-landing-kicker">MADE FOR THOUGHTFUL HOMES</span>
               <h3 class="use-panel-title" id="use-panel-title">Balcony Seating</h3>
               <div class="use-panel-tagline" id="use-panel-tagline">Fits compact 4ft–6ft Indian balconies without crowding</div>
               <p class="use-panel-desc" id="use-panel-desc">Lightweight and easy to move indoors before monsoon showers. Gives modern apartments the charm of a sunlit courtyard veranda.</p>
-              <a href="#collection" class="btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
-                Browse Suitable Muddas
-              </a>
-            </div>
-            <div class="use-image-side">
-              <img id="use-panel-img" src="assets/products/prod-12-two-seater-balcony-set-lifestyle.webp" alt="Balcony Seating">
+              <div class="category-landing-cta-wrap">
+                <a href="#collection" id="category-landing-cta" class="category-landing-btn">
+                  <span>Explore Collection</span>
+                  <span>→</span>
+                </a>
+                <span class="category-landing-subnote">100% Pre-assembled • Direct Workshop Delivery</span>
+              </div>
             </div>
           </div>
         </div>
