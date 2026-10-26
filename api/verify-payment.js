@@ -27,7 +27,7 @@ export default function handler(req, res) {
 
     // Handle simulated test payment verification
     if (simulated || razorpay_signature === 'simulated_test_signature' || (razorpay_order_id && razorpay_order_id.startsWith('order_sim_'))) {
-      const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+      const orderId = 'MUDDA-' + Math.floor(100000 + Math.random() * 900000);
       return res.status(200).json({
         success: true,
         message: 'Test payment simulated & verified successfully. Order confirmed.',
@@ -75,7 +75,7 @@ export default function handler(req, res) {
       });
     }
 
-    const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+    const orderId = 'MUDDA-' + Math.floor(100000 + Math.random() * 900000);
 
     return res.status(200).json({
       success: true,

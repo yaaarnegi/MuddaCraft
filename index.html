@@ -78,12 +78,10 @@
 
       <nav aria-label="Primary Navigation">
         <ul class="nav-links">
-          <li><a href="#collection" class="nav-link">Shop Mudhas</a></li>
-          <li><a href="#why-mudha" class="nav-link">Why Mudha?</a></li>
-          <li><a href="#craftsmanship" class="nav-link">Craft Origin</a></li>
-          <li><a href="#use-cases" class="nav-link">Shop by Setting</a></li>
-          <li><a href="#bulk-orders" class="nav-link">Café & Bulk Orders</a></li>
-          <li><a href="#faqs" class="nav-link">Care & FAQ</a></li>
+          <li><a href="#collection" class="nav-link">Shop Muddas</a></li>
+          <li><a href="#why-mudda" class="nav-link">Why Mudda?</a></li>
+          <li><a href="#craftsmanship" class="nav-link">Our Story</a></li>
+          <li><a href="#bulk-orders" class="nav-link">Café & Bulk</a></li>
         </ul>
       </nav>
 
@@ -111,11 +109,10 @@
         <button class="modal-close-btn" onclick="toggleMobileNav(false)" aria-label="Close navigation">&times;</button>
       </div>
       <ul class="mobile-nav-links">
-        <li><a href="#collection" onclick="toggleMobileNav(false)">Shop Mudhas</a></li>
-        <li><a href="#why-mudha" onclick="toggleMobileNav(false)">Why Mudha?</a></li>
-        <li><a href="#craftsmanship" onclick="toggleMobileNav(false)">Craft Origin</a></li>
-        <li><a href="#use-cases" onclick="toggleMobileNav(false)">Shop by Setting</a></li>
-        <li><a href="#bulk-orders" onclick="toggleMobileNav(false)">Café & Bulk Orders</a></li>
+        <li><a href="#collection" onclick="toggleMobileNav(false)">Shop Muddas</a></li>
+        <li><a href="#why-mudda" onclick="toggleMobileNav(false)">Why Mudda?</a></li>
+        <li><a href="#craftsmanship" onclick="toggleMobileNav(false)">Our Story</a></li>
+        <li><a href="#bulk-orders" onclick="toggleMobileNav(false)">Café & Bulk</a></li>
         <li><a href="#faqs" onclick="toggleMobileNav(false)">Care & FAQ</a></li>
       </ul>
       <div class="mobile-nav-footer">
@@ -142,7 +139,7 @@
           </p>
           <div class="hero-actions">
             <a href="#collection" class="btn-primary">
-              <span>Explore Mudhas</span>
+              <span>Shop Handcrafted Muddas</span>
               <span>→</span>
             </a>
             <a href="#craftsmanship" class="btn-secondary">
@@ -150,19 +147,21 @@
             </a>
           </div>
 
-          <!-- Trust Indicators -->
-          <div class="trust-indicators">
-            <div class="trust-item">
-              <span class="trust-icon">🌿</span>
-              <span>Natural River Cane</span>
+          <!-- Numbered Trust Indicators Strip (Direct from Visual Fixes Wireframe 03) -->
+          <div class="hero-trust-strip">
+            <div class="trust-strip-item">
+              <span class="trust-strip-num">01</span>
+              <span class="trust-strip-text">Natural Materials</span>
             </div>
-            <div class="trust-item">
-              <span class="trust-icon">🇮🇳</span>
-              <span>Made in India</span>
+            <div class="trust-strip-divider"></div>
+            <div class="trust-strip-item">
+              <span class="trust-strip-num">02</span>
+              <span class="trust-strip-text">Made in India</span>
             </div>
-            <div class="trust-item">
-              <span class="trust-icon">🔨</span>
-              <span>Direct from Makers</span>
+            <div class="trust-strip-divider"></div>
+            <div class="trust-strip-item">
+              <span class="trust-strip-num">03</span>
+              <span class="trust-strip-text">Direct from Makers</span>
             </div>
           </div>
         </div>
@@ -190,7 +189,7 @@
       <div class="container">
         <div class="section-header">
           <span class="section-kicker">The Collection</span>
-          <h2 class="section-title">Handcrafted Bamboo Mudhas</h2>
+          <h2 class="section-title">Handcrafted Bamboo Muddas</h2>
           <p class="section-description">
             Thoughtfully built for compact balconies, sunny terraces, and relaxed indoor spaces. All models ship fully assembled across India.
           </p>
@@ -198,8 +197,8 @@
 
         <!-- Filter Controls -->
         <div class="collection-filters">
-          <button class="filter-btn active" onclick="filterProducts('All Products', this)">All Products</button>
-          <button class="filter-btn" onclick="filterProducts('Classic Mudhas', this)">Classic Mudhas</button>
+          <button class="filter-btn active" onclick="filterProducts('All Products', this)">All Muddas</button>
+          <button class="filter-btn" onclick="filterProducts('Classic Muddas', this)">Classic Muddas</button>
           <button class="filter-btn" onclick="filterProducts('Cane Chairs', this)">Cane Chairs</button>
           <button class="filter-btn" onclick="filterProducts('Balcony Sets', this)">Balcony Sets</button>
           <button class="filter-btn" onclick="filterProducts('Sofa Sets', this)">Sofa Sets</button>
@@ -218,24 +217,28 @@
       </div>
     </section>
 
-    <!-- 3. Why Mudha? Section -->
-    <section class="section section-alt" id="why-mudha">
+    <!-- 3. Why Mudda? Section (Direct from Visual Fixes Wireframe 07) -->
+    <span id="why-mudha" style="position: relative; top: -80px; display: block; visibility: hidden;"></span>
+    <section class="section section-alt" id="why-mudda">
       <div class="container">
         <div class="section-header">
           <span class="section-kicker">Enduring Design</span>
           <h2 class="section-title">A Chair India Already Knows.</h2>
           <p class="section-description">
-            For decades, the Mudha has remained India’s most honest chair. It requires no complex hardware, never feels cold or synthetic, and carries natural ergonomic flex.
+            For decades, the Mudda has remained India’s most honest chair. It requires no complex hardware, never feels cold or synthetic, and carries natural ergonomic flex.
           </p>
         </div>
 
-        <!-- 3 Primary Powerhouse Benefit Cards -->
+        <!-- 3 Primary Numbered Benefit Cards -->
         <div class="why-grid">
           <div class="why-card">
-            <div class="why-icon-badge" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v20M7 5c2 1.5 3 3.5 3 7s-1 5.5-3 7M17 5c-2 1.5-3 3.5-3 7s1 5.5 3 7M4 9h16M4 15h16"/>
-              </svg>
+            <div class="why-card-header">
+              <div class="why-icon-badge" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M7 5c2 1.5 3 3.5 3 7s-1 5.5-3 7M17 5c-2 1.5-3 3.5-3 7s1 5.5 3 7M4 9h16M4 15h16"/>
+                </svg>
+              </div>
+              <span class="why-card-index">01</span>
             </div>
             <h3 class="why-title">Wild Natural Materials</h3>
             <p class="why-desc">Harvested riverbank Sarkanda reeds, mature seasoned bamboo framework, and natural jute twine. 100% plastic-free with zero chemical glues or cold synthetic coatings.</p>
@@ -247,13 +250,16 @@
           </div>
 
           <div class="why-card">
-            <div class="why-icon-badge" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 19v3M17 19v3M5 10h14l-2 9H7l-2-9zM7 10V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6M9 6h6"/>
-              </svg>
+            <div class="why-card-header">
+              <div class="why-icon-badge" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 19v3M17 19v3M5 10h14l-2 9H7l-2-9zM7 10V4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6M9 6h6"/>
+                </svg>
+              </div>
+              <span class="why-card-index">02</span>
             </div>
             <h3 class="why-title">Featherweight Mobility</h3>
-            <p class="why-desc">Weighing only 2 to 4 kilograms, a Mudha can be lifted and carried effortlessly with one hand. Move easily between morning balcony sunshine, study desks, and living rooms.</p>
+            <p class="why-desc">Weighing only 2 to 4 kilograms, a Mudda can be lifted and carried effortlessly with one hand. Move easily between morning balcony sunshine, study desks, and living rooms.</p>
             <div class="why-feature-pills">
               <span class="why-feature-pill">2–4 kg Weight</span>
               <span class="why-feature-pill">One-Hand Carry</span>
@@ -262,11 +268,14 @@
           </div>
 
           <div class="why-card">
-            <div class="why-icon-badge" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M3 14h18M7 14v7M12 14v7M17 14v7M8 8h8M12 5v3"/>
-              </svg>
+            <div class="why-card-header">
+              <div class="why-icon-badge" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 14h18M7 14v7M12 14v7M17 14v7M8 8h8M12 5v3"/>
+                </svg>
+              </div>
+              <span class="why-card-index">03</span>
             </div>
             <h3 class="why-title">Natural Ergonomic Support</h3>
             <p class="why-desc">Compact 1.2 to 2.2 sq ft footprint designed for Indian apartment balconies. Natural cane fibers provide organic posture flex that breathes and stays comfortably cool in afternoon heat.</p>
@@ -289,7 +298,7 @@
               <div class="use-panel-tagline" id="use-panel-tagline">Fits compact 4ft–6ft Indian balconies without crowding</div>
               <p class="use-panel-desc" id="use-panel-desc">Lightweight and easy to move indoors before monsoon showers. Gives modern apartments the charm of a sunlit courtyard veranda.</p>
               <a href="#collection" class="btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
-                Browse Suitable Mudhas
+                Browse Suitable Muddas
               </a>
             </div>
             <div class="use-image-side">
@@ -402,9 +411,9 @@
     <section class="bulk-section" id="bulk-orders">
       <div class="container bulk-grid">
         <div class="bulk-info">
-          <h2 class="bulk-info-title">Need Mudhas for Your Café, Resort or Event?</h2>
+          <h2 class="bulk-info-title">Need Muddas for Your Café, Resort or Event?</h2>
           <p class="bulk-info-desc">
-            We supply authentic bamboo Mudhas in commercial quantities directly from our Uttar Pradesh workshop clusters. Ideal for businesses seeking distinctive, earthy Indian aesthetics at direct maker economics.
+            We supply authentic bamboo Muddas in commercial quantities directly from our Uttar Pradesh workshop clusters. Ideal for businesses seeking distinctive, earthy Indian aesthetics at direct maker economics.
           </p>
           <div class="bulk-targets-list">
             <span class="bulk-target-tag">Boutique Cafés</span>
@@ -415,7 +424,7 @@
             <span class="bulk-target-tag">Interior Studios</span>
           </div>
           <div style="display: flex; gap: 14px; align-items: center;">
-            <a href="javascript:void(0)" onclick="openWhatsAppChat('Hello MuddaCraft, I would like to inquire about B2B commercial bulk pricing for Mudhas.')" class="btn-primary" style="background: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 8px;">
+            <a href="javascript:void(0)" onclick="openWhatsAppChat('Hello MuddaCraft, I would like to inquire about B2B commercial bulk pricing for Muddas.')" class="btn-primary" style="background: #25D366; border-color: #25D366; display: inline-flex; align-items: center; gap: 8px;">
               <span>💬 Direct Commercial WhatsApp Desk</span>
             </a>
           </div>
@@ -460,8 +469,8 @@
                 <label class="form-label" for="bulk-prod">Product of Interest</label>
                 <select id="bulk-prod" name="product" class="form-select">
                   <option value="All Models">Mix of Stools & Back-Support Chairs</option>
-                  <option value="Classic Stools">Classic Bamboo Mudha Stools</option>
-                  <option value="Large Back-Support">Large Back-Support Mudha Chairs</option>
+                  <option value="Classic Stools">Classic Bamboo Mudda Stools</option>
+                  <option value="Large Back-Support">Large Back-Support Mudda Chairs</option>
                   <option value="Custom Project">Custom Project Requirement</option>
                 </select>
               </div>
@@ -576,7 +585,7 @@
       <div class="footer-col">
         <h4>Collection</h4>
         <ul class="footer-links">
-          <li><a href="#collection" onclick="filterProducts('all')">All Mudhas</a></li>
+          <li><a href="#collection" onclick="filterProducts('all')">All Muddas</a></li>
           <li><a href="#collection" onclick="filterProducts('stools')">Classic Stools</a></li>
           <li><a href="#collection" onclick="filterProducts('chairs')">Back-Support Chairs</a></li>
           <li><a href="#collection" onclick="filterProducts('sets')">Balcony Sets</a></li>
@@ -641,7 +650,7 @@
         <!-- Details -->
         <div>
           <span class="product-type-meta">Handcrafted in Uttar Pradesh</span>
-          <h2 class="modal-product-title" id="modal-product-title">Classic Bamboo Mudha</h2>
+          <h2 class="modal-product-title" id="modal-product-title">Classic Bamboo Mudda</h2>
           <div class="modal-price-box">
             <span class="modal-price" id="modal-product-price">₹1,299</span>
             <span class="product-price-note">Introductory testing price</span>
@@ -722,9 +731,9 @@
       <div class="cart-empty-state" id="cart-empty-state" style="display: none;">
         <span style="font-size: 3rem; display: block; margin-bottom: 12px;">🌾</span>
         <h4>Your basket is currently empty</h4>
-        <p style="font-size: 0.875rem; margin-top: 6px;">Add a classic Mudha to begin testing comfort for your balcony or terrace.</p>
+        <p style="font-size: 0.875rem; margin-top: 6px;">Add a classic Mudda to begin testing comfort for your balcony or terrace.</p>
         <button class="btn-primary" style="margin-top: 20px;" onclick="closeCartDrawer(); window.location.href='#collection';">
-          Explore Mudhas
+          Explore Muddas
         </button>
       </div>
 
@@ -855,7 +864,7 @@
         </div>
 
         <div class="cod-disabled-notice">
-          ℹ️ <strong>Why is COD paused?</strong> Traditional bamboo Mudhas are bulky structural items incurring high two-way road freight. Pausing COD prevents transit returns, keeping consumer prices at ₹1,299 instead of inflated marketplace rates. Every prepaid order includes our <strong>100% Transit Damage Replacement Guarantee</strong>.
+          ℹ️ <strong>Why is COD paused?</strong> Traditional bamboo Muddas are bulky structural items incurring high two-way road freight. Pausing COD prevents transit returns, keeping consumer prices at ₹1,299 instead of inflated marketplace rates. Every prepaid order includes our <strong>100% Transit Damage Replacement Guarantee</strong>.
         </div>
 
         <div class="razorpay-badge-card" style="display: flex; align-items: center; justify-content: space-between; background: rgba(160, 114, 56, 0.08); border: 1px solid rgba(160, 114, 56, 0.25); padding: 12px 16px; border-radius: var(--radius-md); margin-top: 14px; margin-bottom: 8px;">
@@ -888,7 +897,7 @@
         </p>
 
         <div style="background: var(--bg-primary); border: 1px solid var(--border-light); padding: 18px; border-radius: 8px; display: inline-block; text-align: left; margin-bottom: 24px; min-width: 300px;">
-          <div><strong>Order ID:</strong> <span id="confirmed-order-id">MUDHA-000000</span></div>
+          <div><strong>Order ID:</strong> <span id="confirmed-order-id">MUDDA-000000</span></div>
           <div><strong>Payment ID:</strong> <span id="confirmed-payment-id">Confirmed</span></div>
           <div><strong>Total Paid:</strong> <span id="confirmed-order-total">₹0</span></div>
           <div><strong>Gateway:</strong> Razorpay Standard Checkout (256-bit SSL)</div>
@@ -915,13 +924,13 @@
       <div style="padding: 32px;">
         <h3 style="font-family: var(--font-serif); font-size: 1.65rem; margin-bottom: 8px;">100% Free Transit Replacement Guarantee</h3>
         <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 20px;">
-          Did your Mudha incur transit damage? Submit 2–3 photos below. You will NOT need to return the damaged unit — we dispatch a brand-new replacement at zero cost.
+          Did your Mudda incur transit damage? Submit 2–3 photos below. You will NOT need to return the damaged unit — we dispatch a brand-new replacement at zero cost.
         </p>
 
         <form onsubmit="submitDamageClaim(event)">
           <div class="form-group" style="margin-bottom: 12px;">
             <label class="form-label" for="dmg-order">Order ID *</label>
-            <input type="text" id="dmg-order" name="orderId" class="form-input" required placeholder="e.g. MUDHA-123456">
+            <input type="text" id="dmg-order" name="orderId" class="form-input" required placeholder="e.g. MUDDA-123456">
           </div>
           <div class="form-group" style="margin-bottom: 12px;">
             <label class="form-label" for="dmg-phone">Phone / WhatsApp *</label>
@@ -999,14 +1008,14 @@
           <form onsubmit="submitAddNewProduct(event)">
             <div class="admin-field-group">
               <label class="admin-field-label" for="new-prod-name">Product Name *</label>
-              <input type="text" id="new-prod-name" name="name" class="form-input" required placeholder="e.g. Traditional Handwoven Mudha — Red & Gold">
+              <input type="text" id="new-prod-name" name="name" class="form-input" required placeholder="e.g. Traditional Handwoven Mudda — Red & Gold">
             </div>
 
             <div class="admin-grid-2">
               <div class="admin-field-group">
                 <label class="admin-field-label" for="new-prod-category">Category *</label>
                 <select id="new-prod-category" name="category" class="form-select" required>
-                  <option value="Classic Mudhas">Classic Mudhas</option>
+                  <option value="Classic Muddas">Classic Muddas</option>
                   <option value="Cane Chairs">Cane Chairs</option>
                   <option value="Balcony Sets">Balcony Sets</option>
                   <option value="Sofa Sets">Sofa Sets</option>
@@ -1113,7 +1122,7 @@
             <div class="admin-field-group">
               <label class="admin-field-label" for="edit-prod-category">Category *</label>
               <select id="edit-prod-category" class="form-select" required>
-                <option value="Classic Mudhas">Classic Mudhas</option>
+                <option value="Classic Muddas">Classic Muddas</option>
                 <option value="Cane Chairs">Cane Chairs</option>
                 <option value="Balcony Sets">Balcony Sets</option>
                 <option value="Sofa Sets">Sofa Sets</option>
@@ -1168,7 +1177,7 @@
     <div class="sticky-mobile-bar-inner">
       <div class="sticky-price-info">
         <span class="sticky-price" id="sticky-price">₹1,299</span>
-        <span class="sticky-product-name" id="sticky-product-name">Classic Bamboo Mudha</span>
+        <span class="sticky-product-name" id="sticky-product-name">Classic Bamboo Mudda</span>
       </div>
       <div class="sticky-action-buttons">
         <button class="btn-sticky-add" onclick="addCurrentModalToCart()">+ Add</button>

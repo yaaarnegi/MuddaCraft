@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Why Mudha cards stagger
+      // Why Mudda cards stagger
       gsap.from('.why-card', {
         scrollTrigger: {
           trigger: '.why-grid',

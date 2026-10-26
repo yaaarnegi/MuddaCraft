@@ -595,7 +595,7 @@ async function payWithRazorpay(simulate = false) {
             if (paymentIdDisplay) paymentIdDisplay.textContent = verifyData.razorpay_payment_id + ' (Demo)';
 
             const waMsg = encodeURIComponent(
-              `Hello MudhaCraft, I have completed payment (${verifyData.razorpay_payment_id}) for order ${verifyData.orderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
+              `Hello MuddaCraft, I have completed payment (${verifyData.razorpay_payment_id}) for order ${verifyData.orderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
             );
             const waLink = document.getElementById('btn-order-wa');
             if (waLink) {
@@ -622,7 +622,7 @@ async function payWithRazorpay(simulate = false) {
       key: orderData.key_id,
       amount: orderData.amount,
       currency: orderData.currency || 'INR',
-      name: 'MudhaCraft Studio',
+      name: 'MuddaCraft Studio',
       description: `Bulky Surface Delivery (${totals.totalUnits} items) • Muzaffarnagar Hub`,
       image: '/assets/products/placeholder-cane.svg',
       order_id: orderData.order_id,
@@ -637,7 +637,7 @@ async function payWithRazorpay(simulate = false) {
         shipping_state: customerData.state
       },
       theme: {
-        color: '#A07238' // MudhaCraft signature bamboo-base tone
+        color: '#A07238' // MuddaCraft signature bamboo-base tone
       },
       modal: {
         ondismiss: function () {
@@ -668,7 +668,7 @@ async function payWithRazorpay(simulate = false) {
           const verifyData = await verifyRes.json();
 
           if (verifyRes.ok && verifyData.success) {
-            const confirmedOrderId = verifyData.orderId || ('MUDHA-' + Math.floor(100000 + Math.random() * 900000));
+            const confirmedOrderId = verifyData.orderId || ('MUDDA-' + Math.floor(100000 + Math.random() * 900000));
 
             // Clear basket upon verified payment
             cart = [];
@@ -697,7 +697,7 @@ async function payWithRazorpay(simulate = false) {
             }
 
             const waMsg = encodeURIComponent(
-              `Hello MudhaCraft, I have completed payment (${paymentResponse.razorpay_payment_id}) for order ${confirmedOrderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
+              `Hello MuddaCraft, I have completed payment (${paymentResponse.razorpay_payment_id}) for order ${confirmedOrderId} (₹${totals.grandTotal}). Looking forward to dispatch from Muzaffarnagar!`
             );
             const waLink = document.getElementById('btn-order-wa');
             if (waLink) {
@@ -913,7 +913,7 @@ function openPolicyModal(policyType) {
   const contents = {
     shipping: `
       <h4>Surface Freight Logistics for Bulky Furniture</h4>
-      <p>Because traditional bamboo Mudhas and cane sets are bulky, structural seating items, they cannot be shipped via small air courier flyers. We partner with specialized national surface freight carriers who handle furniture transit with care.</p>
+      <p>Because traditional bamboo Muddas and cane sets are bulky, structural seating items, they cannot be shipped via small air courier flyers. We partner with specialized national surface freight carriers who handle furniture transit with care.</p>
       <ul>
         <li><strong>Dispatch Hub:</strong> Direct from A to Z Mudda House, Muzaffarnagar, Uttar Pradesh.</li>
         <li><strong>Transit Timeline:</strong> 4–7 business days for Delhi NCR, West, and Central India; 6–10 business days for South, East, and regional postal PIN codes.</li>
@@ -925,7 +925,7 @@ function openPolicyModal(policyType) {
       <h4>100% Free Transit Replacement Guarantee</h4>
       <p>Traditional cane craft is resilient, but road transit can occasionally cause surface scrapes or breakage. We stand behind every piece that leaves our workshop.</p>
       <ul>
-        <li><strong>Transit Damage Policy:</strong> If your Mudha arrives with transit damage, simply take 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery.</li>
+        <li><strong>Transit Damage Policy:</strong> If your Mudda arrives with transit damage, simply take 2–3 clear photographs of the damage and outer packaging within 48 hours of delivery.</li>
         <li><strong>Zero Return Hassle:</strong> You do NOT have to worry about repacking or shipping bulky furniture back to Uttar Pradesh. Upon reviewing your photos, we dispatch a brand-new replacement immediately at zero cost.</li>
       </ul>
       <button class="btn-primary" style="margin-top: 16px;" onclick="closePolicyModal(); openTransitDamageModal();">
@@ -1265,7 +1265,7 @@ async function saveAdminShipping() {
 // ==========================================================================
 function openWhatsAppChat(customMessage = '') {
   trackEvent('WhatsAppClick', { source: customMessage ? 'ProductContext' : 'FloatingButton' });
-  const text = customMessage || 'Hello MuddaCraft, I am interested in your traditional bamboo Mudhas from A to Z Mudda House, Muzaffarnagar.';
+  const text = customMessage || 'Hello MuddaCraft, I am interested in your traditional bamboo Muddas from A to Z Mudda House, Muzaffarnagar.';
   const url = `https://wa.me/${storeState.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(text)}`;
   window.open(url, '_blank');
 }

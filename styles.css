@@ -180,18 +180,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 84px;
 }
 
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
 }
 
 .brand-logo-img {
-  height: 44px;
+  height: 48px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -228,7 +228,7 @@ button {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 40px;
   list-style: none;
 }
 
@@ -395,14 +395,14 @@ button {
    ========================================================================== */
 
 .hero {
-  padding: 48px 0 64px;
+  padding: 72px 0 88px;
   position: relative;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 64px;
   align-items: center;
 }
 
@@ -410,7 +410,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 7px 16px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-pill);
@@ -419,16 +419,16 @@ button {
   color: var(--bamboo-dark);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
   font-weight: 600;
   line-height: 1.15;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   letter-spacing: -0.02em;
 }
 
@@ -439,18 +439,18 @@ button {
 }
 
 .hero-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 32px;
-  max-width: 520px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+  max-width: 530px;
 }
 
 .hero-actions {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
 .btn-primary {
@@ -458,20 +458,20 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: var(--bamboo-base);
+  background-color: var(--mudda-terracotta);
   color: #FFF;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: var(--radius-md);
   font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 14px rgba(160, 114, 56, 0.28);
+  font-size: 1.025rem;
+  box-shadow: 0 4px 16px rgba(196, 90, 60, 0.28);
   transition: all var(--transition-fast);
 }
 
 .btn-primary:hover {
-  background-color: var(--bamboo-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(160, 114, 56, 0.35);
+  background-color: #AA4A2F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196, 90, 60, 0.38);
 }
 
 .btn-secondary {
@@ -481,8 +481,8 @@ button {
   gap: 8px;
   background-color: transparent;
   color: var(--text-primary);
-  border: 1px solid var(--border-light);
-  padding: 14px 24px;
+  border: 1.5px solid var(--border-medium);
+  padding: 14px 26px;
   border-radius: var(--radius-md);
   font-weight: 600;
   font-size: 1rem;
@@ -490,8 +490,46 @@ button {
 }
 
 .btn-secondary:hover {
-  border-color: var(--bamboo-base);
-  background-color: var(--bg-secondary);
+  border-color: var(--mudda-terracotta);
+  color: var(--mudda-terracotta);
+  background-color: rgba(196, 90, 60, 0.05);
+}
+
+/* Numbered Craft Trust Strip (Direct from Visual Fixes Wireframe 03) */
+.hero-trust-strip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-light);
+}
+
+.trust-strip-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--mudda-charcoal);
+}
+
+.trust-strip-num {
+  font-family: var(--font-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--mudda-terracotta);
+  background: rgba(196, 90, 60, 0.1);
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.trust-strip-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border-light);
 }
 
 /* Trust Indicators */
@@ -554,7 +592,7 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/assets/visual-assets/mudda-weave.svg');
+  background-image: url('assets/visual-assets/mudda-weave.svg');
   background-repeat: repeat;
   background-size: 112px 112px;
   opacity: 0.14;
@@ -580,12 +618,18 @@ button {
   top: 16px;
   right: 16px;
   z-index: 3;
-  width: 52px;
-  height: 52px;
-  background-image: url('/assets/visual-assets/blockprint-rosette.svg');
+  width: 54px;
+  height: 54px;
+  background-image: url('assets/visual-assets/blockprint-rosette.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.65;
+  opacity: 0.75;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.hero-illustration-frame:hover .hero-craft-stamp {
+  transform: rotate(45deg) scale(1.1);
+  opacity: 1;
 }
 
 .hero-floating-pill {
@@ -1059,7 +1103,7 @@ button {
 }
 
 /* ==========================================================================
-   Why Mudha? (Features & Use Cases)
+   Why Mudda? (Features & Benefits Grid)
    ========================================================================== */
 
 .why-grid {
@@ -1087,16 +1131,36 @@ button {
   box-shadow: 0 10px 24px rgba(129, 37, 42, 0.08);
 }
 
+.why-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.why-card-index {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--mudda-mustard);
+  letter-spacing: 0.05em;
+  background: rgba(227, 169, 78, 0.12);
+  border: 1px solid rgba(227, 169, 78, 0.28);
+  border-radius: 6px;
+  padding: 4px 10px;
+  line-height: 1;
+}
+
 .why-icon-badge {
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   border-radius: 12px;
   background: rgba(129, 37, 42, 0.08);
   color: var(--mudda-oxblood);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
@@ -2625,10 +2689,14 @@ button {
     max-height: 280px;
   }
 
-  .trust-indicators {
+  .trust-indicators, .hero-trust-strip {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+
+  .trust-strip-divider {
+    display: none;
   }
 
   .products-grid {

@@ -421,7 +421,7 @@ const server = http.createServer((req, res) => {
 
         // Handle simulated test payment verification
         if (simulated || razorpay_signature === 'simulated_test_signature' || (razorpay_order_id && razorpay_order_id.startsWith('order_sim_'))) {
-          const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+          const orderId = 'MUDDA-' + Math.floor(100000 + Math.random() * 900000);
           res.writeHead(200, { 'Content-Type': 'application/json' });
           return res.end(JSON.stringify({
             success: true,
@@ -478,7 +478,7 @@ const server = http.createServer((req, res) => {
         }
 
         // Signature verified successfully -> generate confirmed store order ID
-        const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+        const orderId = 'MUDDA-' + Math.floor(100000 + Math.random() * 900000);
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({
@@ -507,7 +507,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const orderData = JSON.parse(body || '{}');
-        const orderId = 'MUDHA-' + Math.floor(100000 + Math.random() * 900000);
+        const orderId = 'MUDDA-' + Math.floor(100000 + Math.random() * 900000);
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({
           success: true,
@@ -604,7 +604,7 @@ const server = http.createServer((req, res) => {
         </head>
         <body>
           <h1>Page Not Found</h1>
-          <p>Looking for handcrafted traditional Mudhas? Return to our storefront.</p>
+          <p>Looking for handcrafted traditional Muddas? Return to our storefront.</p>
           <a href="/">Return to Storefront</a>
         </body>
         </html>
