@@ -4,6 +4,7 @@ node_modules/
 .codex/
 .scratch/
 *.log
-.vercel
+.vercel/
 .env
 .env.*
+supplier_data/

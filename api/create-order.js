@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const key_id = process.env.RAZORPAY_KEY_ID || 'rzp_live_TsDk75vQP2YBgw';
-  const key_secret = process.env.RAZORPAY_KEY_SECRET || '7HQNh2u8ZzBIoBiLDzhxEJmz';
+  const key_id = process.env.RAZORPAY_KEY_ID;
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
 
   try {
     const payload = req.body || {};

@@ -8,6 +8,6 @@ export default function handler(req, res) {
   }
 
   return res.status(200).json({
-    keyId: process.env.RAZORPAY_KEY_ID || 'rzp_live_TsDk75vQP2YBgw'
+    keyId: process.env.RAZORPAY_KEY_ID || ''
   });
 }

@@ -366,7 +366,7 @@ const server = http.createServer((req, res) => {
             order_id: `order_sim_${Date.now().toString().slice(-8)}`,
             amount: Math.round(amount),
             currency,
-            key_id: process.env.RAZORPAY_KEY_ID || 'rzp_test_TsDTKwUVhjD7pL',
+            key_id: process.env.RAZORPAY_KEY_ID || '',
             simulated: true
           }));
         }

@@ -13,7 +13,7 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const key_secret = process.env.RAZORPAY_KEY_SECRET || '7HQNh2u8ZzBIoBiLDzhxEJmz';
+  const key_secret = process.env.RAZORPAY_KEY_SECRET;
 
   try {
     const payload = req.body || {};
